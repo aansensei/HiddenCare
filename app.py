@@ -222,7 +222,13 @@ with gr.Blocks(
 
 
 if __name__ == "__main__":
+    in_space = bool(os.environ.get("SPACE_ID"))
+    server_port = 7860 if in_space else int(os.environ.get("PORT", 3000))
+    server_name = "0.0.0.0" if in_space else "127.0.0.1"
+
     demo.queue().launch(
+        server_name=server_name,
+        server_port=server_port,
         theme=clinical_theme,
         css=CLINICAL_CSS,
         js=FORCE_LIGHT_JS,
