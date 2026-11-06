@@ -1,0 +1,15 @@
+original_name,variable_name,release,file_source,unit,missing_codes,role,description
+SEQN,seqn,both,DEMO,integer,none,id,Respondent sequence number used for one-to-one component merging
+RIDAGEYR,age,both,DEMO,years,none,predictor,Age in years at screening exam top-coded at 80
+RIAGENDR,sex,both,DEMO,category,none,predictor,Gender coded as 1 for Male and 2 for Female
+BMXBMI,bmi,both,BMX,kg/m^2,empty string or NA,predictor,Body mass index measured during physical examination
+BMXWAIST,waist,both,BMX,cm,empty string or NA,predictor,Waist circumference measured during physical examination
+DIQ010,dx,both,DIQ,category,"7 (Refused), 9 (Don't know), 3 (Borderline)",outcome_definition,Doctor diagnosed diabetes response used for Label A and Label B
+LBXGH,a1c,both,GHB,percent,empty string or NA,outcome_definition,Glycohemoglobin percentage measured from venous blood sample
+HIQ011,hiq,both,HIQ,category,"7 (Refused), 9 (Don't know)",audit,Health insurance coverage status recoded to insured uninsured or unknown
+INDFMPIR,pir,both,DEMO,ratio,empty string or NA,audit,Ratio of family income to federal poverty guideline grouped into low middle high or missing
+RIDEXPRG,prg,both,DEMO,category,"NA (Not applicable or not tested), 3 (Unknown)",exclusion,Pregnancy status at examination where code 1 represents known pregnancy
+WTMECPRP,weight,pre_pandemic,P_DEMO,probability weight,zero or NA,survey_weight,Full sample examination weight for pre-pandemic cycle
+WTPH2YR,weight,post_pandemic,GHB_L,probability weight,zero or NA,survey_weight,Phlebotomy 2-year examination weight for 2021 to 2023 cycle
+SDMVPSU,psu,both,DEMO,integer,none,survey_design,Masked pseudo primary sampling unit
+SDMVSTRA,strata,both,DEMO,integer,none,survey_design,Masked pseudo stratum for design-based variance estimation

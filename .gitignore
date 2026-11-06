@@ -1,0 +1,17 @@
+# Python environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Raw and large data files
+data/raw/
+*.tar.gz
+
+# Model artifacts
+outputs/models/*.joblib
+outputs/models/*.pkl

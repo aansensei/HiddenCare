@@ -1,0 +1,5 @@
+policy_group,n_participants,n_potential_cases,positivity_rate_pct
+Selected by Both Models,878,52,5.92
+Selected Only by Diagnosis Model,61,1,1.64
+Selected Only by Combined Model,61,3,4.92
+Selected by Neither Model,3698,60,1.62

@@ -1,0 +1,13 @@
+step,n_remaining,n_excluded,cycle
+Initial participants in DEMO,14986,0,Pre-pandemic (2017 to March 2020)
+Adults aged 20 and older,9232,5754,Pre-pandemic (2017 to March 2020)
+Explicit diagnosis answer (dx 1 or 2),8965,267,Pre-pandemic (2017 to March 2020)
+Observed venous HbA1c measurement,7837,1128,Pre-pandemic (2017 to March 2020)
+Positive survey analysis weight,7837,0,Pre-pandemic (2017 to March 2020)
+Exclude known pregnancy (final cohort),7761,76,Pre-pandemic (2017 to March 2020)
+Initial participants in DEMO,11744,0,Post-pandemic (2021 to 2023)
+Adults aged 20 and older,7809,3935,Post-pandemic (2021 to 2023)
+Explicit diagnosis answer (dx 1 or 2),7536,273,Post-pandemic (2021 to 2023)
+Observed venous HbA1c measurement,5554,1982,Post-pandemic (2021 to 2023)
+Positive survey analysis weight,5554,0,Post-pandemic (2021 to 2023)
+Exclude known pregnancy (final cohort),5517,37,Post-pandemic (2021 to 2023)
