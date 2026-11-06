@@ -1,0 +1,18 @@
+name: Keep Alive Space Pinger
+
+on:
+  schedule:
+    # Runs every 6 hours to prevent Hugging Face Spaces idle sleeping
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Wakeup Ping to Hugging Face Space
+        run: |
+          echo "Pinging HiddenCare Space to maintain active status..."
+          curl -s -I --max-time 30 https://huggingface.co/spaces/aansensei/HiddenCare || true
+          curl -s -I --max-time 30 https://aansensei-hiddencare.hf.space || true
+          echo "Wakeup ping dispatched successfully."
