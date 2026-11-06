@@ -249,4 +249,5 @@ if __name__ == "__main__":
         server_name=server_name,
         server_port=server_port,
         favicon_path=fav,
+        ssr=False,
     )
