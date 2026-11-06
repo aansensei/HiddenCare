@@ -29,9 +29,12 @@ CLINICAL_CSS = CSS_PATH.read_text(encoding="utf-8") if CSS_PATH.exists() else ""
 # JavaScript to enforce light theme and eliminate dark mode classes.
 FORCE_LIGHT_JS = """
 function() {
-    document.body.classList.remove('dark');
-    const container = document.querySelector('.gradio-container');
-    if (container) container.classList.remove('dark');
+    if (typeof document !== 'undefined') {
+        document.body.classList.remove('dark');
+        if (document.documentElement) document.documentElement.classList.remove('dark');
+        const container = document.querySelector('.gradio-container');
+        if (container) container.classList.remove('dark');
+    }
 }
 """
 
@@ -219,8 +222,9 @@ with gr.Blocks(
 
 
 if __name__ == "__main__":
-    demo.launch(
+    demo.queue().launch(
         theme=clinical_theme,
         css=CLINICAL_CSS,
         js=FORCE_LIGHT_JS,
+        ssr_mode=False,
     )
