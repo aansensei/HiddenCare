@@ -1,0 +1,257 @@
+/* ==========================================================================
+   HIDDENCARE CLINICAL DESIGN SYSTEM (v1.0 - Weill Cornell Edition)
+   Theme: Strictly Clinical Light | Author: An Nguyen (AanSensei)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap');
+
+:root {
+  /* 1. SURFACE & BACKGROUND TOKENS (STRICT LIGHT MODE) */
+  --bg-canvas: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-elevated: #ffffff;
+
+  /* 2. TYPOGRAPHY & INK HIERARCHY */
+  --ink-primary: #0f172a;
+  --ink-secondary: #334155;
+  --ink-muted: #64748b;
+  --ink-faint: #94a3b8;
+
+  /* 3. BORDERS & DIVIDERS */
+  --border-hairline: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  /* 4. CLINICAL SEMANTIC ACCENTS */
+  --medical-primary: #0284c7;
+  --medical-deep: #0369a1;
+  --medical-soft: #e0f2fe;
+
+  --detected-emerald: #059669;
+  --detected-soft: #ecfdf5;
+  --detected-border: #a7f3d0;
+
+  --missed-rose: #e11d48;
+  --missed-soft: #fff1f2;
+  --missed-border: #fecdd3;
+
+  --caution-amber: #d97706;
+  --caution-soft: #fffbeb;
+
+  /* 5. TYPOGRAPHY FAMILIES */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* 6. ELEVATION & RADII */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 10px 15px -3px rgba(15, 23, 42, 0.06), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+}
+
+/* Force Light Mode - Override Gradio Dark Theme */
+body, .gradio-container, .dark, .gradio-container.dark {
+  background-color: var(--bg-canvas) !important;
+  color: var(--ink-primary) !important;
+  font-family: var(--font-sans) !important;
+  color-scheme: light !important;
+}
+
+.gradio-container {
+  max-width: 1360px !important;
+  margin: 0 auto !important;
+  padding: 24px 32px !important;
+}
+
+/* ==========================================================================
+   EDITORIAL MASTHEAD & HERO COMPONENTS
+   ========================================================================== */
+.hc-masthead {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-top: 4px solid var(--medical-deep);
+  border-radius: var(--radius-lg);
+  padding: 28px 34px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 22px;
+}
+
+.hc-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--medical-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hc-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.24;
+  color: var(--ink-primary);
+  margin: 0 0 12px 0;
+  letter-spacing: -0.015em;
+}
+
+.hc-subtitle {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+  max-width: 980px;
+  margin-bottom: 16px;
+}
+
+.hc-whisper-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--ink-muted);
+  border-left: 3px solid var(--medical-primary);
+  padding-left: 14px;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CLINICAL KPI & METRIC CARDS
+   ========================================================================== */
+.hc-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 18px 0;
+}
+
+.hc-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hc-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.hc-card--medical { border-top: 3px solid var(--medical-primary); }
+.hc-card--emerald { border-top: 3px solid var(--detected-emerald); }
+.hc-card--rose    { border-top: 3px solid var(--missed-rose); }
+.hc-card--neutral { border-top: 3px solid var(--ink-secondary); }
+
+.hc-metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+
+.hc-metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.95rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.hc-metric-subtext {
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+  line-height: 1.45;
+}
+
+.hc-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.hc-badge--emerald {
+  background: var(--detected-soft);
+  color: var(--detected-emerald);
+  border: 1px solid var(--detected-border);
+}
+
+.hc-badge--rose {
+  background: var(--missed-soft);
+  color: var(--missed-rose);
+  border: 1px solid var(--missed-border);
+}
+
+.hc-badge--medical {
+  background: var(--medical-soft);
+  color: var(--medical-deep);
+}
+
+/* ==========================================================================
+   CLINICAL DATA TABLES & CALLOUT BOXES
+   ========================================================================== */
+.hc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.hc-table th {
+  background: var(--bg-subtle);
+  color: var(--ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.hc-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-hairline);
+  color: var(--ink-primary);
+}
+
+.hc-table tr.row-rescued {
+  background-color: var(--detected-soft);
+  font-weight: 500;
+}
+
+.hc-callout {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-left: 4px solid var(--medical-primary);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 16px 0;
+  box-shadow: var(--shadow-card);
+}
+
+.hc-callout--rose {
+  border-left-color: var(--missed-rose);
+  background: #fffafa;
+}
+
+.hc-callout--emerald {
+  border-left-color: var(--detected-emerald);
+  background: #f7fdfa;
+}

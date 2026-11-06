@@ -1,0 +1,142 @@
+[
+  {
+    "original_name": "SEQN",
+    "variable_name": "seqn",
+    "release": "both",
+    "file_source": "DEMO",
+    "unit": "integer",
+    "missing_codes": "none",
+    "role": "id",
+    "description": "Respondent sequence number used for one-to-one component merging"
+  },
+  {
+    "original_name": "RIDAGEYR",
+    "variable_name": "age",
+    "release": "both",
+    "file_source": "DEMO",
+    "unit": "years",
+    "missing_codes": "none",
+    "role": "predictor",
+    "description": "Age in years at screening exam top-coded at 80"
+  },
+  {
+    "original_name": "RIAGENDR",
+    "variable_name": "sex",
+    "release": "both",
+    "file_source": "DEMO",
+    "unit": "category",
+    "missing_codes": "none",
+    "role": "predictor",
+    "description": "Gender coded as 1 for Male and 2 for Female"
+  },
+  {
+    "original_name": "BMXBMI",
+    "variable_name": "bmi",
+    "release": "both",
+    "file_source": "BMX",
+    "unit": "kg/m^2",
+    "missing_codes": "empty string or NA",
+    "role": "predictor",
+    "description": "Body mass index measured during physical examination"
+  },
+  {
+    "original_name": "BMXWAIST",
+    "variable_name": "waist",
+    "release": "both",
+    "file_source": "BMX",
+    "unit": "cm",
+    "missing_codes": "empty string or NA",
+    "role": "predictor",
+    "description": "Waist circumference measured during physical examination"
+  },
+  {
+    "original_name": "DIQ010",
+    "variable_name": "dx",
+    "release": "both",
+    "file_source": "DIQ",
+    "unit": "category",
+    "missing_codes": "7 (Refused), 9 (Don't know), 3 (Borderline)",
+    "role": "outcome_definition",
+    "description": "Doctor diagnosed diabetes response used for Label A and Label B"
+  },
+  {
+    "original_name": "LBXGH",
+    "variable_name": "a1c",
+    "release": "both",
+    "file_source": "GHB",
+    "unit": "percent",
+    "missing_codes": "empty string or NA",
+    "role": "outcome_definition",
+    "description": "Glycohemoglobin percentage measured from venous blood sample"
+  },
+  {
+    "original_name": "HIQ011",
+    "variable_name": "hiq",
+    "release": "both",
+    "file_source": "HIQ",
+    "unit": "category",
+    "missing_codes": "7 (Refused), 9 (Don't know)",
+    "role": "audit",
+    "description": "Health insurance coverage status recoded to insured uninsured or unknown"
+  },
+  {
+    "original_name": "INDFMPIR",
+    "variable_name": "pir",
+    "release": "both",
+    "file_source": "DEMO",
+    "unit": "ratio",
+    "missing_codes": "empty string or NA",
+    "role": "audit",
+    "description": "Ratio of family income to federal poverty guideline grouped into low middle high or missing"
+  },
+  {
+    "original_name": "RIDEXPRG",
+    "variable_name": "prg",
+    "release": "both",
+    "file_source": "DEMO",
+    "unit": "category",
+    "missing_codes": "NA (Not applicable or not tested), 3 (Unknown)",
+    "role": "exclusion",
+    "description": "Pregnancy status at examination where code 1 represents known pregnancy"
+  },
+  {
+    "original_name": "WTMECPRP",
+    "variable_name": "weight",
+    "release": "pre_pandemic",
+    "file_source": "P_DEMO",
+    "unit": "probability weight",
+    "missing_codes": "zero or NA",
+    "role": "survey_weight",
+    "description": "Full sample examination weight for pre-pandemic cycle"
+  },
+  {
+    "original_name": "WTPH2YR",
+    "variable_name": "weight",
+    "release": "post_pandemic",
+    "file_source": "GHB_L",
+    "unit": "probability weight",
+    "missing_codes": "zero or NA",
+    "role": "survey_weight",
+    "description": "Phlebotomy 2-year examination weight for 2021 to 2023 cycle"
+  },
+  {
+    "original_name": "SDMVPSU",
+    "variable_name": "psu",
+    "release": "both",
+    "file_source": "DEMO",
+    "unit": "integer",
+    "missing_codes": "none",
+    "role": "survey_design",
+    "description": "Masked pseudo primary sampling unit"
+  },
+  {
+    "original_name": "SDMVSTRA",
+    "variable_name": "strata",
+    "release": "both",
+    "file_source": "DEMO",
+    "unit": "integer",
+    "missing_codes": "none",
+    "role": "survey_design",
+    "description": "Masked pseudo stratum for design-based variance estimation"
+  }
+]

@@ -1,10 +1,25 @@
+---
+title: HiddenCare - Population Screening & Label Bias Lab
+emoji: 🩺
+colorFrom: blue
+colorTo: green
+sdk: gradio
+sdk_version: 6.31.0
+app_file: app.py
+pinned: true
+license: mit
+short_description: Empirical CDC NHANES study on proxy label bias in population screening
+---
+
 # HiddenCare
 
 Evaluating Proxy Outcome Bias in Algorithmic Diabetes Screening Under Capacity Constraints
 
 Author: An Nguyen (AanSensei)  
+Institution: University of Wisconsin-Madison (B.S. Economics & Data Science)  
 Target: Weill Cornell Biostatistics Summer Internship 2027  
 Repository: https://github.com/aansensei/HiddenCare.git  
+Interactive Platform: Hugging Face Spaces (Gradio 5.x/6.x Blocks)  
 
 ## Overview
 
@@ -113,6 +128,18 @@ The pipeline automatically:
 5. Evaluates models on the locked holdout across 10%, 20%, and 30% screening capacities.
 6. Conducts paired policy concordance and sociodemographic subgroup audits.
 7. Saves all summary tables to `outputs/tables/` and publication figures to `outputs/figures/`.
+
+### 4. Launching the Interactive Policy Simulation Web Platform
+
+To launch the interactive clinical research dashboard locally:
+
+```bash
+python app.py
+```
+
+Open `http://localhost:7860` in any modern web browser to interactively adjust screening capacity budgets (5% to 50%), inspect the 61-person marginal disagreement cohort, review health equity sensitivity gaps, and simulate Net Monetary Benefit (NMB) via Decision Curve Analysis.
+
+When synced or pushed to Hugging Face Spaces, the platform launches automatically using the native Gradio SDK configuration defined in the repository header.
 
 ## Key Findings
 
