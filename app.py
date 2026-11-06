@@ -86,6 +86,9 @@ def on_economic_param_change(capacity_pct, cost_test, benefit_early):
 
 # Build the Gradio Application Blocks Layout
 with gr.Blocks(
+    theme=clinical_theme,
+    css=CLINICAL_CSS,
+    js=FORCE_LIGHT_JS,
     title="HiddenCare | Algorithmic Epidemiology & Diabetes Screening Lab",
 ) as demo:
 
@@ -245,8 +248,5 @@ if __name__ == "__main__":
     demo.queue().launch(
         server_name=server_name,
         server_port=server_port,
-        theme=clinical_theme,
-        css=CLINICAL_CSS,
-        js=FORCE_LIGHT_JS,
         favicon_path=fav,
     )
