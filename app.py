@@ -1,4 +1,5 @@
 # Main interactive web application entrypoint for Hugging Face Spaces.
+# Styled according to the Macro Event Lab design system and anti-slop guidelines.
 
 from pathlib import Path
 import os
@@ -16,16 +17,19 @@ from src.clinical_charts import (
 )
 from src.html_components import (
     render_masthead_html,
+    render_site_guide_html,
     render_hero_summary_cards,
     render_simulator_kpi_cards,
     render_margin_table_html,
     render_equity_callout_html,
     render_economic_ledger_html,
+    render_about_page_html,
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 CSS_PATH = PROJECT_ROOT / "assets" / "clinical_theme.css"
 CLINICAL_CSS = CSS_PATH.read_text(encoding="utf-8") if CSS_PATH.exists() else ""
+FAVICON_PATH = PROJECT_ROOT / "assets" / "favicon.ico"
 
 # JavaScript to enforce light theme and eliminate dark mode classes.
 FORCE_LIGHT_JS = """
@@ -45,10 +49,10 @@ clinical_theme = gr.themes.Base(
     font=[gr.themes.GoogleFont("Inter"), "sans-serif"],
     font_mono=[gr.themes.GoogleFont("JetBrains Mono"), "monospace"],
 ).set(
-    body_background_fill="#f8fafc",
+    body_background_fill="#ffffff",
     block_background_fill="#ffffff",
-    block_border_color="#e2e8f0",
-    body_text_color="#0f172a",
+    block_border_color="#dbe7ef",
+    body_text_color="#062033",
 )
 
 # Load data dictionary for methodology tab.
@@ -60,35 +64,42 @@ if DICT_PATH.exists():
 dict_df = pd.DataFrame(dict_records)
 
 
-def on_capacity_change(capacity_pct: int, cost_test: float, benefit_early: float):
-    kpi_html = render_simulator_kpi_cards(capacity_pct)
-    gain_fig = build_capacity_gain_chart(capacity_pct)
-    nns_fig = build_nns_chart(capacity_pct)
-    econ_html = render_economic_ledger_html(capacity_pct, cost_test, benefit_early)
-    return kpi_html, gain_fig, nns_fig, econ_html
+def on_capacity_change(capacity_pct, cost_test, benefit_early):
+    kpi_html = render_simulator_kpi_cards(int(capacity_pct))
+    plot_gain = build_capacity_gain_chart(int(capacity_pct))
+    plot_nns = build_nns_chart(int(capacity_pct))
+    econ_html = render_economic_ledger_html(
+        int(capacity_pct), float(cost_test), float(benefit_early)
+    )
+    return kpi_html, plot_gain, plot_nns, econ_html
 
 
-def on_margin_filter_change(filter_choice: str):
-    return render_margin_table_html(filter_choice)
+def on_margin_filter_change(filter_selection):
+    return render_margin_table_html(filter_selection)
 
 
-def on_economic_param_change(capacity_pct: int, cost_test: float, benefit_early: float):
-    return render_economic_ledger_html(capacity_pct, cost_test, benefit_early)
+def on_economic_param_change(capacity_pct, cost_test, benefit_early):
+    return render_economic_ledger_html(
+        int(capacity_pct), float(cost_test), float(benefit_early)
+    )
 
 
+# Build the Gradio Application Blocks Layout
 with gr.Blocks(
     title="HiddenCare | Algorithmic Epidemiology & Diabetes Screening Lab",
 ) as demo:
 
-    # Editorial Masthead & Summary Cards
+    # Header with AanSensei logo, title, and lead (no cheesy quote)
     gr.HTML(render_masthead_html())
-    gr.HTML(render_hero_summary_cards())
 
-    # Analytical Tabs
+    # Analytical Tabs matching Macro Event Lab
     with gr.Tabs():
 
-        # Tab 1: Capacity Simulator
-        with gr.TabItem("01. Capacity Allocation Simulator"):
+        # Tab 1: Overview & Capacity Simulator
+        with gr.TabItem("Overview & Simulator"):
+            gr.HTML(render_site_guide_html())
+            gr.HTML(render_hero_summary_cards())
+
             with gr.Row():
                 with gr.Column(scale=8):
                     capacity_slider = gr.Slider(
@@ -99,10 +110,11 @@ with gr.Blocks(
                         label="Screening Budget Capacity (% of Undiagnosed Holdout Cohort, N = 4,698)",
                     )
                 with gr.Column(scale=4):
+                    gr.Markdown("**Quick Budget Presets:**")
                     with gr.Row():
-                        btn_10 = gr.Button("Preset: 10% Budget", size="sm")
-                        btn_20 = gr.Button("Preset: 20% (Primary)", variant="primary", size="sm")
-                        btn_30 = gr.Button("Preset: 30% Budget", size="sm")
+                        btn_10 = gr.Button("10% Budget", size="sm", elem_classes=["preset-btn"])
+                        btn_20 = gr.Button("20% (Primary)", variant="primary", size="sm", elem_classes=["preset-btn", "preset-btn--primary"])
+                        btn_30 = gr.Button("30% Budget", size="sm", elem_classes=["preset-btn"])
 
             sim_kpi_html = gr.HTML(value=render_simulator_kpi_cards(20))
 
@@ -113,7 +125,7 @@ with gr.Blocks(
                     plot_nns = gr.Plot(value=build_nns_chart(20))
 
         # Tab 2: The 61-Person Margin Inspector
-        with gr.TabItem("02. The 61-Person Margin Inspector"):
+        with gr.TabItem("The 61-Person Margin"):
             with gr.Row():
                 with gr.Column(scale=6):
                     plot_swap_bar = gr.Plot(value=build_margin_swap_comparison_chart())
@@ -136,13 +148,13 @@ with gr.Blocks(
             )
 
         # Tab 3: Health Equity Audit
-        with gr.TabItem("03. Health Equity & Access Audit"):
+        with gr.TabItem("Equity & Access Audit"):
             gr.HTML(render_equity_callout_html())
             with gr.Row():
                 plot_equity = gr.Plot(value=build_equity_bar_chart())
 
         # Tab 4: Health Economics & Decision Curves
-        with gr.TabItem("04. Health Economics & Decision Curves"):
+        with gr.TabItem("Health Economics & DCA"):
             with gr.Row():
                 with gr.Column(scale=6):
                     cost_input = gr.Number(
@@ -162,20 +174,11 @@ with gr.Blocks(
                         value=render_economic_ledger_html(20, 25.0, 8500.0)
                     )
 
-        # Tab 5: Methodology & Dictionary
-        with gr.TabItem("05. Methodology & NHANES Dictionary"):
-            gr.Markdown(
-                """
-### Methodological Design & Epidemiological Guardrails
-
-1. **Strict Temporal Split:** The model is trained on pre-pandemic continuous NHANES (2017 to March 2020; N = 7,761) and evaluated once on a locked holdout of previously undiagnosed adults from post-pandemic NHANES (August 2021 to August 2023; N = 4,698).
-2. **Zero Target Leakage:** Only non-invasive demographic and anthropometric markers (Age, Sex, BMI, Waist Circumference) enter the feature matrix. Laboratory HbA1c is used strictly as the ground-truth outcome in evaluation.
-3. **Screening Allocation vs Clinical Diagnosis:** Models output priority ranking scores to allocate laboratory screening kits; they do not claim to provide definitive clinical diagnoses.
-
-#### Interactive CDC NHANES Variable Codebook
-                """
-            )
+        # Tab 5: About & How It Is Built (Full Macro Event Lab Style)
+        with gr.TabItem("About & Methodology"):
+            gr.HTML(render_about_page_html())
             if not dict_df.empty:
+                gr.Markdown("### Interactive CDC NHANES Variable Codebook")
                 gr.DataFrame(
                     value=dict_df[
                         [
@@ -188,8 +191,18 @@ with gr.Blocks(
                             "description",
                         ]
                     ],
-                    label="CDC NHANES Variables Used in HiddenCare",
+                    headers=[
+                        "Original Code",
+                        "Clean Variable",
+                        "Cycle",
+                        "File Source",
+                        "Unit",
+                        "Analytical Role",
+                        "Description",
+                    ],
+                    datatype=["str", "str", "str", "str", "str", "str", "str"],
                     interactive=False,
+                    wrap=True,
                 )
 
     # Event Listeners
@@ -227,11 +240,13 @@ if __name__ == "__main__":
     server_port = 7860 if in_space else int(os.environ.get("PORT", 3000))
     server_name = "0.0.0.0" if in_space else "127.0.0.1"
 
+    fav = str(FAVICON_PATH) if FAVICON_PATH.exists() else None
+
     demo.queue().launch(
         server_name=server_name,
         server_port=server_port,
         theme=clinical_theme,
         css=CLINICAL_CSS,
         js=FORCE_LIGHT_JS,
-        ssr_mode=False,
+        favicon_path=fav,
     )
