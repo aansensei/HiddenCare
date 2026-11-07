@@ -1579,8 +1579,7 @@ input[type="range"],
 }
 
 /* 2. NỘI DUNG NGHIÊN CỨU & DỮ LIỆU (Hoàn toàn cho phép bôi đen & sao chép văn bản) */
-body,
-p,
+p:not(.site-footer *):not(#hc-institutional-footer *),
 h1, h2, h3, h4, h5, h6,
 .hc-header-title,
 .hc-header-lead,
@@ -1613,3 +1612,83 @@ table, tr, td, th,
   -ms-user-select: text !important;
   user-select: text !important;
 }
+
+
+
+
+/* ==========================================================================
+
+   STRICT FOOTER PROTECTION - ZERO TEXT SELECTION EVER
+
+   Khóa 100% khả năng bôi đen / highlight mọi chữ, dòng, thẻ p, div trong footer
+
+   ========================================================================== */
+
+.site-footer,
+
+.site-footer *,
+
+#hc-institutional-footer,
+
+#hc-institutional-footer *,
+
+.footer-grid,
+
+.footer-grid *,
+
+.footer-brand,
+
+.footer-brand *,
+
+.footer-tagline,
+
+.footer-tagline *,
+
+.footer-status,
+
+.footer-status *,
+
+.footer-col,
+
+.footer-col *,
+
+.footer-head,
+
+.footer-head *,
+
+.footer-list,
+
+.footer-list *,
+
+.footer-link,
+
+.footer-link *,
+
+.footer-source,
+
+.footer-source *,
+
+.footer-bottom,
+
+.footer-bottom *,
+
+.footer-legal,
+
+.footer-legal *,
+
+.footer-disclaimer,
+
+.footer-disclaimer * {
+
+  -webkit-user-select: none !important;
+
+  -moz-user-select: none !important;
+
+  -ms-user-select: none !important;
+
+  user-select: none !important;
+
+  cursor: default !important;
+
+}
+
