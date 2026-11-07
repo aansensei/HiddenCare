@@ -37,7 +37,7 @@ def render_masthead_html() -> str:
     <span class="hc-meta-bullet">•</span>
     <span class="hc-meta-tag">Population Health Sciences</span>
     <span class="hc-meta-bullet">•</span>
-    <span class="hc-meta-tag">Weill Cornell Fellowship Portfolio</span>
+    <span class="hc-meta-tag">Algorithmic Epidemiology Lab</span>
   </div>
   <h1 class="hc-header-title">When Clinical History Masks Biological Reality</h1>
   <p class="hc-header-lead">
@@ -335,7 +335,7 @@ def render_economic_ledger_html(
 
 def render_about_page_html() -> str:
     avatar_html = (
-        f'<img src="{AVATAR_URI}" alt="An Nguyen" class="author-photo" width="96" height="96" />'
+        f'<img src="{AVATAR_URI}" alt="Avatar of Cao Thien An Nguyen" class="author-photo" width="96" height="96" />'
         if AVATAR_URI
         else ""
     )
@@ -414,22 +414,31 @@ def render_about_page_html() -> str:
     </ul>
   </section>
 
-  <!-- Author Profile -->
-  <section class="about-section">
-    <h3 class="t-h2">Author & Institutional Target</h3>
+  <!-- Author Profile (Copied exactly from Macro Event Lab) -->
+  <section class="about-section" aria-labelledby="about-author">
+    <h3 class="t-h2" id="about-author">Author</h3>
     <div class="author-card">
       {avatar_html}
-      <div class="author-info">
-        <h4 style="margin: 0 0 4px 0; font-size: 1.15rem; color: var(--text);">An Nguyen (AanSensei)</h4>
-        <p style="margin: 0 0 10px 0; color: var(--accent); font-weight: 500; font-size: 0.95rem;">
-          University of Wisconsin–Madison • B.S. Economics & Data Science
+      <div>
+        <p class="author-name">Cao Thien An Nguyen</p>
+        <p class="author-role">Data Science and Economics, University of Wisconsin-Madison</p>
+        <p class="author-bio">
+          From Ho Chi Minh City, Vietnam, now in Madison, where the winters are long enough to build a
+          whole data pipeline indoors. I blend economics with data science to turn raw data into stories
+          that anyone can follow, and I only trust a number after checking when it was first published.
         </p>
-        <p style="margin: 0 0 12px 0; color: var(--text-muted); line-height: 1.6; font-size: 0.92rem;">
-          Flagship biostatistics portfolio project for application to the <b>Weill Cornell Medicine Biostatistics Summer Internship 2027</b> (Department of Population Health Sciences, Division of Biostatistics).
+        <p class="author-fun">
+          <span class="author-fun-tag">Fun fact</span> Runs on crispy fried noodles (mì xào giòn):
+          one plate a week through all of 2025, about 52 plates. Revisions to this preference since the
+          first print: zero.
         </p>
-        <div style="font-size: 0.88rem; color: var(--text-muted);">
-          <b>Email:</b> nguyencaothienan937@gmail.com • <b>Website:</b> <a href="https://aansensei.github.io" target="_blank" style="color: var(--accent); text-decoration: underline;">aansensei.github.io</a> • <b>GitHub:</b> <a href="https://github.com/aansensei/HiddenCare" target="_blank" style="color: var(--accent); text-decoration: underline;">github.com/aansensei/HiddenCare</a>
-        </div>
+        <dl class="author-links">
+          <div><dt>Portfolio</dt><dd><a href="https://aansensei.dev" target="_blank" rel="noopener noreferrer">aansensei.dev</a></dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/cao-thien-an-nguyen" target="_blank" rel="noopener noreferrer">in/cao-thien-an-nguyen</a></dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer">github.com/aansensei</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:nguyencaothienan937@gmail.com">nguyencaothienan937@gmail.com</a></dd></div>
+          <div><dt>Code</dt><dd><a href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">github.com/aansensei/HiddenCare</a></dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -457,4 +466,108 @@ def render_about_page_html() -> str:
     </dl>
   </section>
 </article>
+"""
+
+
+def render_footer_html() -> str:
+    logo_img = (
+        f'<img src="{LOGO_URI}" alt="HiddenCare Logo" width="28" height="28" />'
+        if LOGO_URI
+        else ""
+    )
+    return f"""
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-mark">
+        {logo_img}
+        <span class="footer-name">HiddenCare</span>
+      </div>
+      <p class="footer-tagline">
+        When clinical history masks biological reality: an empirical investigation of proxy outcome bias in algorithmic triage across N = 12,459 CDC NHANES participants.
+      </p>
+      <div class="footer-status">
+        <span class="footer-status-dot" aria-hidden="true"></span>
+        <span>CDC NHANES Continuous Biomonitoring 2017–2023</span>
+      </div>
+      <div class="footer-social">
+        <a class="footer-social-btn" href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="8 7 3 12 8 17" /><polyline points="16 7 21 12 16 17" />
+          </svg>
+        </a>
+        <a class="footer-social-btn" href="https://www.linkedin.com/in/cao-thien-an-nguyen" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="3" /><line x1="8" y1="11" x2="8" y2="16" /><line x1="8" y1="8" x2="8" y2="8.01" /><path d="M12 16v-5m0 2.5a2.5 2.5 0 0 1 5 0V16" />
+          </svg>
+        </a>
+        <a class="footer-social-btn" href="https://aansensei.dev" target="_blank" rel="noopener noreferrer" aria-label="Portfolio" title="Portfolio">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+          </svg>
+        </a>
+        <a class="footer-social-btn" href="mailto:nguyencaothienan937@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" /><polyline points="3 7 12 13 21 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-head">Explore</h2>
+      <ul class="footer-list">
+        <li><span class="footer-link">01 Capacity Allocation Simulator</span></li>
+        <li><span class="footer-link">02 The 61-Person Margin Inspector</span></li>
+        <li><span class="footer-link">03 Health Equity & Access Audit</span></li>
+        <li><span class="footer-link">04 Health Economics & Decision Curves</span></li>
+        <li><span class="footer-link">05 About & Methodology</span></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-head">Data Sources</h2>
+      <ul class="footer-list">
+        <li class="footer-source">
+          <a class="footer-link" href="https://wwwn.cdc.gov/nchs/nhanes/" target="_blank" rel="noopener noreferrer">CDC NCHS NHANES</a>
+          <span class="footer-role">Continuous Cycles 2017–2023</span>
+        </li>
+        <li class="footer-source">
+          <a class="footer-link" href="https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/GHB_J.htm" target="_blank" rel="noopener noreferrer">Glycohemoglobin (GHB)</a>
+          <span class="footer-role">Laboratory Biomonitoring</span>
+        </li>
+        <li class="footer-source">
+          <a class="footer-link" href="https://diabetes.org/" target="_blank" rel="noopener noreferrer">ADA Clinical Criteria</a>
+          <span class="footer-role">Diagnostic cut-off HbA1c ≥ 6.5%</span>
+        </li>
+        <li class="footer-source">
+          <a class="footer-link" href="https://wwwn.cdc.gov/nchs/nhanes/tutorials/weighting.aspx" target="_blank" rel="noopener noreferrer">Complex Survey Design</a>
+          <span class="footer-role">WTMEC2YR Examination Weights</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-head">Project & Code</h2>
+      <ul class="footer-list">
+        <li><a class="footer-link" href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">Source Code (GitHub)</a></li>
+        <li><a class="footer-link" href="https://huggingface.co/spaces/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">Hugging Face Space</a></li>
+        <li><a class="footer-link" href="https://aansensei.dev" target="_blank" rel="noopener noreferrer">Author Portfolio</a></li>
+        <li><a class="footer-link" href="https://github.com/aansensei/HiddenCare/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>&copy; 2026 Cao Thien An Nguyen. Academic and policy research.</div>
+    <div class="footer-legal">
+      <p class="footer-disclaimer">
+        Educational and epidemiological research only. An elevated HbA1c measurement in cross-sectional surveillance is a clinical screening surrogate, not an autonomous medical diagnosis. Models and simulation outputs are designed to examine algorithmic fairness under resource limits and must not guide clinical decision-making without qualified medical review.
+      </p>
+      <p>
+        Microdata sourced from the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC). This independent analysis is neither endorsed nor certified by the CDC or NCHS.
+      </p>
+    </div>
+  </div>
+</footer>
 """

@@ -1,5 +1,5 @@
 ---
-title: HiddenCare - Population Screening & Label Bias Lab
+title: "HiddenCare: Population Screening & Label Bias Lab"
 emoji: 🩺
 colorFrom: blue
 colorTo: green
@@ -15,9 +15,9 @@ short_description: Empirical CDC NHANES study on proxy label bias in population 
 
 Evaluating Proxy Outcome Bias in Algorithmic Diabetes Screening Under Capacity Constraints
 
-Author: An Nguyen (AanSensei)  
+Author: Cao Thien An Nguyen (AanSensei)  
 Institution: University of Wisconsin-Madison (B.S. Economics & Data Science)  
-Target: Weill Cornell Biostatistics Summer Internship 2027  
+Lab: Population Health Sciences & Algorithmic Fairness  
 Repository: https://github.com/aansensei/HiddenCare.git  
 Interactive Platform: Hugging Face Spaces (Gradio 5.x/6.x Blocks)  
 

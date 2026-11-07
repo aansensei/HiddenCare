@@ -4,8 +4,19 @@
 from pathlib import Path
 import os
 import json
+import inspect
 import gradio as gr
 import pandas as pd
+
+# Hugging Face ZeroGPU compatibility marker
+try:
+    import spaces
+
+    @spaces.GPU
+    def _zerogpu_marker():
+        return True
+except (ImportError, Exception):
+    pass
 
 from src.clinical_charts import (
     build_capacity_gain_chart,
@@ -16,6 +27,7 @@ from src.clinical_charts import (
     build_decision_curve_plot,
 )
 from src.html_components import (
+    get_base64_image,
     render_masthead_html,
     render_site_guide_html,
     render_hero_summary_cards,
@@ -24,23 +36,78 @@ from src.html_components import (
     render_equity_callout_html,
     render_economic_ledger_html,
     render_about_page_html,
+    render_footer_html,
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 CSS_PATH = PROJECT_ROOT / "assets" / "clinical_theme.css"
 CLINICAL_CSS = CSS_PATH.read_text(encoding="utf-8") if CSS_PATH.exists() else ""
 FAVICON_PATH = PROJECT_ROOT / "assets" / "favicon.ico"
+FAVICON_ICO_URI = get_base64_image("favicon.ico", "image/x-icon")
+FAVICON_PNG_URI = get_base64_image("favicon-96x96.png", "image/png")
 
-# JavaScript to enforce light theme and eliminate dark mode classes.
-FORCE_LIGHT_JS = """
-function() {
-    if (typeof document !== 'undefined') {
+# Metadata for SEO, Google scrape, Open Graph, and Twitter Cards
+HEAD_HTML = f"""
+<title>HiddenCare | Algorithmic Triage & Health Equity Lab</title>
+<link rel="icon" type="image/x-icon" href="{FAVICON_ICO_URI}">
+<link rel="icon" type="image/png" sizes="96x96" href="{FAVICON_PNG_URI}">
+<link rel="apple-touch-icon" href="{FAVICON_PNG_URI}">
+<meta name="title" content="HiddenCare | Algorithmic Triage & Health Equity Lab">
+<meta name="description" content="An empirical investigation into proxy outcome bias in algorithmic screening using CDC NHANES Continuous Biomonitoring data (N = 12,459). Demonstrating how proxy training labels systematically reorder screening queues and deepen disparities for underserved populations.">
+<meta name="keywords" content="Biostatistics, Algorithmic Bias, Health Equity, CDC NHANES, Machine Learning, Triage, Diabetes Screening, Health Economics">
+<meta name="author" content="Cao Thien An Nguyen">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aansensei-hiddencare.hf.space">
+<meta property="og:site_name" content="HiddenCare">
+<meta property="og:title" content="HiddenCare | Algorithmic Triage & Health Equity Lab">
+<meta property="og:description" content="An empirical investigation of proxy outcome bias across N = 12,459 CDC NHANES participants. Discover how clinical proxy labels bias screening allocation.">
+<meta property="og:image" content="https://aansensei.dev/assets/images/preview.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://aansensei-hiddencare.hf.space">
+<meta name="twitter:title" content="HiddenCare | Algorithmic Triage & Health Equity Lab">
+<meta name="twitter:description" content="Evaluating proxy outcome bias in algorithmic triage across N = 12,459 CDC NHANES participants.">
+<meta name="twitter:image" content="https://aansensei.dev/assets/images/preview.png">
+<meta name="twitter:creator" content="@aansensei">
+"""
+
+# JavaScript to enforce light theme, favicon and tab title dynamically
+FORCE_LIGHT_JS = f"""
+function() {{
+    if (typeof document !== 'undefined') {{
         document.body.classList.remove('dark');
         if (document.documentElement) document.documentElement.classList.remove('dark');
         const container = document.querySelector('.gradio-container');
         if (container) container.classList.remove('dark');
-    }
-}
+
+        const pageTitle = "HiddenCare | Algorithmic Triage & Health Equity Lab";
+        if (document.title !== pageTitle) {{
+            document.title = pageTitle;
+        }}
+
+        const setFavicons = function() {{
+            const icoUri = "{FAVICON_ICO_URI}";
+            let links = document.querySelectorAll("link[rel*='icon']");
+            if (links.length === 0) {{
+                const link = document.createElement('link');
+                link.rel = 'icon';
+                link.type = 'image/x-icon';
+                link.href = icoUri;
+                document.head.appendChild(link);
+            }} else {{
+                links.forEach(function(l) {{
+                    l.href = icoUri;
+                }});
+            }}
+        }};
+        setFavicons();
+        setTimeout(setFavicons, 500);
+        setTimeout(setFavicons, 1500);
+        setTimeout(setFavicons, 3000);
+    }}
+}}
 """
 
 clinical_theme = gr.themes.Base(
@@ -85,12 +152,17 @@ def on_economic_param_change(capacity_pct, cost_test, benefit_early):
 
 
 # Build the Gradio Application Blocks Layout
-with gr.Blocks(
-    theme=clinical_theme,
-    css=CLINICAL_CSS,
-    js=FORCE_LIGHT_JS,
-    title="HiddenCare | Algorithmic Epidemiology & Diabetes Screening Lab",
-) as demo:
+blocks_sig = inspect.signature(gr.Blocks.__init__).parameters
+blocks_kwargs = {
+    "theme": clinical_theme,
+    "css": CLINICAL_CSS,
+    "js": FORCE_LIGHT_JS,
+    "title": "HiddenCare | Algorithmic Triage & Health Equity Lab",
+}
+if "head" in blocks_sig:
+    blocks_kwargs["head"] = HEAD_HTML
+
+with gr.Blocks(**blocks_kwargs) as demo:
 
     # Header with AanSensei logo, title, and lead (no cheesy quote)
     gr.HTML(render_masthead_html())
@@ -208,6 +280,9 @@ with gr.Blocks(
                     wrap=True,
                 )
 
+    # Site-wide Institutional Editorial Footer
+    gr.HTML(render_footer_html())
+
     # Event Listeners
     capacity_slider.change(
         fn=on_capacity_change,
@@ -239,15 +314,24 @@ with gr.Blocks(
 
 
 if __name__ == "__main__":
+    import inspect
+
     in_space = bool(os.environ.get("SPACE_ID"))
     server_port = 7860 if in_space else int(os.environ.get("PORT", 3000))
     server_name = "0.0.0.0" if in_space else "127.0.0.1"
 
     fav = str(FAVICON_PATH) if FAVICON_PATH.exists() else None
 
-    demo.queue().launch(
-        server_name=server_name,
-        server_port=server_port,
-        favicon_path=fav,
-        ssr=False,
-    )
+    launch_sig = inspect.signature(demo.launch).parameters
+    launch_kwargs = {
+        "server_name": server_name,
+        "server_port": server_port,
+    }
+    if fav and "favicon_path" in launch_sig:
+        launch_kwargs["favicon_path"] = fav
+    if "head" in launch_sig:
+        launch_kwargs["head"] = HEAD_HTML
+    if "ssr" in launch_sig:
+        launch_kwargs["ssr"] = False
+
+    demo.queue().launch(**launch_kwargs)

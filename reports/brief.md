@@ -1,8 +1,8 @@
 # HiddenCare: Research Brief on Proxy Outcome Bias in Algorithmic Diabetes Screening
 
-Author: An Nguyen (AanSensei)  
+Author: Cao Thien An Nguyen (AanSensei)  
 Date: November 6, 2026  
-Target Application: Weill Cornell Biostatistics Summer Internship 2027  
+Focus: Population Health Sciences & Algorithmic Triage Fairness  
 Repository: https://github.com/aansensei/HiddenCare.git  
 
 ## Executive Summary

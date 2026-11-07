@@ -3,8 +3,8 @@
 Protocol Version: 1.0  
 Date: November 6, 2026  
 Status: Pre-registered prior to model evaluation on the holdout release  
-Principal Investigator: An Nguyen (AanSensei)  
-Target Application: Weill Cornell Biostatistics Summer Internship 2027  
+Principal Investigator: Cao Thien An Nguyen (AanSensei)  
+Field: Algorithmic Epidemiology & Health Equity  
 
 ## 1. Research Question and Motivation
 

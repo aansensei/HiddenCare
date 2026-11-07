@@ -1,7 +1,7 @@
 /* ==========================================================================
    HIDDENCARE DESIGN SYSTEM (v2.0 - Macro Event Lab & Academic Editorial Style)
    Theme: Strictly Clinical Light | Color System: #ffffff / #f3f8fb / #0369a1
-   Author: An Nguyen (AanSensei) | Target: Weill Cornell Biostatistics '27
+   Author: Cao Thien An Nguyen (AanSensei) | Population Health Sciences Lab
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700&display=swap');
@@ -650,4 +650,231 @@ body, .gradio-container, .dark, .gradio-container.dark {
 .preset-btn--primary:hover {
   background: var(--accent-hover) !important;
   color: #ffffff !important;
+}
+
+/* ==========================================================================
+   SITE FOOTER (Institutional Editorial Style matching Macro Event Lab)
+   ========================================================================== */
+
+/* Hide default Gradio branding and footer */
+footer,
+.footer,
+.gradio-container > footer,
+div[data-testid="block-footer"],
+.built-with {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+.site-footer {
+  position: relative;
+  margin-top: 80px;
+  padding: 48px 24px 28px;
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: var(--radius-lg);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
+  opacity: 0.7;
+}
+
+.footer-grid {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-mark img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.footer-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.footer-tagline {
+  margin: 12px 0 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0 0;
+  padding: 5px 12px 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: var(--bg);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text);
+  width: fit-content;
+}
+
+.footer-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+}
+
+.footer-social {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.footer-social-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text-muted);
+  transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  text-decoration: none;
+}
+
+.footer-social-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.footer-col {
+  min-width: 0;
+}
+
+.footer-head {
+  margin: 0 0 14px 0;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-source {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-role {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.footer-link {
+  font-size: 13.5px;
+  line-height: 20px;
+  color: var(--text);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: color 0.18s ease, background-size 0.25s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+  background-size: 100% 1px;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  max-width: 1360px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.footer-legal {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+.footer-legal p {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
