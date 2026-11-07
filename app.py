@@ -80,7 +80,13 @@ function() {{
         document.body.classList.remove('dark');
         if (document.documentElement) document.documentElement.classList.remove('dark');
         const container = document.querySelector('.gradio-container');
-        if (container) container.classList.remove('dark');
+        if (container) {{
+            container.classList.remove('dark');
+            container.style.setProperty('max-width', '1560px', 'important');
+            container.style.setProperty('width', '95%', 'important');
+            container.style.setProperty('margin', '0 auto', 'important');
+            container.style.setProperty('background-color', '#ffffff', 'important');
+        }}
 
         const pageTitle = "HiddenCare | Algorithmic Triage & Health Equity Lab";
         if (document.title !== pageTitle) {{
@@ -167,13 +173,24 @@ with gr.Blocks(**blocks_kwargs) as demo:
     # Header with AanSensei logo, title, and lead (no cheesy quote)
     gr.HTML(render_masthead_html())
 
-    # Analytical Tabs matching Macro Event Lab
+    # Analytical Tabs: Streamlined into 2 cohesive, publication-grade views
     with gr.Tabs():
 
-        # Tab 1: Overview & Capacity Simulator
-        with gr.TabItem("Overview & Simulator"):
-            gr.HTML(render_site_guide_html())
+        # Tab 1: Interactive Research Lab (Comprehensive Single-Page Study)
+        with gr.TabItem("Interactive Research Lab"):
             gr.HTML(render_hero_summary_cards())
+
+            # Section 01: Capacity Allocation Simulator
+            gr.HTML("""
+            <div class="hc-section-card-header" style="margin-top: 28px;">
+              <span class="hc-section-kicker">01 / Simulation Engine</span>
+              <h2 class="hc-section-title">Screening Queue Triage Under Finite Capacity</h2>
+              <p class="hc-section-desc">
+                Adjust screening capacity to simulate how proxy-trained versus biomarker-augmented triage prioritizes 
+                previously undiagnosed adults (N = 4,698 holdout).
+              </p>
+            </div>
+            """)
 
             with gr.Row():
                 with gr.Column(scale=8):
@@ -199,8 +216,18 @@ with gr.Blocks(**blocks_kwargs) as demo:
                 with gr.Column(scale=6):
                     plot_nns = gr.Plot(value=build_nns_chart(20))
 
-        # Tab 2: The 61-Person Margin Inspector
-        with gr.TabItem("The 61-Person Margin"):
+            # Section 02: The 61-Person Margin Inspector
+            gr.HTML("""
+            <div class="hc-section-card-header" style="margin-top: 48px;">
+              <span class="hc-section-kicker">02 / Boundary Analysis</span>
+              <h2 class="hc-section-title">The 61-Person Margin: Who Swaps at the 20% Cutoff?</h2>
+              <p class="hc-section-desc">
+                At exactly 20% capacity (K = 939 slots), 61 individuals differ between Model A and Model B queues. 
+                Inspect their joint rankings and individual clinical records.
+              </p>
+            </div>
+            """)
+
             with gr.Row():
                 with gr.Column(scale=6):
                     plot_swap_bar = gr.Plot(value=build_margin_swap_comparison_chart())
@@ -222,14 +249,32 @@ with gr.Blocks(**blocks_kwargs) as demo:
                 value=render_margin_table_html("3 True Positive Cases Rescued by Label B")
             )
 
-        # Tab 3: Health Equity Audit
-        with gr.TabItem("Equity & Access Audit"):
+            # Section 03: Health Equity & Access Audit
+            gr.HTML("""
+            <div class="hc-section-card-header" style="margin-top: 48px;">
+              <span class="hc-section-kicker">03 / Fairness & Disparity</span>
+              <h2 class="hc-section-title">Health Equity Audit Across Insurance and Income Strata</h2>
+              <p class="hc-section-desc">
+                Evaluating whether training on clinical diagnosis history systematically penalizes individuals with lower healthcare access.
+              </p>
+            </div>
+            """)
+
             gr.HTML(render_equity_callout_html())
             with gr.Row():
                 plot_equity = gr.Plot(value=build_equity_bar_chart())
 
-        # Tab 4: Health Economics & Decision Curves
-        with gr.TabItem("Health Economics & DCA"):
+            # Section 04: Health Economics & Decision Curves
+            gr.HTML("""
+            <div class="hc-section-card-header" style="margin-top: 48px;">
+              <span class="hc-section-kicker">04 / Policy Economics</span>
+              <h2 class="hc-section-title">Decision Curve Analysis & Net Monetary Benefit</h2>
+              <p class="hc-section-desc">
+                Quantifying financial and health utility trade-offs across screening test costs and complication avoidance values.
+              </p>
+            </div>
+            """)
+
             with gr.Row():
                 with gr.Column(scale=6):
                     cost_input = gr.Number(
@@ -249,7 +294,7 @@ with gr.Blocks(**blocks_kwargs) as demo:
                         value=render_economic_ledger_html(20, 25.0, 8500.0)
                     )
 
-        # Tab 5: About & How It Is Built (Full Macro Event Lab Style)
+        # Tab 2: About & Methodology (Complete Narrative, Author & Disclaimers)
         with gr.TabItem("About & Methodology"):
             gr.HTML(render_about_page_html())
             if not dict_df.empty:

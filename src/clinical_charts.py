@@ -130,7 +130,7 @@ def build_nns_chart(selected_capacity_pct: int = 20) -> go.Figure:
             y=df_sub["nns_b"],
             mode="lines",
             name="Model B (Combined Biomarker)",
-            line=dict(color="#059669", width=2.4),
+            line=dict(color="#0284c7", width=2.4),
         )
     )
 
@@ -138,7 +138,7 @@ def build_nns_chart(selected_capacity_pct: int = 20) -> go.Figure:
         x=selected_capacity_pct,
         line_width=1.5,
         line_dash="dot",
-        line_color="#059669",
+        line_color="#0369a1",
         annotation_text=f"Current: {selected_capacity_pct}%",
         annotation_position="bottom right",
     )
@@ -168,7 +168,7 @@ def build_margin_swap_comparison_chart() -> go.Figure:
         "3 / 61 cases (4.92%)<br>3.0x Model A yield",
         "52 / 878 cases (5.92%)",
     ]
-    colors = ["#e11d48", "#94a3b8", "#059669", "#0284c7"]
+    colors = ["#94a3b8", "#cbd5e1", "#0284c7", "#0369a1"]
 
     fig = go.Figure(
         data=[
@@ -177,7 +177,7 @@ def build_margin_swap_comparison_chart() -> go.Figure:
                 y=hit_rates,
                 text=case_labels,
                 textposition="outside",
-                marker=dict(color=colors, line=dict(width=1, color="#0f172a")),
+                marker=dict(color=colors, line=dict(width=1, color="rgba(15, 23, 42, 0.15)")),
                 width=0.52,
             )
         ]
@@ -226,7 +226,7 @@ def build_joint_ranking_scatter() -> go.Figure:
             y=only_a_df["rank_dx"],
             mode="markers",
             name="Model A Exclusive (n = 61)",
-            marker=dict(size=6, color="#e11d48", symbol="diamond"),
+            marker=dict(size=6, color="#94a3b8", symbol="diamond"),
         )
     )
 
@@ -239,7 +239,7 @@ def build_joint_ranking_scatter() -> go.Figure:
             y=only_b_df["rank_dx"],
             mode="markers",
             name="Model B Exclusive (n = 61)",
-            marker=dict(size=6, color="#059669", symbol="circle"),
+            marker=dict(size=6, color="#0284c7", symbol="circle"),
         )
     )
 
@@ -251,10 +251,10 @@ def build_joint_ranking_scatter() -> go.Figure:
             y=rescued_true["rank_dx"],
             mode="markers+text",
             name="3 Rescued Cases (HbA1c >= 6.5%)",
-            marker=dict(size=12, color="#059669", symbol="star", line=dict(color="#0f172a", width=1.5)),
+            marker=dict(size=12, color="#0369a1", symbol="star", line=dict(color="#0f172a", width=1.5)),
             text=["Rescued Case", "Rescued Case", "Rescued Case"],
             textposition="top center",
-            textfont=dict(family="JetBrains Mono", size=10, color="#065f46"),
+            textfont=dict(family="JetBrains Mono", size=10, color="#0369a1"),
         )
     )
 

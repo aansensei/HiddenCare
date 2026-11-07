@@ -94,40 +94,52 @@ def render_site_guide_html() -> str:
 
 def render_hero_summary_cards() -> str:
     return """
-<div class="hc-findings-grid">
-  <article class="hc-finding-card">
-    <div class="hc-finding-kicker">Development Cohort (2017–Mar 2020)</div>
-    <div class="hc-finding-value num">N = 7,761</div>
-    <div class="hc-finding-detail">
+<div class="hc-bento-grid">
+  <!-- Bento 1: Primary Discovery (Featured Highlight) -->
+  <article class="hc-bento-card hc-bento-card--featured">
+    <div>
+      <span class="hc-section-kicker" style="color: var(--accent);">Primary Discovery • 20% Budget Constraint</span>
+      <div class="hc-finding-value num" style="color: var(--accent); margin: 8px 0 4px 0;">61 Patients Swapped</div>
+      <p style="margin: 0 0 16px 0; font-size: 0.90rem; color: var(--text-muted); line-height: 1.55;">
+        At the 939-slot boundary (K = 20%), Model B rescues <strong>3 true cases</strong> missed by Model A, 
+        delivering a <strong>3.0× higher marginal yield (4.92% vs 1.64%)</strong>.
+      </p>
+    </div>
+    <div class="hc-finding-detail" style="border-top: 1px solid rgba(2, 132, 199, 0.2); padding-top: 12px; font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
+      <div>• Consensus Core: 878 shared candidates (52 true cases, 5.92% yield)</div>
+      <div>• Model B Unique: 3 / 61 cases (4.92% precision)</div>
+    </div>
+  </article>
+
+  <!-- Bento 2: Evaluation Holdout -->
+  <article class="hc-bento-card">
+    <div>
+      <span class="hc-section-kicker">Evaluation Cohort • Aug 2021–Aug 2023</span>
+      <div class="hc-finding-value num" style="margin: 8px 0 4px 0;">N = 4,698 Adults</div>
+      <p style="margin: 0 0 16px 0; font-size: 0.90rem; color: var(--text-muted); line-height: 1.55;">
+        Strictly previously undiagnosed adults with zero temporal overlap with training data. 
+        Biochemically confirmed <strong>116 latent diabetes cases</strong> (HbA1c &ge; 6.5%).
+      </p>
+    </div>
+    <div class="hc-finding-detail" style="border-top: 1px solid var(--border); padding-top: 12px; font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
+      <div>• Unweighted Background Prevalence: 2.47%</div>
+      <div>• Predictors: Age, Sex, BMI, Waist Circumference</div>
+    </div>
+  </article>
+
+  <!-- Bento 3: Development Benchmark -->
+  <article class="hc-bento-card">
+    <div>
+      <span class="hc-section-kicker">Training Benchmark • 2017–Mar 2020</span>
+      <div class="hc-finding-value num" style="margin: 8px 0 4px 0;">N = 7,761 Adults</div>
+      <p style="margin: 0 0 16px 0; font-size: 0.90rem; color: var(--text-muted); line-height: 1.55;">
+        Pre-pandemic baseline comparing administrative self-report labels against 
+        biomarker-augmented screening labels.
+      </p>
+    </div>
+    <div class="hc-finding-detail" style="border-top: 1px solid var(--border); padding-top: 12px; font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
       <div>• Label A (Diagnosis Only): 1,257 cases (16.20%)</div>
       <div>• Label B (Dx OR HbA1c &ge; 6.5%): 1,484 cases (19.12%)</div>
-    </div>
-    <div class="hc-finding-badge hc-badge--cyan">
-      Hidden Need: +227 Latent Cases
-    </div>
-  </article>
-
-  <article class="hc-finding-card">
-    <div class="hc-finding-kicker">Undiagnosed Holdout (2021–2023)</div>
-    <div class="hc-finding-value num">N = 4,698</div>
-    <div class="hc-finding-detail">
-      <div>• Strictly previously undiagnosed adults at exam</div>
-      <div>• True Latent Cases (HbA1c &ge; 6.5%): <b>116 cases</b></div>
-    </div>
-    <div class="hc-finding-badge hc-badge--neutral">
-      Background Prevalence: 2.47%
-    </div>
-  </article>
-
-  <article class="hc-finding-card hc-finding-card--highlight">
-    <div class="hc-finding-kicker">The 20% Budget Margin (K = 939)</div>
-    <div class="hc-finding-value num" style="color: var(--detected-emerald);">61 Swapped</div>
-    <div class="hc-finding-detail">
-      <div>• Consensus Core: 878 shared (52 cases, 5.92% yield)</div>
-      <div>• Model A Unique: 1 / 61 cases (1.64% baseline rate)</div>
-    </div>
-    <div class="hc-finding-badge hc-badge--emerald">
-      Model B Unique: 3 / 61 cases (4.92% — 3.0x Yield)
     </div>
   </article>
 </div>
@@ -185,9 +197,9 @@ def render_simulator_kpi_cards(capacity_pct: int) -> str:
   <article class="hc-kpi-card hc-kpi-card--model-b">
     <div class="hc-kpi-kicker">
       <span>Model B (Biomarker Augmented Label)</span>
-      <span class="hc-badge hc-badge--emerald-sm">{diff_cases_str} Cases</span>
+      <span class="hc-badge hc-badge--accent-sm">{diff_cases_str} Cases</span>
     </div>
-    <div class="hc-kpi-hero num" style="color: var(--detected-emerald);">{found_b} <span class="hc-kpi-denom">/ 116 cases</span></div>
+    <div class="hc-kpi-hero num" style="color: var(--accent);">{found_b} <span class="hc-kpi-denom">/ 116 cases</span></div>
     <div class="hc-kpi-rows">
       <div class="hc-kpi-row"><span>Sensitivity</span><span class="num"><b>{sens_b}%</b> ({diff_sens_str})</span></div>
       <div class="hc-kpi-row"><span>PPV (Precision)</span><span class="num"><b>{ppv_b}%</b></span></div>
@@ -216,7 +228,7 @@ def render_margin_table_html(filter_selection: str) -> str:
         gender = "Male" if row["sex"] == 1.0 else "Female"
         a1c_display = f"<b>{row['a1c']}%</b>" if is_case else f"{row['a1c']}%"
         status_badge = (
-            '<span class="hc-badge hc-badge--emerald">Rescued Case (HbA1c &ge; 6.5%)</span>'
+            '<span class="hc-badge hc-badge--accent">Rescued Case (HbA1c &ge; 6.5%)</span>'
             if is_case
             else '<span class="hc-badge hc-badge--neutral">Normal</span>'
         )
@@ -335,7 +347,7 @@ def render_economic_ledger_html(
 
 def render_about_page_html() -> str:
     avatar_html = (
-        f'<img src="{AVATAR_URI}" alt="Avatar of Cao Thien An Nguyen" class="author-photo" width="96" height="96" />'
+        f'<img src="{AVATAR_URI}" alt="Avatar of Cao Thien An Nguyen" class="author-photo" style="width: 104px; height: 104px; min-width: 104px; min-height: 104px; border-radius: 50% !important; object-fit: cover !important; border: 3px solid var(--accent); padding: 3px; background: #ffffff; box-shadow: 0 4px 14px rgba(3, 105, 161, 0.18); display: block;" />'
         if AVATAR_URI
         else ""
     )
@@ -414,37 +426,52 @@ def render_about_page_html() -> str:
     </ul>
   </section>
 
-  <!-- Author Profile (Copied exactly from Macro Event Lab) -->
+  <!-- Author Profile -->
   <section class="about-section" aria-labelledby="about-author">
-    <h3 class="t-h2" id="about-author">Author</h3>
-    <div class="author-card">
+    <h3 class="t-h2" id="about-author" style="margin-bottom: 16px;">Author</h3>
+    <div class="author-card" style="display: grid; grid-template-columns: 110px 1fr; gap: 28px; align-items: start; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
       {avatar_html}
-      <div>
-        <p class="author-name">Cao Thien An Nguyen</p>
-        <p class="author-role">Data Science and Economics, University of Wisconsin-Madison</p>
-        <p class="author-bio">
+      <div class="author-body" style="display: flex; flex-direction: column;">
+        <h4 class="author-name" style="font-size: 1.4rem; font-weight: 700; color: var(--text); margin: 0 0 4px 0; letter-spacing: -0.01em;">Cao Thien An Nguyen</h4>
+        <p class="author-role" style="font-size: 0.95rem; font-weight: 600; color: var(--accent); margin: 0 0 12px 0;">Data Science & Economics, University of Wisconsin–Madison</p>
+        <p class="author-bio" style="font-size: 0.92rem; line-height: 1.65; color: var(--text-muted); margin: 0 0 14px 0; max-width: 68ch;">
           From Ho Chi Minh City, Vietnam, now in Madison, where the winters are long enough to build a
           whole data pipeline indoors. I blend economics with data science to turn raw data into stories
           that anyone can follow, and I only trust a number after checking when it was first published.
         </p>
-        <p class="author-fun">
-          <span class="author-fun-tag">Fun fact</span> Runs on crispy fried noodles (mì xào giòn):
+        <p class="author-fun" style="font-size: 0.90rem; line-height: 1.6; color: var(--text-muted); margin: 0 0 18px 0; padding: 10px 14px; background: #ffffff; border: 1px solid var(--border); border-radius: 8px; max-width: 68ch;">
+          <span class="author-fun-tag" style="display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background-color: var(--accent-tint); vertical-align: 1px;">Fun fact</span> Runs on crispy fried noodles (mì xào giòn):
           one plate a week through all of 2025, about 52 plates. Revisions to this preference since the
           first print: zero.
         </p>
-        <dl class="author-links">
-          <div><dt>Portfolio</dt><dd><a href="https://aansensei.dev" target="_blank" rel="noopener noreferrer">aansensei.dev</a></dd></div>
-          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/cao-thien-an-nguyen" target="_blank" rel="noopener noreferrer">in/cao-thien-an-nguyen</a></dd></div>
-          <div><dt>GitHub</dt><dd><a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer">github.com/aansensei</a></dd></div>
-          <div><dt>Email</dt><dd><a href="mailto:nguyencaothienan937@gmail.com">nguyencaothienan937@gmail.com</a></dd></div>
-          <div><dt>Code</dt><dd><a href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">github.com/aansensei/HiddenCare</a></dd></div>
+        <dl class="author-links" style="margin: 20px 0 0 0; display: grid; gap: 10px; padding: 18px 0 0 0; border-top: 1px solid var(--border);">
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
+            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Portfolio</dt>
+            <dd style="margin: 0;"><a href="https://aansensei.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">aansensei.dev</a></dd>
+          </div>
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
+            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">LinkedIn</dt>
+            <dd style="margin: 0;"><a href="https://www.linkedin.com/in/cao-thien-an-nguyen" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">linkedin.com/in/cao-thien-an-nguyen</a></dd>
+          </div>
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
+            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">GitHub</dt>
+            <dd style="margin: 0;"><a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">github.com/aansensei</a></dd>
+          </div>
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
+            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Email</dt>
+            <dd style="margin: 0;"><a href="mailto:nguyencaothienan937@gmail.com" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">nguyencaothienan937@gmail.com</a></dd>
+          </div>
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
+            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Repository</dt>
+            <dd style="margin: 0;"><a href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">github.com/aansensei/HiddenCare</a></dd>
+          </div>
         </dl>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="about-section" style="margin-bottom: 40px;">
+  <section class="about-section">
     <h3 class="t-h2">Frequently Asked Questions</h3>
     <dl class="about-rows">
       <div>
@@ -464,6 +491,25 @@ def render_about_page_html() -> str:
         <dd>Yes. All raw CDC SAS transport files, preprocessing pipelines, model checkpoints, unit tests, and pre-computed Parquet tables are fully open-source and reproducible with a single command: <code>python run.py</code>.</dd>
       </div>
     </dl>
+  </section>
+
+  <!-- Prominent Clinical & Methodological Disclaimer -->
+  <section class="disclaimer-callout" aria-labelledby="about-disclaimer">
+    <div class="disclaimer-header">
+      <span class="disclaimer-badge">Institutional & Research Notice</span>
+      <h3 class="disclaimer-title" id="about-disclaimer">Clinical & Methodological Disclaimer</h3>
+    </div>
+    <div class="disclaimer-content">
+      <p>
+        <strong>Not Medical Advice:</strong> HiddenCare is an empirical research and educational policy simulation platform investigating algorithmic proxy outcome bias under resource constraints. It is intended strictly for academic, epidemiological, and data science research. The models, risk scores, and simulations presented on this site do not constitute clinical diagnostic tools, medical advice, or personalized care recommendations.
+      </p>
+      <p>
+        <strong>Epidemiological Surveillance vs Clinical Diagnosis:</strong> In cross-sectional population surveys such as CDC NHANES, an elevated laboratory Glycohemoglobin (HbA1c &ge; 6.5%) measurement serves as a biological screening surrogate. Under clinical practice guidelines (such as the American Diabetes Association Standards of Care), an authoritative diagnosis of Type 2 Diabetes requires confirmatory repeat testing or clinical adjudication. Individual patient triage decisions should always be directed by licensed medical professionals.
+      </p>
+      <p>
+        <strong>Data Attribution:</strong> This research utilizes public microdata from the continuous National Health and Nutrition Examination Survey (NHANES 2017–2023) administered by the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC). This independent investigation is neither conducted, endorsed, nor certified by the CDC or NCHS.
+      </p>
+    </div>
   </section>
 </article>
 """

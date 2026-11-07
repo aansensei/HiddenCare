@@ -1,64 +1,81 @@
 /* ==========================================================================
-   HIDDENCARE DESIGN SYSTEM (v2.0 - Macro Event Lab & Academic Editorial Style)
-   Theme: Strictly Clinical Light | Color System: #ffffff / #f3f8fb / #0369a1
+   HIDDENCARE DESIGN SYSTEM (v2.0 - High-End Editorial & Academic Lab)
+   Theme: Luxury Clinical Off-White | Palette: #f8fafc / #ffffff / #0284c7
    Author: Cao Thien An Nguyen (AanSensei) | Population Health Sciences Lab
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700&display=swap');
 
 :root {
-  /* 1. Core Surfaces & Borders (Matched to macro-event-lab tokens.css) */
-  --bg: #ffffff;
-  --surface: #f3f8fb;
-  --surface-hover: #e8f1f7;
-  --border: #dbe7ef;
-  --border-strong: #94a3b8;
-  --border-control: #6f8799;
+  /* 1. Core Surfaces & Hairline Borders (Off-White Depth) */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --border: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --border-control: #94a3b8;
 
-  /* 2. Text Hierarchy */
-  --text: #062033;
-  --text-muted: #3f5b6e;
+  /* 2. Text Hierarchy (Deep Slate Contrast) */
+  --text: #0f172a;
+  --text-muted: #475569;
   --text-faint: #64748b;
 
   /* 3. Medical Accents */
-  --accent: #0369a1;
-  --accent-hover: #075985;
-  --accent-tint: rgba(3, 105, 161, 0.08);
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --accent-tint: rgba(2, 132, 199, 0.08);
 
   --detected-emerald: #059669;
   --detected-soft: #ecfdf5;
   --detected-border: #a7f3d0;
 
-  --missed-rose: #be185d;
+  --missed-rose: #e11d48;
   --missed-soft: #fff1f2;
   --missed-border: #fecdd3;
 
-  /* 4. Typography Families */
+  /* 4. Typography Families (Pairing Editorial Serif + Modern Sans) */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-serif: 'Newsreader', 'Source Serif 4', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* 5. Radii & Shadows */
+  /* 5. Radii & Multi-Layered Soft Shadows */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
-  --shadow-sm: 0 1px 2px 0 rgba(6, 32, 51, 0.05);
-  --shadow-card: 0 2px 4px -1px rgba(6, 32, 51, 0.06), 0 1px 2px -1px rgba(6, 32, 51, 0.04);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Force Pure Light Canvas & Eliminate Giant White Sidebars */
-body, .gradio-container, .dark, .gradio-container.dark {
-  background-color: var(--bg) !important;
+html, body, .gradio-container, .dark, .gradio-container.dark {
+  background-color: #ffffff !important;
   color: var(--text) !important;
   font-family: var(--font-sans) !important;
   color-scheme: light !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .gradio-container {
-  max-width: 1440px !important;
+  max-width: 1560px !important;
   width: 95% !important;
   margin: 0 auto !important;
-  padding: 24px 32px !important;
+  padding: 16px 24px 60px 24px !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: #ffffff !important;
+}
+
+.gradio-container > .main,
+.gradio-container .contain,
+.gradio-container .wrap {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: transparent !important;
 }
 
 /* Tabular Numbers for Data Integrity */
@@ -69,16 +86,16 @@ body, .gradio-container, .dark, .gradio-container.dark {
 }
 
 /* ==========================================================================
-   HEADER & MASTHEAD (No cheesy quotes)
+   HEADER & MASTHEAD (Open Editorial Masthead - No Boxed Card Floating)
    ========================================================================== */
 .hc-header {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-top: 4px solid var(--accent);
-  border-radius: var(--radius-lg);
-  padding: 32px 36px 28px 36px;
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 24px;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  padding: 12px 0 24px 0 !important;
+  box-shadow: none !important;
+  margin-bottom: 24px !important;
 }
 
 .hc-header-meta {
@@ -88,9 +105,9 @@ body, .gradio-container, .dark, .gradio-container.dark {
   gap: 8px;
   margin-bottom: 12px;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.80rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -107,30 +124,31 @@ body, .gradio-container, .dark, .gradio-container.dark {
 
 .hc-header-title {
   font-family: var(--font-serif);
-  font-size: 2.25rem;
-  font-weight: 700;
-  line-height: 1.25;
+  font-size: 2.65rem;
+  font-weight: 600;
+  line-height: 1.15;
   color: var(--text);
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.025em;
 }
 
 .hc-header-lead {
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--text-muted);
-  max-width: 85ch;
+  max-width: 95ch;
   margin: 0;
 }
 
 /* ==========================================================================
-   SITE GUIDE (Matched to macro-event-lab SiteGuide.tsx)
+   SITE GUIDE (Streamlined & Compact)
    ========================================================================== */
 .hc-guide {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px 30px;
-  margin-bottom: 24px;
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin-bottom: 20px;
 }
 
 .hc-guide-header {
@@ -223,8 +241,46 @@ body, .gradio-container, .dark, .gradio-container.dark {
 }
 
 /* ==========================================================================
-   EMPIRICAL FINDINGS CARDS (Overview Findings)
+   EMPIRICAL FINDINGS BENTO GRID (Apple / Linear / Vercel Asymmetric Layout)
    ========================================================================== */
+.hc-bento-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 24px;
+  margin: 16px 0 36px 0;
+}
+
+@media (max-width: 1100px) {
+  .hc-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.hc-bento-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s var(--ease-spring);
+}
+
+.hc-bento-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-hover);
+}
+
+.hc-bento-card--featured {
+  background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+  border-color: rgba(2, 132, 199, 0.3);
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.06), 0 8px 24px -4px rgba(2, 132, 199, 0.06);
+}
+
 .hc-findings-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -289,32 +345,26 @@ body, .gradio-container, .dark, .gradio-container.dark {
   width: fit-content;
 }
 
-.hc-badge--cyan {
+.hc-badge--accent {
   background: var(--accent-tint);
   color: var(--accent);
-  border: 1px solid #bae6fd;
+  border: 1px solid rgba(2, 132, 199, 0.25);
 }
 
-.hc-badge--neutral {
-  background: var(--surface);
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-}
-
-.hc-badge--emerald {
-  background: var(--detected-soft);
-  color: var(--detected-emerald);
-  border: 1px solid var(--detected-border);
-}
-
-.hc-badge--emerald-sm {
-  background: var(--detected-soft);
-  color: var(--detected-emerald);
-  border: 1px solid var(--detected-border);
+.hc-badge--accent-sm {
+  background: var(--accent-tint);
+  color: var(--accent);
+  border: 1px solid rgba(2, 132, 199, 0.25);
   font-size: 0.72rem;
   padding: 2px 8px;
   font-weight: 600;
   border-radius: 9999px;
+}
+
+.hc-badge--neutral {
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
 }
 
 /* ==========================================================================
@@ -578,11 +628,229 @@ body, .gradio-container, .dark, .gradio-container.dark {
   background-color: var(--accent);
 }
 
+/* ==========================================================================
+   AUTHOR PROFILE (Circular Avatar & Editorial Card matching Macro Event Lab)
+   ========================================================================== */
 .author-card {
-  padding: 22px 24px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--surface);
+  display: grid !important;
+  grid-template-columns: 104px 1fr !important;
+  gap: 28px !important;
+  align-items: start !important;
+  padding: 28px !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  margin-top: 20px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+@media (max-width: 600px) {
+  .author-card {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+.author-photo {
+  width: 96px !important;
+  height: 96px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 3px solid var(--accent) !important;
+  padding: 3px !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.15) !important;
+  display: block !important;
+}
+
+.author-body {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.author-name {
+  font-family: var(--font-sans) !important;
+  font-size: 1.35rem !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  margin: 0 0 4px 0 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.author-role {
+  font-family: var(--font-sans) !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: var(--accent) !important;
+  margin: 0 0 12px 0 !important;
+}
+
+.author-bio {
+  font-family: var(--font-sans) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.65 !important;
+  color: var(--text-muted) !important;
+  margin: 0 0 14px 0 !important;
+  max-width: 68ch !important;
+}
+
+.author-fun {
+  font-family: var(--font-sans) !important;
+  font-size: 0.90rem !important;
+  line-height: 1.6 !important;
+  color: var(--text-muted) !important;
+  margin: 0 0 18px 0 !important;
+  padding: 10px 14px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  max-width: 68ch !important;
+}
+
+.author-fun-tag {
+  display: inline-block !important;
+  margin-right: 8px !important;
+  padding: 2px 8px !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--accent) !important;
+  background-color: var(--accent-tint) !important;
+  vertical-align: 1px !important;
+}
+
+.author-links {
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  gap: 12px 18px !important;
+  padding: 14px 0 0 0 !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+.author-links > div {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+  font-size: 0.88rem !important;
+}
+
+.author-links dt {
+  color: var(--text-muted) !important;
+  font-weight: 600 !important;
+  font-size: 0.78rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  min-width: 60px !important;
+}
+
+.author-links dd {
+  margin: 0 !important;
+}
+
+.author-links a {
+  color: var(--accent) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  font-weight: 500 !important;
+  transition: color 0.15s ease !important;
+}
+
+.author-links a:hover {
+  color: var(--accent-hover) !important;
+}
+
+/* ==========================================================================
+   DISCLAIMER CALLOUT (Institutional Notice at bottom of About page)
+   ========================================================================== */
+.disclaimer-callout {
+  margin-top: 48px !important;
+  padding: 26px 30px !important;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-left: 4px solid var(--accent) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+}
+
+.disclaimer-badge {
+  display: inline-block !important;
+  padding: 3px 10px !important;
+  background: var(--accent-tint) !important;
+  color: var(--accent) !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+
+.disclaimer-title {
+  margin: 0 0 12px 0 !important;
+  font-family: var(--font-sans) !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  letter-spacing: -0.01em !important;
+}
+
+.disclaimer-content p {
+  margin: 10px 0 0 0 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.65 !important;
+  color: var(--text-muted) !important;
+}
+
+.disclaimer-content strong {
+  color: var(--text) !important;
+}
+
+/* Section Card Wrapping for Streamlined Layout */
+.hc-section-card {
+  background: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 28px 32px !important;
+  margin-bottom: 32px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+}
+
+.hc-section-card-header {
+  margin-bottom: 20px !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding-bottom: 14px !important;
+}
+
+.hc-section-kicker {
+  display: block !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--accent) !important;
+  margin-bottom: 4px !important;
+}
+
+.hc-section-title {
+  font-family: var(--font-sans) !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  margin: 0 0 6px 0 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.hc-section-desc {
+  font-family: var(--font-sans) !important;
+  font-size: 0.90rem !important;
+  color: var(--text-muted) !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
 }
 
 /* ==========================================================================
