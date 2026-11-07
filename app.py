@@ -157,10 +157,10 @@ function() {{
                     dot.className = 'hc-toc-dot';
                     item.appendChild(dot);
 
-                    const tooltip = document.createElement('div');
-                    tooltip.className = 'hc-toc-tooltip';
-                    tooltip.textContent = sec.getAttribute('data-toc');
-                    item.appendChild(tooltip);
+                    const label = document.createElement('span');
+                    label.className = 'hc-toc-label';
+                    label.textContent = sec.getAttribute('data-toc');
+                    item.appendChild(label);
 
                     item.onclick = function() {{
                         sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
@@ -496,3 +496,6 @@ if __name__ == "__main__":
         launch_kwargs["show_api"] = False
 
     demo.queue().launch(**launch_kwargs)
+    import time
+    while True:
+        time.sleep(3600)
