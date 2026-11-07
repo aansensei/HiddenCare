@@ -48,6 +48,7 @@ FAVICON_PNG_URI = get_base64_image("favicon-96x96.png", "image/png")
 
 # Metadata for SEO, Google scrape, Open Graph, and Twitter Cards
 HEAD_HTML = f"""
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>HiddenCare | Algorithmic Triage & Health Equity Lab</title>
 <link rel="icon" type="image/x-icon" href="{FAVICON_ICO_URI}">
 <link rel="icon" type="image/png" sizes="96x96" href="{FAVICON_PNG_URI}">

@@ -62,7 +62,8 @@ html, body, .gradio-container, .dark, .gradio-container.dark {
   max-width: 1560px !important;
   width: 95% !important;
   margin: 0 auto !important;
-  padding: 16px 24px 60px 24px !important;
+  padding: 16px max(20px, env(safe-area-inset-right)) 60px max(20px, env(safe-area-inset-left)) !important;
+  box-sizing: border-box !important;
   box-shadow: none !important;
   border: none !important;
   background: #ffffff !important;
@@ -197,7 +198,7 @@ body::-webkit-scrollbar-corner,
 
 .hc-header-title {
   font-family: var(--font-serif);
-  font-size: 2.65rem;
+  font-size: clamp(1.4rem, 4vw, 2.65rem);
   font-weight: 600;
   line-height: 1.15;
   color: var(--text);
@@ -230,7 +231,7 @@ body::-webkit-scrollbar-corner,
 
 .hc-section-kicker {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -384,7 +385,7 @@ body::-webkit-scrollbar-corner,
 
 .hc-finding-kicker {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -411,7 +412,7 @@ body::-webkit-scrollbar-corner,
 .hc-finding-badge {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 9999px;
@@ -428,7 +429,7 @@ body::-webkit-scrollbar-corner,
   background: var(--accent-tint);
   color: var(--accent);
   border: 1px solid rgba(2, 132, 199, 0.25);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   padding: 2px 8px;
   font-weight: 600;
   border-radius: 9999px;
@@ -474,7 +475,7 @@ body::-webkit-scrollbar-corner,
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -524,14 +525,16 @@ body::-webkit-scrollbar-corner,
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
   margin: 14px 0;
+  max-width: 100%;
   box-shadow: var(--shadow-sm);
 }
 
 .hc-table-caption {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   padding: 10px 18px;
   background: var(--surface);
@@ -540,6 +543,7 @@ body::-webkit-scrollbar-corner,
 
 .hc-table {
   width: 100%;
+  min-width: 620px;
   border-collapse: collapse;
   font-size: 0.88rem;
   text-align: left;
@@ -549,7 +553,7 @@ body::-webkit-scrollbar-corner,
   background: var(--surface);
   color: var(--text-muted);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -568,6 +572,21 @@ body::-webkit-scrollbar-corner,
 }
 
 .hc-table tr:hover {
+  background: var(--surface-hover);
+}
+
+.hc-table th:first-child,
+.hc-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: var(--surface);
+  z-index: 2;
+  box-shadow: 2px 0 4px rgba(15, 23, 42, 0.04);
+}
+.hc-table tr.row-rescued td:first-child {
+  background: var(--detected-soft);
+}
+.hc-table tr:hover td:first-child {
   background: var(--surface-hover);
 }
 
@@ -786,7 +805,7 @@ body::-webkit-scrollbar-corner,
   margin-right: 8px !important;
   padding: 2px 8px !important;
   border-radius: 999px !important;
-  font-size: 0.72rem !important;
+  font-size: 0.78rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
@@ -867,7 +886,7 @@ body::-webkit-scrollbar-corner,
   background: var(--accent-tint) !important;
   color: var(--accent) !important;
   border-radius: 999px !important;
-  font-size: 0.72rem !important;
+  font-size: 0.78rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
@@ -1692,3 +1711,172 @@ table, tr, td, th,
 
 }
 
+
+/* Responsive layout and touch target adjustments */
+
+.hc-badge--accent-sm {
+  font-size: 0.78rem !important;
+}
+
+.hc-badge {
+  font-size: 0.78rem !important;
+}
+
+/* Touch targets optimization for coarse pointers */
+@media (pointer: coarse) {
+  button,
+  [role="tab"],
+  .tab-nav button,
+  .gr-button,
+  .preset-btn {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  .preset-btn {
+    font-size: 0.90rem !important;
+  }
+  input[type="number"],
+  .gr-number input {
+    min-height: 44px !important;
+    font-size: 1rem !important;
+    box-sizing: border-box !important;
+  }
+  input[type="range"] {
+    min-height: 44px !important;
+    padding: 14px 0 !important;
+    box-sizing: border-box !important;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    background: var(--accent) !important;
+    cursor: pointer !important;
+    margin-top: -10px !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.45) !important;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    background: var(--accent) !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.45) !important;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px !important;
+    border-radius: 4px !important;
+  }
+  label:has(input[type="radio"]) {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 8px 12px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Phone portrait screen adjustments */
+@media (max-width: 640px) {
+  .hc-header {
+    padding: 8px 0 12px 0 !important;
+    margin-bottom: 12px !important;
+  }
+  .hc-header-meta {
+    gap: 4px 6px !important;
+    font-size: 0.76rem !important;
+    margin-bottom: 8px !important;
+  }
+  .hc-header-title {
+    font-size: clamp(1.2rem, 5vw, 1.55rem) !important;
+    line-height: 1.22 !important;
+    margin-bottom: 8px !important;
+  }
+  .hc-header-lead {
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+  }
+  .hc-kpi-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .hc-bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .gradio-container .gr-row,
+  .gradio-container .row {
+    flex-direction: column !important;
+  }
+  .gradio-container .gr-column,
+  .gradio-container .column {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+}
+
+/* Tablet and unfolded foldables layout */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hc-kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+  .hc-kpi-card:last-child {
+    grid-column: span 2 !important;
+  }
+  .hc-bento-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+  .hc-bento-card--featured {
+    grid-column: span 2 !important;
+  }
+}
+
+/* Short landscape orientation for devices like iPhone landscape */
+@media (orientation: landscape) and (max-height: 500px) {
+  .gradio-container {
+    padding-top: 8px !important;
+    padding-left: max(16px, env(safe-area-inset-left)) !important;
+    padding-right: max(16px, env(safe-area-inset-right)) !important;
+  }
+  .hc-header {
+    padding: 4px 0 6px 0 !important;
+    margin-bottom: 6px !important;
+  }
+  .hc-header-meta {
+    font-size: 0.70rem !important;
+    margin-bottom: 2px !important;
+    gap: 4px !important;
+  }
+  .hc-header-title {
+    font-size: 1.2rem !important;
+    line-height: 1.15 !important;
+    margin: 0 0 2px 0 !important;
+  }
+  .hc-header-lead {
+    display: none !important;
+  }
+  .hc-plain-summary-card {
+    padding: 8px 12px !important;
+    margin: 6px 0 !important;
+  }
+  .hc-bento-grid {
+    margin: 6px 0 16px 0 !important;
+    gap: 10px !important;
+  }
+}
+
+/* Surface Duo dual screen layout */
+@media (horizontal-viewport-segments: 2) {
+  .gradio-container {
+    padding-left: calc(env(viewport-segment-left 0 0, 0px) + 16px) !important;
+    padding-right: calc(env(viewport-segment-right 0 1, 0px) + 16px) !important;
+  }
+}
