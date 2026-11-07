@@ -94,16 +94,118 @@ function() {{
         }}
 
         const removeGradioFooter = function() {{
-            const footers = document.querySelectorAll('footer');
+            const footers = document.querySelectorAll('footer:not(.site-footer)');
             footers.forEach(function(f) {{
-                f.style.setProperty('display', 'none', 'important');
-                f.remove();
+                if (!f.classList.contains('site-footer') && !f.closest('.site-footer')) {{
+                    f.style.setProperty('display', 'none', 'important');
+                    f.remove();
+                }}
             }});
         }};
         removeGradioFooter();
         setTimeout(removeGradioFooter, 200);
         setTimeout(removeGradioFooter, 800);
         setTimeout(removeGradioFooter, 2000);
+
+        const initBackToTop = function() {{
+            if (document.getElementById('hc-back-to-top')) return;
+            const btn = document.createElement('button');
+            btn.id = 'hc-back-to-top';
+            btn.setAttribute('type', 'button');
+            btn.setAttribute('aria-label', 'Return to top of page');
+            btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg><span>Top</span>';
+            btn.onclick = function() {{
+                window.scrollTo({{ top: 0, behavior: 'smooth' }});
+            }};
+            document.body.appendChild(btn);
+
+            const handleScroll = function() {{
+                if (window.scrollY > 300) {{
+                    btn.classList.add('visible');
+                }} else {{
+                    btn.classList.remove('visible');
+                }}
+            }};
+            window.addEventListener('scroll', handleScroll, {{ passive: true }});
+            handleScroll();
+        }};
+        initBackToTop();
+        setTimeout(initBackToTop, 400);
+        setTimeout(initBackToTop, 1200);
+
+        const initTocRail = function() {{
+            let rail = document.getElementById('hc-toc-rail');
+            if (!rail) {{
+                rail = document.createElement('nav');
+                rail.id = 'hc-toc-rail';
+                rail.setAttribute('aria-label', 'Table of Contents Navigation');
+                document.body.appendChild(rail);
+            }}
+
+            const updateDots = function() {{
+                const sections = Array.from(document.querySelectorAll('[data-toc]')).filter(function(el) {{
+                    return el.offsetParent !== null;
+                }});
+                rail.innerHTML = '';
+                sections.forEach(function(sec, idx) {{
+                    const item = document.createElement('div');
+                    item.className = 'hc-toc-item' + (idx === 0 ? ' active' : '');
+                    item.setAttribute('role', 'button');
+                    item.setAttribute('aria-label', sec.getAttribute('data-toc'));
+
+                    const dot = document.createElement('div');
+                    dot.className = 'hc-toc-dot';
+                    item.appendChild(dot);
+
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'hc-toc-tooltip';
+                    tooltip.textContent = sec.getAttribute('data-toc');
+                    item.appendChild(tooltip);
+
+                    item.onclick = function() {{
+                        sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+                    }};
+                    rail.appendChild(item);
+                }});
+            }};
+
+            updateDots();
+
+            const handleScrollSpy = function() {{
+                const sections = Array.from(document.querySelectorAll('[data-toc]')).filter(function(el) {{
+                    return el.offsetParent !== null;
+                }});
+                const items = rail.querySelectorAll('.hc-toc-item');
+                if (sections.length === 0 || items.length === 0) return;
+
+                const scrollPos = window.scrollY + window.innerHeight * 0.35;
+                let activeIdx = 0;
+                sections.forEach(function(sec, i) {{
+                    const top = sec.getBoundingClientRect().top + window.scrollY;
+                    if (scrollPos >= top) {{
+                        activeIdx = i;
+                    }}
+                }});
+
+                items.forEach(function(it, i) {{
+                    if (i === activeIdx) it.classList.add('active');
+                    else it.classList.remove('active');
+                }});
+            }};
+
+            window.addEventListener('scroll', handleScrollSpy, {{ passive: true }});
+            document.querySelectorAll('button[role="tab"]').forEach(function(tab) {{
+                tab.addEventListener('click', function() {{
+                    setTimeout(function() {{
+                        updateDots();
+                        handleScrollSpy();
+                    }}, 150);
+                }});
+            }});
+        }};
+        initTocRail();
+        setTimeout(initTocRail, 500);
+        setTimeout(initTocRail, 1500);
 
         const setFavicons = function() {{
             const icoUri = "{FAVICON_ICO_URI}";
@@ -132,7 +234,7 @@ clinical_theme = gr.themes.Base(
     primary_hue=gr.themes.colors.sky,
     neutral_hue=gr.themes.colors.slate,
     font=[gr.themes.GoogleFont("Inter"), "sans-serif"],
-    font_mono=[gr.themes.GoogleFont("JetBrains Mono"), "monospace"],
+    font_mono=[gr.themes.GoogleFont("Inter"), "sans-serif"],
 ).set(
     body_background_fill="#ffffff",
     block_background_fill="#ffffff",
@@ -194,7 +296,7 @@ with gr.Blocks(**blocks_kwargs) as demo:
 
             # Section 01: Capacity Allocation Simulator
             gr.HTML("""
-            <div class="hc-section-card-header" style="margin-top: 28px;">
+            <div class="hc-section-card-header" id="sec-simulation" data-toc="01 • Capacity Simulator" style="margin-top: 28px;">
               <span class="hc-section-kicker">01 / Simulation Engine</span>
               <h2 class="hc-section-title">Screening Queue Triage Under Finite Capacity</h2>
               <p class="hc-section-desc">
@@ -230,7 +332,7 @@ with gr.Blocks(**blocks_kwargs) as demo:
 
             # Section 02: The 61-Person Margin Inspector
             gr.HTML("""
-            <div class="hc-section-card-header" style="margin-top: 48px;">
+            <div class="hc-section-card-header" id="sec-margin" data-toc="02 • 61-Person Margin" style="margin-top: 48px;">
               <span class="hc-section-kicker">02 / Boundary Analysis</span>
               <h2 class="hc-section-title">The 61-Person Margin: Who Swaps at the 20% Cutoff?</h2>
               <p class="hc-section-desc">
@@ -263,7 +365,7 @@ with gr.Blocks(**blocks_kwargs) as demo:
 
             # Section 03: Health Equity & Access Audit
             gr.HTML("""
-            <div class="hc-section-card-header" style="margin-top: 48px;">
+            <div class="hc-section-card-header" id="sec-equity" data-toc="03 • Health Equity Audit" style="margin-top: 48px;">
               <span class="hc-section-kicker">03 / Fairness & Disparity</span>
               <h2 class="hc-section-title">Health Equity Audit Across Insurance and Income Strata</h2>
               <p class="hc-section-desc">
@@ -278,7 +380,7 @@ with gr.Blocks(**blocks_kwargs) as demo:
 
             # Section 04: Health Economics & Decision Curves
             gr.HTML("""
-            <div class="hc-section-card-header" style="margin-top: 48px;">
+            <div class="hc-section-card-header" id="sec-economics" data-toc="04 • Health Economics" style="margin-top: 48px;">
               <span class="hc-section-kicker">04 / Policy Economics</span>
               <h2 class="hc-section-title">Decision Curve Analysis & Net Monetary Benefit</h2>
               <p class="hc-section-desc">

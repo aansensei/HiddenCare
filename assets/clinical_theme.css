@@ -4,7 +4,7 @@
    Author: Cao Thien An Nguyen (AanSensei) | Population Health Sciences Lab
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&display=swap');
 
 :root {
   /* 1. Core Surfaces & Hairline Borders (Off-White Depth) */
@@ -33,10 +33,10 @@
   --missed-soft: #fff1f2;
   --missed-border: #fecdd3;
 
-  /* 4. Typography Families (Pairing Editorial Serif + Modern Sans) */
+  /* 4. Typography Families (Strictly 2 Fonts: Editorial Serif + Modern Sans) */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Newsreader', 'Source Serif 4', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-mono: 'Inter', -apple-system, sans-serif;
 
   /* 5. Radii & Multi-Layered Soft Shadows */
   --radius-sm: 6px;
@@ -1160,14 +1160,14 @@ div[data-testid="block-footer"],
 }
 
 /* ==========================================================================
-   SUPPRESS GRADIO DEFAULT FOOTER & INJECTED EMOJIS
+   SUPPRESS GRADIO DEFAULT FOOTER & INJECTED EMOJIS (PRESERVE SITE FOOTER)
    Removes "Use via API 🚀 · Built with Gradio 🧡 · Settings ⚙️"
    ========================================================================== */
-footer,
+footer:not(.site-footer),
 footer.svelte-1rj4n8x,
-.gradio-container > footer,
-.gradio-container footer,
-body > footer {
+.gradio-container > footer:not(.site-footer),
+.gradio-container footer:not(.site-footer),
+body > footer:not(.site-footer) {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -1177,4 +1177,273 @@ body > footer {
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
+}
+
+.site-footer,
+#hc-institutional-footer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin-top: 60px !important;
+  padding: 48px 0 32px 0 !important;
+  border-top: 1px solid var(--border) !important;
+  background-color: #ffffff !important;
+}
+
+/* ==========================================================================
+   FLOATING RETURN TO TOP BUTTON (Ultra-Sleek Editorial Micro-Interaction)
+   ========================================================================== */
+#hc-back-to-top {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  z-index: 99999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 8px 16px !important;
+  background-color: #ffffff !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 9999px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(12px) !important;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  user-select: none !important;
+}
+
+#hc-back-to-top.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+#hc-back-to-top:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background-color: var(--accent-tint) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.16) !important;
+}
+
+#hc-back-to-top svg {
+  stroke: currentColor !important;
+  transition: transform 0.2s ease !important;
+}
+
+#hc-back-to-top:hover svg {
+  transform: translateY(-2px) !important;
+}
+
+@media (max-width: 768px) {
+  #hc-back-to-top {
+    bottom: 18px !important;
+    right: 18px !important;
+    padding: 8px 12px !important;
+  }
+  #hc-back-to-top span {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   PLAIN-LANGUAGE EXECUTIVE SUMMARY CARD (Accessible for Non-Tech Readers)
+   ========================================================================== */
+.hc-plain-summary-card {
+  background-color: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-left: 4px solid var(--accent) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 24px 28px !important;
+  margin: 0 0 24px 0 !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.hc-plain-summary-kicker {
+  font-family: var(--font-mono) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--accent) !important;
+  margin-bottom: 6px !important;
+}
+
+.hc-plain-summary-title {
+  font-family: var(--font-serif) !important;
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  line-height: 1.3 !important;
+  margin: 0 0 16px 0 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.hc-plain-summary-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+}
+
+@media (max-width: 860px) {
+  .hc-plain-summary-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+}
+
+.hc-plain-col {
+  padding: 12px 14px !important;
+  background-color: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.hc-plain-step {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  margin-bottom: 6px !important;
+  letter-spacing: -0.01em !important;
+}
+
+.hc-plain-col p {
+  font-size: 0.86rem !important;
+  line-height: 1.55 !important;
+  color: var(--text-muted) !important;
+  margin: 0 !important;
+}
+
+/* ==========================================================================
+   VERTICAL TABLE OF CONTENTS DOCK (MINIMAL RESTING -> LUXURY EXPANSION ON HOVER)
+   ========================================================================== */
+#hc-toc-rail {
+  position: fixed !important;
+  left: 20px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 5px !important;
+  width: 24px !important;
+  padding: 10px 3px !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03) !important;
+  overflow: hidden !important;
+  user-select: none !important;
+  transition: width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              padding 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              border-radius 0.32s ease,
+              box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+@media (max-width: 1420px) {
+  #hc-toc-rail {
+    display: none !important;
+  }
+}
+
+/* On hover of dock: Blossoms into full luxury editorial palette */
+#hc-toc-rail:hover {
+  width: 232px !important;
+  padding: 10px 8px !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.12),
+              0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+.hc-toc-item {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 28px !important;
+  padding: 0 3px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  color: var(--text-muted) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.81rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease !important;
+}
+
+.hc-toc-item:hover {
+  background-color: var(--accent-tint) !important;
+  color: var(--accent) !important;
+  transform: translateX(2px) !important;
+}
+
+.hc-toc-item.active {
+  background-color: rgba(2, 132, 199, 0.08) !important;
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+.hc-toc-dot {
+  width: 6px !important;
+  height: 6px !important;
+  min-width: 6px !important;
+  min-height: 6px !important;
+  margin-left: 5px !important;
+  border-radius: 50% !important;
+  background-color: #cbd5e1 !important;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.hc-toc-item:hover .hc-toc-dot {
+  background-color: var(--accent) !important;
+  transform: scale(1.3) !important;
+}
+
+.hc-toc-item.active .hc-toc-dot {
+  width: 7px !important;
+  height: 7px !important;
+  background-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.22) !important;
+}
+
+.hc-toc-label {
+  margin-left: 10px !important;
+  white-space: nowrap !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  letter-spacing: -0.01em !important;
+  transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+#hc-toc-rail:hover .hc-toc-label {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Eliminate distracting Plotly modebar on hover */
+.js-plotly-plot .plotly .modebar {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  display: none !important;
 }

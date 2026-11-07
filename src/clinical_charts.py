@@ -10,19 +10,19 @@ CLINICAL_PLOTLY_LAYOUT = dict(
     paper_bgcolor="#ffffff",
     plot_bgcolor="#ffffff",
     font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
-    title_font=dict(family="Source Serif 4, serif", color="#0f172a", size=15),
+    title_font=dict(family="Newsreader, Georgia, serif", color="#0f172a", size=16),
     margin=dict(l=54, r=28, t=50, b=46),
     xaxis=dict(
         gridcolor="#f1f5f9",
         linecolor="#cbd5e1",
         zerolinecolor="#e2e8f0",
-        tickfont=dict(family="JetBrains Mono, monospace", size=11, color="#475569"),
+        tickfont=dict(family="Inter, sans-serif", size=11, color="#475569"),
     ),
     yaxis=dict(
         gridcolor="#f1f5f9",
         linecolor="#cbd5e1",
         zerolinecolor="#e2e8f0",
-        tickfont=dict(family="JetBrains Mono, monospace", size=11, color="#475569"),
+        tickfont=dict(family="Inter, sans-serif", size=11, color="#475569"),
     ),
     legend=dict(
         orientation="h",

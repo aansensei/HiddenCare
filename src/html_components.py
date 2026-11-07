@@ -94,6 +94,26 @@ def render_site_guide_html() -> str:
 
 def render_hero_summary_cards() -> str:
     return """
+<!-- Accessible Plain-Language Summary for Non-Specialists -->
+<section class="hc-plain-summary-card" id="sec-overview" data-toc="00 • Overview">
+  <div class="hc-plain-summary-kicker">The 30-Second Translation • Plain Language Summary</div>
+  <h3 class="hc-plain-summary-title">When Health Algorithms Overlook People Who Don't Visit Doctors</h3>
+  <div class="hc-plain-summary-grid">
+    <div class="hc-plain-col">
+      <div class="hc-plain-step">1. Finite Clinic Budget</div>
+      <p>A community clinic only has enough funding to test a fraction of residents (e.g., 20% of the town). Who gets invited first?</p>
+    </div>
+    <div class="hc-plain-col">
+      <div class="hc-plain-step">2. The Healthcare Access Trap</div>
+      <p>Standard AI (Model A) trains on past doctor visits. Because uninsured people rarely see doctors, their records look healthy even when they are sick.</p>
+    </div>
+    <div class="hc-plain-col">
+      <div class="hc-plain-step">3. The Biological Rescue</div>
+      <p>Retraining on actual CDC lab blood tests (Model B) swaps 61 overlooked people into the queue, finding 3.0× more hidden diabetes cases.</p>
+    </div>
+  </div>
+</section>
+
 <div class="hc-bento-grid">
   <!-- Bento 1: Primary Discovery (Featured Highlight) -->
   <article class="hc-bento-card hc-bento-card--featured">
@@ -176,34 +196,34 @@ def render_simulator_kpi_cards(capacity_pct: int) -> str:
     <div class="hc-kpi-kicker">Random Baseline ({capacity_pct}% Capacity)</div>
     <div class="hc-kpi-hero num">{found_rand} <span class="hc-kpi-denom">/ 116 cases</span></div>
     <div class="hc-kpi-rows">
-      <div class="hc-kpi-row"><span>Sensitivity</span><span class="num">{sens_rand}%</span></div>
-      <div class="hc-kpi-row"><span>PPV (Precision)</span><span class="num">{ppv_rand}%</span></div>
-      <div class="hc-kpi-row"><span>Number Needed to Screen</span><span class="num">{nns_rand} tests</span></div>
+      <div class="hc-kpi-row"><span>Sensitivity (% caught)</span><span class="num">{sens_rand}%</span></div>
+      <div class="hc-kpi-row"><span>Precision (hit rate)</span><span class="num">{ppv_rand}%</span></div>
+      <div class="hc-kpi-row"><span>Tests per case (NNS)</span><span class="num">{nns_rand} tests</span></div>
       <div class="hc-kpi-row"><span>Screening Quota</span><span class="num">{k_screened:,} / 4,698</span></div>
     </div>
   </article>
 
   <article class="hc-kpi-card hc-kpi-card--model-a">
-    <div class="hc-kpi-kicker">Model A (Diagnosis Only Label)</div>
+    <div class="hc-kpi-kicker">Model A (Doctor History Label)</div>
     <div class="hc-kpi-hero num">{found_a} <span class="hc-kpi-denom">/ 116 cases</span></div>
     <div class="hc-kpi-rows">
-      <div class="hc-kpi-row"><span>Sensitivity</span><span class="num">{sens_a}%</span></div>
-      <div class="hc-kpi-row"><span>PPV (Precision)</span><span class="num">{ppv_a}%</span></div>
-      <div class="hc-kpi-row"><span>Number Needed to Screen</span><span class="num">{nns_a} tests</span></div>
+      <div class="hc-kpi-row"><span>Sensitivity (% caught)</span><span class="num">{sens_a}%</span></div>
+      <div class="hc-kpi-row"><span>Precision (hit rate)</span><span class="num">{ppv_a}%</span></div>
+      <div class="hc-kpi-row"><span>Tests per case (NNS)</span><span class="num">{nns_a} tests</span></div>
       <div class="hc-kpi-row"><span>Discrimination</span><span class="num">ROC AUC 0.7300</span></div>
     </div>
   </article>
 
   <article class="hc-kpi-card hc-kpi-card--model-b">
     <div class="hc-kpi-kicker">
-      <span>Model B (Biomarker Augmented Label)</span>
+      <span>Model B (CDC Blood Test Label)</span>
       <span class="hc-badge hc-badge--accent-sm">{diff_cases_str} Cases</span>
     </div>
     <div class="hc-kpi-hero num" style="color: var(--accent);">{found_b} <span class="hc-kpi-denom">/ 116 cases</span></div>
     <div class="hc-kpi-rows">
-      <div class="hc-kpi-row"><span>Sensitivity</span><span class="num"><b>{sens_b}%</b> ({diff_sens_str})</span></div>
-      <div class="hc-kpi-row"><span>PPV (Precision)</span><span class="num"><b>{ppv_b}%</b></span></div>
-      <div class="hc-kpi-row"><span>Number Needed to Screen</span><span class="num"><b>{nns_b} tests</b></span></div>
+      <div class="hc-kpi-row"><span>Sensitivity (% caught)</span><span class="num"><b>{sens_b}%</b> ({diff_sens_str})</span></div>
+      <div class="hc-kpi-row"><span>Precision (hit rate)</span><span class="num"><b>{ppv_b}%</b></span></div>
+      <div class="hc-kpi-row"><span>Tests per case (NNS)</span><span class="num"><b>{nns_b} tests</b></span></div>
       <div class="hc-kpi-row"><span>Discrimination</span><span class="num">ROC AUC 0.7410</span></div>
     </div>
   </article>
@@ -360,8 +380,38 @@ def render_about_page_html() -> str:
     </p>
   </div>
 
+  <!-- Executive Summary Box (Top of About Page) -->
+  <section class="about-section about-summary-box" id="sec-about-summary" data-toc="00 • Executive Summary" style="margin-bottom: 32px; padding: 26px 30px; background: #ffffff; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+    <div style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 8px;">
+      Executive Summary • Study Abstract
+    </div>
+    <h3 style="font-family: var(--font-serif); font-size: 1.45rem; font-weight: 600; color: var(--text); line-height: 1.3; margin: 0 0 16px 0; letter-spacing: -0.015em;">
+      Decoupling Disease Detection from Healthcare Access
+    </h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+      <div style="padding: 14px 16px; background-color: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
+        <div style="font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 6px;">The Structural Bias</div>
+        <p style="font-size: 0.86rem; line-height: 1.55; color: var(--text-muted); margin: 0;">
+          Algorithms trained solely on self-reported doctor diagnoses or administrative billing codes conflate biological disease with healthcare access, misclassifying unvisited sick patients as healthy baseline.
+        </p>
+      </div>
+      <div style="padding: 14px 16px; background-color: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
+        <div style="font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 6px;">The 61-Patient Proof</div>
+        <p style="font-size: 0.86rem; line-height: 1.55; color: var(--text-muted); margin: 0;">
+          Across N = 4,698 undiagnosed adults from CDC NHANES 2021–2023, retraining on observed venous HbA1c swaps 61 individuals at the 20% budget line, uncovering 3 hidden diabetes cases at 3.0× higher precision ($0 extra cost).
+        </p>
+      </div>
+      <div style="padding: 14px 16px; background-color: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
+        <div style="font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 6px;">The Health Equity Dividend</div>
+        <p style="font-size: 0.86rem; line-height: 1.55; color: var(--text-muted); margin: 0;">
+          Biomarker-augmented triage eliminates an 8.6% sensitivity deficit suffered by uninsured Americans under traditional models, yielding +$25,500 net economic benefit per 10,000 screened individuals.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- The project at a glance: 4 rows like macro-event-lab -->
-  <section class="about-section">
+  <section class="about-section" id="sec-about-glance" data-toc="01 • Project at Glance">
     <h3 class="t-h2">The Project at a Glance</h3>
     <dl class="about-rows glance-rows" aria-label="The project at a glance">
       <div>
@@ -384,7 +434,7 @@ def render_about_page_html() -> str:
   </section>
 
   <!-- Why this way -->
-  <section class="about-section">
+  <section class="about-section" id="sec-about-why" data-toc="02 • Why This Way">
     <h3 class="t-h2">Why This Way</h3>
     <dl class="about-rows">
       <div>
@@ -415,7 +465,7 @@ def render_about_page_html() -> str:
   </section>
 
   <!-- The 5 Research Questions -->
-  <section class="about-section">
+  <section class="about-section" id="sec-about-questions" data-toc="03 • 5 Questions">
     <h3 class="t-h2">Core Research Questions</h3>
     <ul class="idea-questions">
       <li>Does training an algorithm on laboratory-augmented biological ground truth alter which undiagnosed adults are prioritized for screening under fixed budget caps?</li>
@@ -427,7 +477,7 @@ def render_about_page_html() -> str:
   </section>
 
   <!-- Author Profile -->
-  <section class="about-section" aria-labelledby="about-author">
+  <section class="about-section" id="sec-about-author" data-toc="04 • Author Profile" aria-labelledby="about-author">
     <h3 class="t-h2" id="about-author" style="margin-bottom: 16px;">Author</h3>
     <div class="author-card" style="display: grid; grid-template-columns: 110px 1fr; gap: 28px; align-items: start; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
       {avatar_html}
@@ -509,7 +559,7 @@ def render_about_page_html() -> str:
   </section>
 
   <!-- Prominent Clinical & Methodological Disclaimer -->
-  <section class="disclaimer-callout" aria-labelledby="about-disclaimer">
+  <section class="disclaimer-callout" id="sec-about-disclaimer" data-toc="05 • Disclaimer" aria-labelledby="about-disclaimer">
     <div class="disclaimer-header">
       <span class="disclaimer-badge">Institutional & Research Notice</span>
       <h3 class="disclaimer-title" id="about-disclaimer">Clinical & Methodological Disclaimer</h3>
@@ -537,7 +587,7 @@ def render_footer_html() -> str:
         else ""
     )
     return f"""
-<footer class="site-footer">
+<div class="site-footer" id="hc-institutional-footer">
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-mark">
@@ -630,5 +680,5 @@ def render_footer_html() -> str:
       </p>
     </div>
   </div>
-</footer>
+</div>
 """
