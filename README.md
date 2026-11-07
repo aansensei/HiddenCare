@@ -19,6 +19,7 @@ Author: Cao Thien An Nguyen (AanSensei)
 Institution: University of Wisconsin-Madison (B.S. Economics & Data Science)  
 Lab: Population Health Sciences & Algorithmic Fairness  
 Repository: https://github.com/aansensei/HiddenCare.git  
+Live Interactive App: https://aansensei.dev/hiddencare/  
 Interactive Platform: Hugging Face Spaces (Gradio 5.x/6.x Blocks)  
 
 ## Overview
