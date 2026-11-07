@@ -8,7 +8,7 @@ sdk_version: 5.16.0
 app_file: app.py
 pinned: true
 license: mit
-short_description: Empirical CDC NHANES study on proxy label bias in population screening
+short_description: Proxy label bias in diabetes screening (CDC NHANES)
 ---
 
 # HiddenCare
