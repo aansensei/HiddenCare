@@ -176,4 +176,4 @@ When synced or pushed to Hugging Face Spaces, the platform launches automaticall
 
 ## License
 
-This project is prepared as an academic research study for student portfolio and internship application purposes.
+MIT License. Open academic and epidemiological research.
