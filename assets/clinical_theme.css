@@ -86,6 +86,53 @@ html, body, .gradio-container, .dark, .gradio-container.dark {
 }
 
 /* ==========================================================================
+   MINIMALIST LUXURY HAIRLINE SCROLLBAR (Clinical Academic Standard)
+   Replaces default clunky Windows grey bar with sleek, subtle sapphire track
+   ========================================================================== */
+html, body, * {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(15, 23, 42, 0.22) transparent !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: rgba(15, 23, 42, 0.02) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.22) !important;
+  border-radius: 9999px !important;
+  transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent) !important; /* Medical Sapphire #0284c7 */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--accent-hover) !important; /* #0369a1 */
+}
+
+/* Hide annoying legacy stepper arrow buttons on Windows Chromium */
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* ==========================================================================
    HEADER & MASTHEAD (Open Editorial Masthead - No Boxed Card Floating)
    ========================================================================== */
 .hc-header {
@@ -1442,17 +1489,52 @@ body > footer:not(.site-footer) {
   transform: translateY(-50%) translateX(0) scale(1) !important;
 }
 
-/* Eliminate distracting Plotly modebar on hover */
+/* Elegant, subtle Plotly modebar on hover (cho phép reset zoom / autoscale) */
 .js-plotly-plot .plotly .modebar {
   opacity: 0 !important;
-  pointer-events: none !important;
-  display: none !important;
+  transition: opacity 0.2s ease !important;
+  background: transparent !important;
+}
+
+.js-plotly-plot:hover .plotly .modebar {
+  opacity: 0.85 !important;
+  pointer-events: auto !important;
+}
+
+.js-plotly-plot .plotly .modebar-btn {
+  color: #64748b !important;
+}
+
+.js-plotly-plot .plotly .modebar-btn:hover {
+  color: var(--accent) !important;
 }
 
 /* ==========================================================================
-   PREVENT TEXT SELECTION ON ALL UI CHROME & FOOTER ELEMENTS
-   (Không thể bôi đen bất kỳ thành phần UI, nút bấm, nhãn hay footer nào)
+   UI CHROME vs CONTENT SELECTION ARCHITECTURE
+   - UI Controls / Chrome: KHÔNG THỂ BÔI ĐEN (user-select: none)
+   - Nội dung nghiên cứu / Bài viết / Thẻ tóm tắt / Số liệu: HOÀN TOÀN COPY ĐƯỢC (user-select: text)
    ========================================================================== */
+
+/* 1. THÀNH PHẦN GIAO DIỆN / UI CHROME (Không cho bôi đen / copy) */
+#hc-toc-rail,
+#hc-toc-rail *,
+#hc-back-to-top,
+button,
+[role="tab"],
+.tabs,
+.tab-nav,
+nav,
+.gr-button,
+.preset-btn,
+.footer-social-btn,
+.author-pill-btn,
+.gr-slider,
+input[type="range"],
+.hc-header-meta,
+.hc-header-meta *,
+.hc-badge,
+.hc-version-tag,
+.status-dot,
 .site-footer,
 #hc-institutional-footer,
 .footer-grid,
@@ -1463,35 +1545,45 @@ body > footer:not(.site-footer) {
 .footer-head,
 .footer-list,
 .footer-bottom,
-.footer-legal,
-.footer-disclaimer,
-.hc-header,
-.hc-header-meta,
-.hc-guide-steps,
-.hc-bento-grid,
-.hc-bento-card,
-.hc-kpi-grid,
-.hc-kpi-card,
-.author-card,
-.author-pills-row,
-.author-pill-btn,
-.disclaimer-callout,
-.about-summary-box,
-.hc-plain-summary-card,
-#hc-toc-rail,
-#hc-back-to-top,
-.preset-btn,
-.footer-social-btn,
-button,
-nav,
-.tabs,
-[role="tab"],
-.gr-button,
-.gr-slider,
-.num,
-.hc-badge {
+.footer-legal {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
+}
+
+/* 2. NỘI DUNG NGHIÊN CỨU & DỮ LIỆU (Hoàn toàn cho phép bôi đen & sao chép văn bản) */
+body,
+p,
+h1, h2, h3, h4, h5, h6,
+.hc-header-title,
+.hc-header-lead,
+.hc-guide,
+.hc-guide-heading,
+.hc-guide-subtext,
+.hc-guide-steps,
+.hc-bento-grid,
+.hc-bento-card,
+.hc-bento-card *,
+.hc-plain-summary-card,
+.hc-plain-summary-card *,
+.about-summary-box,
+.about-summary-box *,
+.author-card,
+.author-card p,
+.author-card div:not(.author-pills-row):not(.author-pill-btn),
+.disclaimer-callout,
+.disclaimer-callout *,
+.gr-markdown,
+.gr-markdown *,
+.gr-table,
+table, tr, td, th,
+.num,
+.bento-stat,
+.bento-title,
+.bento-desc {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
 }

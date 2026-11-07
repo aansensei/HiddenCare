@@ -189,6 +189,7 @@ def build_margin_swap_comparison_chart() -> go.Figure:
         yaxis_title="Positive Predictive Value / Hit Rate (%)",
         yaxis_range=[0, 7.5],
         height=390,
+        dragmode=False,
     )
     fig.add_hline(
         y=2.47,
@@ -308,6 +309,7 @@ def build_equity_bar_chart() -> go.Figure:
         xaxis_range=[0, 70],
         barmode="group",
         height=320,
+        dragmode=False,
     )
     return fig
 
