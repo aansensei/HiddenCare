@@ -159,7 +159,13 @@ function() {{
 
                     const tooltip = document.createElement('div');
                     tooltip.className = 'hc-toc-tooltip';
-                    tooltip.textContent = sec.getAttribute('data-toc');
+                    const rawText = sec.getAttribute('data-toc') || '';
+                    if (rawText.indexOf('•') !== -1) {{
+                        const parts = rawText.split('•');
+                        tooltip.innerHTML = '<span style="color: #0284c7; font-weight: 700; margin-right: 6px;">' + parts[0].trim() + '</span><span style="color: #0f172a;">' + parts[1].trim() + '</span>';
+                    }} else {{
+                        tooltip.textContent = rawText;
+                    }}
                     item.appendChild(tooltip);
 
                     item.onclick = function() {{

@@ -1355,8 +1355,8 @@ body > footer:not(.site-footer) {
   position: relative !important;
   display: grid !important;
   place-items: center !important;
-  width: 18px !important;
-  height: 18px !important;
+  width: 22px !important;
+  height: 22px !important;
   cursor: pointer !important;
   background: transparent !important;
   padding: 0 !important;
@@ -1371,62 +1371,75 @@ body > footer:not(.site-footer) {
   min-height: 6px !important;
   border-radius: 50% !important;
   background-color: #cbd5e1 !important;
-  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
+/* Prominent interactive reaction on hover: scales up to 1.8x with sapphire halo */
 .hc-toc-item:hover .hc-toc-dot {
   background-color: var(--accent) !important;
-  transform: scale(1.4) !important;
+  transform: scale(1.8) !important;
+  box-shadow: 0 0 0 5px rgba(2, 132, 199, 0.22) !important;
 }
 
 .hc-toc-item.active .hc-toc-dot {
   width: 8px !important;
   height: 8px !important;
   background-color: var(--accent) !important;
-  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.18) !important;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.16) !important;
 }
 
+.hc-toc-item.active:hover .hc-toc-dot {
+  transform: scale(1.6) !important;
+  box-shadow: 0 0 0 6px rgba(2, 132, 199, 0.28) !important;
+}
+
+/* Tooltip matching website clinical palette (Pure White + Sapphire Border + Slate Text) */
 .hc-toc-tooltip,
 .hc-toc-label {
   position: absolute !important;
-  left: 26px !important;
+  left: 28px !important;
   top: 50% !important;
-  transform: translateY(-50%) translateX(-6px) !important;
-  padding: 5px 11px !important;
-  background-color: #0f172a !important;
-  color: #ffffff !important;
+  transform: translateY(-50%) translateX(-8px) scale(0.96) !important;
+  padding: 6px 14px !important;
+  background-color: #ffffff !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(2, 132, 199, 0.28) !important;
   font-family: var(--font-sans) !important;
-  font-size: 0.78rem !important;
-  font-weight: 500 !important;
+  font-size: 0.80rem !important;
+  font-weight: 600 !important;
   line-height: 1.2 !important;
   white-space: nowrap !important;
-  border-radius: 6px !important;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.12), 0 1px 3px rgba(15, 23, 42, 0.04) !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
+/* Refined pointer triangle matching white background and sapphire border */
 .hc-toc-tooltip::before,
 .hc-toc-label::before {
   content: "" !important;
   position: absolute !important;
   right: 100% !important;
   top: 50% !important;
-  transform: translateY(-50%) !important;
-  border-width: 4px !important;
-  border-style: solid !important;
-  border-color: transparent #0f172a transparent transparent !important;
+  margin-right: -1px !important;
+  width: 7px !important;
+  height: 7px !important;
+  background-color: #ffffff !important;
+  border-left: 1px solid rgba(2, 132, 199, 0.28) !important;
+  border-bottom: 1px solid rgba(2, 132, 199, 0.28) !important;
+  transform: translateY(-50%) rotate(45deg) !important;
 }
 
 .hc-toc-item:hover .hc-toc-tooltip,
 .hc-toc-item:hover .hc-toc-label {
   opacity: 1 !important;
   visibility: visible !important;
-  transform: translateY(-50%) translateX(0) !important;
+  transform: translateY(-50%) translateX(0) scale(1) !important;
 }
 
 /* Eliminate distracting Plotly modebar on hover */
