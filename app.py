@@ -157,10 +157,10 @@ function() {{
                     dot.className = 'hc-toc-dot';
                     item.appendChild(dot);
 
-                    const label = document.createElement('span');
-                    label.className = 'hc-toc-label';
-                    label.textContent = sec.getAttribute('data-toc');
-                    item.appendChild(label);
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'hc-toc-tooltip';
+                    tooltip.textContent = sec.getAttribute('data-toc');
+                    item.appendChild(tooltip);
 
                     item.onclick = function() {{
                         sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
