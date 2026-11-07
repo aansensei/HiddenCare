@@ -444,28 +444,43 @@ def render_about_page_html() -> str:
           one plate a week through all of 2025, about 52 plates. Revisions to this preference since the
           first print: zero.
         </p>
-        <dl class="author-links" style="margin: 20px 0 0 0; display: grid; gap: 10px; padding: 18px 0 0 0; border-top: 1px solid var(--border);">
-          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
-            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Portfolio</dt>
-            <dd style="margin: 0;"><a href="https://aansensei.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">aansensei.dev</a></dd>
-          </div>
-          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
-            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">LinkedIn</dt>
-            <dd style="margin: 0;"><a href="https://www.linkedin.com/in/cao-thien-an-nguyen" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">linkedin.com/in/cao-thien-an-nguyen</a></dd>
-          </div>
-          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
-            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">GitHub</dt>
-            <dd style="margin: 0;"><a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">github.com/aansensei</a></dd>
-          </div>
-          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
-            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Email</dt>
-            <dd style="margin: 0;"><a href="mailto:nguyencaothienan937@gmail.com" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">nguyencaothienan937@gmail.com</a></dd>
-          </div>
-          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 16px; align-items: baseline; font-size: 0.92rem;">
-            <dt style="color: var(--text-muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Repository</dt>
-            <dd style="margin: 0;"><a href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">github.com/aansensei/HiddenCare</a></dd>
-          </div>
-        </dl>
+        <!-- Elegant Icon Pills for Links (No Long Colliding URLs) -->
+        <div class="author-pills-row" style="margin-top: 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--border);">
+          <a class="author-pill-btn" href="https://aansensei.dev" target="_blank" rel="noopener noreferrer" title="Portfolio: aansensei.dev" aria-label="Portfolio">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+            </svg>
+            <span>Portfolio</span>
+          </a>
+
+          <a class="author-pill-btn" href="https://www.linkedin.com/in/cao-thien-an-nguyen" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.01"/><path d="M12 16v-5m0 2.5a2.5 2.5 0 0 1 5 0V16"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+
+          <a class="author-pill-btn" href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" title="GitHub Profile" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <a class="author-pill-btn" href="mailto:nguyencaothienan937@gmail.com" title="Email: nguyencaothienan937@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/>
+            </svg>
+            <span>Email</span>
+          </a>
+
+          <a class="author-pill-btn" href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer" title="Project Repository" aria-label="Repository Code">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/>
+            </svg>
+            <span>Code</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>

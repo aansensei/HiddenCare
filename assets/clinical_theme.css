@@ -722,45 +722,57 @@ html, body, .gradio-container, .dark, .gradio-container.dark {
   vertical-align: 1px !important;
 }
 
-.author-links {
-  margin: 0 !important;
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
-  gap: 12px 18px !important;
-  padding: 14px 0 0 0 !important;
+.author-pills-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  padding-top: 16px !important;
+  margin-top: 18px !important;
   border-top: 1px solid var(--border) !important;
 }
 
-.author-links > div {
-  display: flex !important;
-  align-items: baseline !important;
+.author-pill-btn {
+  display: inline-flex !important;
+  align-items: center !important;
   gap: 8px !important;
-  font-size: 0.88rem !important;
-}
-
-.author-links dt {
-  color: var(--text-muted) !important;
-  font-weight: 600 !important;
-  font-size: 0.78rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
-  min-width: 60px !important;
-}
-
-.author-links dd {
-  margin: 0 !important;
-}
-
-.author-links a {
-  color: var(--accent) !important;
-  text-decoration: underline !important;
-  text-underline-offset: 3px !important;
+  padding: 7px 16px !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 9999px !important;
+  background-color: #ffffff !important;
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.84rem !important;
   font-weight: 500 !important;
-  transition: color 0.15s ease !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  cursor: pointer !important;
 }
 
-.author-links a:hover {
-  color: var(--accent-hover) !important;
+.author-pill-btn svg {
+  color: var(--accent) !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.2s ease !important;
+}
+
+.author-pill-btn span {
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+
+.author-pill-btn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background-color: var(--accent-tint) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12) !important;
+  text-decoration: none !important;
+}
+
+.author-pill-btn:hover svg {
+  transform: scale(1.08) !important;
 }
 
 /* ==========================================================================
@@ -1145,4 +1157,24 @@ div[data-testid="block-footer"],
   margin: 4px 0 0;
   color: var(--text-muted);
   line-height: 1.6;
+}
+
+/* ==========================================================================
+   SUPPRESS GRADIO DEFAULT FOOTER & INJECTED EMOJIS
+   Removes "Use via API 🚀 · Built with Gradio 🧡 · Settings ⚙️"
+   ========================================================================== */
+footer,
+footer.svelte-1rj4n8x,
+.gradio-container > footer,
+.gradio-container footer,
+body > footer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }

@@ -93,6 +93,18 @@ function() {{
             document.title = pageTitle;
         }}
 
+        const removeGradioFooter = function() {{
+            const footers = document.querySelectorAll('footer');
+            footers.forEach(function(f) {{
+                f.style.setProperty('display', 'none', 'important');
+                f.remove();
+            }});
+        }};
+        removeGradioFooter();
+        setTimeout(removeGradioFooter, 200);
+        setTimeout(removeGradioFooter, 800);
+        setTimeout(removeGradioFooter, 2000);
+
         const setFavicons = function() {{
             const icoUri = "{FAVICON_ICO_URI}";
             let links = document.querySelectorAll("link[rel*='icon']");
@@ -378,5 +390,7 @@ if __name__ == "__main__":
         launch_kwargs["head"] = HEAD_HTML
     if "ssr" in launch_sig:
         launch_kwargs["ssr"] = False
+    if "show_api" in launch_sig:
+        launch_kwargs["show_api"] = False
 
     demo.queue().launch(**launch_kwargs)
