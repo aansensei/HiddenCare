@@ -86,50 +86,76 @@ html, body, .gradio-container, .dark, .gradio-container.dark {
 }
 
 /* ==========================================================================
-   MINIMALIST LUXURY HAIRLINE SCROLLBAR (Clinical Academic Standard)
-   Replaces default clunky Windows grey bar with sleek, subtle sapphire track
+   MINIMALIST LUXURY CYAN HAIRLINE SCROLLBAR (Clinical Academic Standard)
+   Replaces default clunky Windows grey bar with sleek, vibrant Cyan pill track
    ========================================================================== */
-html, body, * {
-  scrollbar-width: thin !important;
-  scrollbar-color: rgba(15, 23, 42, 0.22) transparent !important;
-}
-
-::-webkit-scrollbar {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
   width: 7px !important;
   height: 7px !important;
 }
 
-::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
   background: transparent !important;
 }
 
-::-webkit-scrollbar-track:hover {
-  background: rgba(15, 23, 42, 0.02) !important;
+html::-webkit-scrollbar-track:hover,
+body::-webkit-scrollbar-track:hover,
+*::-webkit-scrollbar-track:hover {
+  background: rgba(6, 182, 212, 0.04) !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.22) !important;
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  background-color: #06b6d4 !important; /* Vibrant Medical Cyan */
   border-radius: 9999px !important;
-  transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  border: 1px solid transparent !important;
+  background-clip: padding-box !important;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent) !important; /* Medical Sapphire #0284c7 */
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #0891b2 !important; /* Deep Cyan Hover */
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5) !important;
 }
 
-::-webkit-scrollbar-thumb:active {
-  background: var(--accent-hover) !important; /* #0369a1 */
+html::-webkit-scrollbar-thumb:active,
+body::-webkit-scrollbar-thumb:active,
+*::-webkit-scrollbar-thumb:active {
+  background-color: #0e7490 !important;
 }
 
-/* Hide annoying legacy stepper arrow buttons on Windows Chromium */
-::-webkit-scrollbar-button {
+/* Eliminate Windows legacy stepper buttons (arrows) */
+html::-webkit-scrollbar-button,
+body::-webkit-scrollbar-button,
+*::-webkit-scrollbar-button,
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-button:single-button,
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
 }
 
-::-webkit-scrollbar-corner {
+html::-webkit-scrollbar-corner,
+body::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-corner {
   background: transparent !important;
+}
+
+/* Firefox standard scrollbars (only applied in Firefox) */
+@supports (-moz-appearance: none) {
+  html, body, * {
+    scrollbar-width: thin !important;
+    scrollbar-color: #06b6d4 transparent !important;
+  }
 }
 
 /* ==========================================================================
