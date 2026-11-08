@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<!-- poster nghien cuu hoc thuat hiddencare -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>When Training Labels Change Who Gets Screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #f1f5f9;
+      --bg-poster: #ffffff;
+      --navy-900: #0a192f;
+      --navy-800: #0f172a;
+      --navy-700: #1e293b;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f8fafc;
+      --accent-blue: #0284c7;
+      --accent-dark-blue: #0369a1;
+      --accent-teal: #0d9488;
+      --accent-light: #f0f9ff;
+      --accent-border: #bae6fd;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-page);
+      font-family: var(--font-sans);
+      color: var(--navy-800);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Khung poster ty le 3:2 chuan 36x24 inch */
+    .poster-canvas {
+      width: 1440px;
+      height: 960px;
+      background: var(--bg-poster);
+      border: 1px solid var(--slate-300);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 36px 24px 36px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Phan dau tieu de poster */
+    .poster-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--navy-900);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .header-main {
+      flex: 1;
+      padding-right: 32px;
+    }
+
+    .header-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-blue);
+      margin-bottom: 4px;
+    }
+
+    .header-title {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--navy-900);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--slate-600);
+      line-height: 1.35;
+    }
+
+    .header-author {
+      text-align: right;
+      min-width: 280px;
+    }
+
+    .author-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .author-affil {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate-600);
+      margin-top: 2px;
+    }
+
+    .author-sub {
+      font-size: 12px;
+      color: var(--slate-500);
+    }
+
+    /* Luoi 3 cot bat doi xung */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: 370px 1fr 370px;
+      gap: 20px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Cac khoi noi dung */
+    .col-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--navy-900);
+      border-bottom: 1px solid var(--slate-200);
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-title .card-num {
+      color: var(--accent-blue);
+      font-weight: 800;
+    }
+
+    .prose {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: var(--slate-600);
+    }
+
+    .prose strong {
+      color: var(--navy-900);
+      font-weight: 600;
+    }
+
+    /* Banner ket qua trong 5 giay */
+    .takeaway-banner {
+      background: var(--accent-light);
+      border: 1.5px solid var(--accent-blue);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .takeaway-badge {
+      background: var(--accent-blue);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .takeaway-text {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      line-height: 1.35;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    /* Bang vector luoi chia mau */
+    .vector-diagram {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 4px;
+      padding: 8px;
+      margin-top: 6px;
+    }
+
+    /* Bang so lieu */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      margin-top: 6px;
+    }
+
+    .data-table th {
+      background: var(--slate-100);
+      color: var(--navy-900);
+      font-weight: 700;
+      text-align: left;
+      padding: 4px 6px;
+      border-bottom: 1.5px solid var(--slate-300);
+    }
+
+    .data-table td {
+      padding: 4.5px 6px;
+      border-bottom: 1px solid var(--slate-200);
+      color: var(--slate-600);
+    }
+
+    .data-table tr.highlight-row {
+      background: #f0fdf4;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    /* Hop chu thich nho */
+    .note-box {
+      font-size: 10px;
+      line-height: 1.4;
+      color: var(--slate-500);
+      background: var(--slate-100);
+      padding: 6px 8px;
+      border-radius: 4px;
+      border-left: 3px solid var(--slate-300);
+      margin-top: 6px;
+    }
+
+    /* Chan trang poster */
+    .poster-footer {
+      border-top: 1px solid var(--slate-200);
+      padding-top: 10px;
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--slate-500);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qr-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .qr-container svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="poster-canvas">
+
+    <!-- phan dau tieu de poster -->
+    <header class="poster-header">
+      <div class="header-main">
+        <div class="header-kicker">Epidemiological Machine Learning &bull; Population Screening</div>
+        <h1 class="header-title">When Training Labels Change Who Gets Screened</h1>
+        <p class="header-subtitle">
+          Temporal evaluation of diagnosis-based versus biomarker-augmented labels in CDC NHANES under finite screening capacity
+        </p>
+      </div>
+      <div class="header-author">
+        <div class="author-name">Cao Thien An Nguyen</div>
+        <div class="author-dept">Department of Economics &amp; Data Science</div>
+        <div class="author-affil">University of Wisconsin&ndash;Madison</div>
+        <div class="author-sub">Independent Research Study &bull; 2026</div>
+      </div>
+    </header>
+
+    <!-- luoi 3 cot chinh -->
+    <main class="poster-grid">
+
+      <!-- COT 1: CO SO VAN DE VA THIET KE NGHIEN CUU -->
+      <div class="col-panel">
+
+        <article class="card">
+          <h2 class="card-title"><span class="card-num">01</span> The Clinical Problem</h2>
+          <p class="prose">
+            Population screening triage algorithms frequently train on <strong>administrative proxy labels</strong> (e.g. billing codes, prior clinical diagnoses) because objective laboratory tests are resource-constrained.
+          </p>
+          <p class="prose" style="margin-top: 6px;">
+            However, clinical diagnoses require clinical encounters. When screening algorithms learn from diagnosis history, individuals facing healthcare access barriers are misclassified as healthy baselines, distorting screening queues.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title"><span class="card-num">02</span> Study Design &amp; Temporal Protocol</h2>
+          <p class="prose">
+            We evaluated whether replacing administrative labels with <strong>biomarker-augmented labels</strong> changes triage selection, holding non-invasive features and screening capacity constant.
+          </p>
+
+          <!-- vector diagram tien trinh nghien cuu -->
+          <div class="vector-diagram">
+            <svg viewBox="0 0 340 100" width="100%" height="95" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+              <!-- hop phat trien -->
+              <rect x="5" y="10" width="150" height="40" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+              <text x="12" y="24" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0f172a">Pre-Pandemic (2017&ndash;2020)</text>
+              <text x="12" y="36" font-family="Inter, sans-serif" font-size="8.5" fill="#475569">Development: N = 7,761 adults</text>
+              <text x="12" y="46" font-family="Inter, sans-serif" font-size="7.5" fill="#0284c7">Non-invasive features only</text>
+
+              <!-- mui ten thoi gian -->
+              <line x1="160" y1="30" x2="175" y2="30" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2" />
+              <polygon points="175,27 180,30 175,33" fill="#0284c7" />
+
+              <!-- hop kiem dinh -->
+              <rect x="185" y="10" width="150" height="40" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.2" />
+              <text x="192" y="24" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0a192f">Post-Pandemic (2021&ndash;2023)</text>
+              <text x="192" y="36" font-family="Inter, sans-serif" font-size="8.5" fill="#0369a1">Holdout: N = 4,698 undiagnosed</text>
+              <text x="192" y="46" font-family="Inter, sans-serif" font-size="7.5" font-weight="600" fill="#0284c7">116 with HbA1c &ge; 6.5%</text>
+
+              <!-- hai nhan huan luyen -->
+              <rect x="5" y="58" width="150" height="34" rx="3" fill="#ffffff" stroke="#e2e8f0" />
+              <text x="10" y="70" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#475569">Model A (Diagnosis Only):</text>
+              <text x="10" y="82" font-family="Inter, sans-serif" font-size="7.5" fill="#64748b">DIQ010 == 1 (Self-reported diagnosis)</text>
+
+              <rect x="185" y="58" width="150" height="34" rx="3" fill="#ffffff" stroke="#bae6fd" />
+              <text x="190" y="70" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#0369a1">Model B (Biomarker Augmented):</text>
+              <text x="190" y="82" font-family="Inter, sans-serif" font-size="7.5" fill="#0284c7">DIQ010 == 1 OR Venous HbA1c &ge; 6.5%</text>
+            </svg>
+          </div>
+
+          <p class="prose" style="margin-top: 8px;">
+            <strong>Feature Space Constraint:</strong> Both models use identical non-invasive features (Age, Sex, BMI, Waist circumference, Poverty Income Ratio). Lab tests and healthcare encounters were strictly barred from model inputs.
+          </p>
+        </article>
+
+        <article class="card" style="flex: 1;">
+          <h2 class="card-title"><span class="card-num">03</span> Data Engineering &amp; Quality Note</h2>
+          <p class="prose">
+            <strong>Embedded Lakehouse:</strong> Ingested 10 SAS transport (.XPT) cycles into an in-process DuckDB analytical lakehouse, executing SQL-driven cohort exclusions and exporting zero-copy Parquet files.
+          </p>
+          <p class="prose" style="margin-top: 5px;">
+            <strong>Data Contracts:</strong> Pandera schemas verified biological bounds (HbA1c: 2.0% to 25.0%), confirmed 0 pregnant participants, and logged stable covariate distributions across survey cycles (PSI &lt; 0.04 for age, BMI, waist).
+          </p>
+        </article>
+
+      </div>
+
+      <!-- COT 2: KET QUA TRONG TAM (CHIEM DIEN TICH LON NHAT) -->
+      <div class="col-panel" style="gap: 14px;">
+
+        <!-- 5-Second Key Takeaway Banner -->
+        <div class="takeaway-banner">
+          <div class="takeaway-badge">Key Finding</div>
+          <div class="takeaway-text">
+            Changing training labels altered screening priorities and identified two additional potential cases at the same screening capacity.
+          </div>
+        </div>
+
+        <!-- Hinh ve chinh: Paired-Selection Queue Breakdown -->
+        <article class="card" style="flex: 1;">
+          <h2 class="card-title" style="justify-content: space-between;">
+            <span><span class="card-num">04</span> Paired-Selection Queue Analysis at 20% Clinic Capacity</span>
+            <span style="font-size: 11px; font-weight: 600; color: var(--slate-500); text-transform: none;">Capacity K = 939 slots / 4,698 adults</span>
+          </h2>
+
+          <p class="prose" style="margin-bottom: 8px;">
+            At 20% fixed screening capacity, both models select exactly 939 individuals. However, the queues diverge: 878 participants are shared, while each model exclusively selects 61 individuals.
+          </p>
+
+          <!-- SVG Paired Selection Breakdown Figure -->
+          <div style="background: var(--slate-100); border: 1px solid var(--slate-200); border-radius: 6px; padding: 12px 14px;">
+            <svg viewBox="0 0 540 180" width="100%" height="175" xmlns="http://www.w3.org/2000/svg">
+              <!-- Nhom chung: Shared Selection -->
+              <rect x="15" y="15" width="220" height="150" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" />
+              <text x="25" y="34" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Shared Selection (Both Models)</text>
+              <text x="25" y="52" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#0284c7">878 Individuals</text>
+              <text x="25" y="70" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#0f172a">52 Potential Cases</text>
+              <text x="25" y="86" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Positivity Rate: 5.92% (52 / 878)</text>
+              <text x="25" y="112" font-family="Inter, sans-serif" font-size="9" fill="#475569">Represents high-risk agreement between</text>
+              <text x="25" y="124" font-family="Inter, sans-serif" font-size="9" fill="#475569">both supervision strategies on obvious</text>
+              <text x="25" y="136" font-family="Inter, sans-serif" font-size="9" fill="#475569">elevated risk profiles (93.5% overlap).</text>
+
+              <!-- Nhom hoan doi: Exclusive Model A -->
+              <rect x="255" y="15" width="270" height="70" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+              <rect x="255" y="15" width="4" height="70" rx="1" fill="#94a3b8" />
+              <text x="268" y="32" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#475569">Selected Only by Model A (Diagnosis Only)</text>
+              <text x="268" y="50" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#334155">61 Individuals &bull; 1 Potential Case</text>
+              <text x="268" y="66" font-family="Inter, sans-serif" font-size="9.5" fill="#64748b">Positivity Rate: 1.64% (1 / 61) &bull; Similar to unselected population</text>
+
+              <!-- Nhom hoan doi: Exclusive Model B -->
+              <rect x="255" y="95" width="270" height="70" rx="5" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" />
+              <rect x="255" y="95" width="4" height="70" rx="1" fill="#0284c7" />
+              <text x="268" y="112" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#0369a1">Selected Only by Model B (Biomarker Augmented)</text>
+              <text x="268" y="130" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#0284c7">61 Individuals &bull; 3 Potential Cases</text>
+              <text x="268" y="146" font-family="Inter, sans-serif" font-size="9.5" font-weight="600" fill="#0369a1">Positivity Rate: 4.92% (3 / 61) &bull; 3.0x higher hit rate in swapped queue</text>
+            </svg>
+          </div>
+
+          <div class="note-box" style="margin-top: 8px;">
+            <strong>Important Scientific Scope Note:</strong> The 3.0&times; higher precision (4.92% vs 1.64%) applies <em>strictly</em> to the 61-person swapped boundary subgroup, not to overall model precision (which is 5.86% vs 5.64% unweighted). Overall case yield increased from 53 to 55 (+2 potential cases).
+          </div>
+
+          <!-- Bang so sanh day du so lieu mau va so lieu trong so -->
+          <h3 style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--navy-900); margin: 12px 0 4px 0;">
+            Benchmark Performance &amp; CDC Taylor Series Survey Estimates (20% Capacity)
+          </h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Screening Model</th>
+                <th>Slots (K)</th>
+                <th>Unweighted Cases</th>
+                <th>Unweighted Sens</th>
+                <th>Survey-Weighted Sens (95% CI)</th>
+                <th>Survey-Weighted PPV (95% CI)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Model A (Diagnosis Only)</strong></td>
+                <td>939</td>
+                <td>53 / 116</td>
+                <td>45.69%</td>
+                <td>40.08% [28.9%, 51.2%]</td>
+                <td>5.79% [3.6%, 8.0%]</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>Model B (Biomarker Augmented)</strong></td>
+                <td>939</td>
+                <td>55 / 116</td>
+                <td>47.41%</td>
+                <td>42.47% [28.4%, 56.5%]</td>
+                <td>6.02% [3.4%, 8.6%]</td>
+              </tr>
+              <tr>
+                <td><strong>Net Change (&Delta;)</strong></td>
+                <td>0</td>
+                <td><strong>+2 Cases</strong></td>
+                <td><strong>+1.72%</strong></td>
+                <td>+2.39% (Overlapping 95% CIs)</td>
+                <td>+0.23% (Overlapping 95% CIs)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="prose" style="font-size: 10px; color: var(--slate-500); margin-top: 6px;">
+            <em>Survey design note:</em> Estimates evaluated using Taylor Series Linearization across masked strata and primary sampling units (WTPH2YR weights, df = 15). Confidence intervals overlap, demonstrating that gains reflect directional operational refinement rather than statistically separated population aggregates.
+          </p>
+
+        </article>
+
+      </div>
+
+      <!-- COT 3: CONG BANG Y TE, DO BEN VA GIOI HAN -->
+      <div class="col-panel">
+
+        <article class="card">
+          <h2 class="card-title"><span class="card-num">05</span> Health Equity Subgroup Audit</h2>
+          <p class="prose">
+            Evaluating case detection rates across insurance coverage groups at the 20% budget threshold:
+          </p>
+
+          <table class="data-table" style="margin-top: 6px;">
+            <thead>
+              <tr>
+                <th>Subgroup</th>
+                <th>Total Cases</th>
+                <th>Model A Detection</th>
+                <th>Model B Detection</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Insured Adults</strong></td>
+                <td>102 cases</td>
+                <td>51 / 102 (50.0%)</td>
+                <td>52 / 102 (51.0%)</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>Uninsured Adults</strong></td>
+                <td><strong>13 cases</strong></td>
+                <td><strong>2 / 13 (15.4%)</strong></td>
+                <td><strong>3 / 13 (23.1%)</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note-box" style="margin-top: 6px;">
+            <strong>Small Denominator Notice:</strong> The uninsured evaluation cohort contains only <strong>13 latent cases</strong> in total. Model B identifies 1 additional case (from 2/13 to 3/13). While directionally encouraging, this small sample cannot establish definitive algorithmic fairness or disparity elimination.
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title"><span class="card-num">06</span> Multi-Architecture Robustness</h2>
+          <p class="prose">
+            To evaluate model dependency, we re-evaluated triage under alternative decision tree algorithms:
+          </p>
+          <ul class="prose" style="padding-left: 14px; margin-top: 4px;">
+            <li><strong>Random Forest:</strong> Model A detects 60 cases; Model B detects 61 cases (+1 case, 77 swaps).</li>
+            <li><strong>HistGradientBoosting:</strong> Model A detects 59 cases; Model B detects 59 cases (0 net gain, 132 swaps).</li>
+          </ul>
+          <p class="prose" style="font-size: 10px; color: var(--slate-500); margin-top: 4px;">
+            Confirms that priority shifts occur across architectures, while total yield gains remain modest (+0 to +2 cases).
+          </p>
+        </article>
+
+        <article class="card" style="flex: 1;">
+          <h2 class="card-title"><span class="card-num">07</span> Limitations &amp; Scope</h2>
+          <ul class="prose" style="padding-left: 14px;">
+            <li><strong>Surveillance vs Diagnosis:</strong> Single venous HbA1c &ge; 6.5% represents an elevated screening criterion, not an autonomous clinical diabetes diagnosis.</li>
+            <li><strong>Survey Uncertainty:</strong> Complex survey confidence intervals overlap between models at all budget thresholds.</li>
+            <li><strong>Operational Assumptions:</strong> Model simulations assume 100% testing uptake among prioritized individuals and uniform test costs.</li>
+          </ul>
+        </article>
+
+      </div>
+
+    </main>
+
+    <!-- phan chan trang poster -->
+    <footer class="poster-footer">
+      <div class="footer-left">
+        <span><strong>References:</strong> ADA Standards of Care (2024) &bull; CDC NCHS NHANES Continuous Biomonitoring (2017&ndash;2023) &bull; Obermeyer et al., <em>Science</em> (2019)</span>
+        <span>&bull;</span>
+        <span>Pre-specified observational study protocol</span>
+      </div>
+      <div class="footer-right">
+        <div class="qr-container">
+          <svg viewBox="0 0 37 37" fill="#0a192f">
+            <!-- Inline vector path tu qr_hiddencare.svg -->
+            <path d="M4,4H11V11H4zM5,5V10H10V5zM7,7H8V8H7z M26,4H33V11H26zM27,5V10H32V5zM29,7H30V8H29z M4,26H11V33H4zM5,27V32H10V27zM7,29H8V30H7z M14,4H15V5H14zM16,4H20V5H16zM22,4H23V5H22z M12,5H13V6H12zM15,5H17V6H15zM19,5H20V6H19zM22,5H23V6H22zM24,5H25V6H24z M12,6H13V7H12zM14,6H16V7H14zM18,6H19V7H18zM20,6H21V7H20zM22,6H25V7H22z M12,7H13V8H12zM14,7H15V8H14zM16,7H17V8H16zM18,7H20V8H18zM21,7H22V8H21zM23,7H25V8H23z M13,8H15V9H13zM17,8H20V9H17zM21,8H24V9H21z M14,9H16V10H14zM17,9H19V10H17zM20,9H21V10H20zM22,9H23V10H22z M12,10H13V11H12zM14,10H15V11H14zM16,10H17V11H16zM18,10H19V11H18zM20,10H21V11H20zM22,10H25V11H22z M12,11H15V12H12zM16,11H18V12H16zM23,11H25V12H23z M4,12H5V13H4zM10,12H11V13H10zM12,12H13V13H12zM14,12H17V13H14zM18,12H20V13H18zM21,12H22V13H21zM24,12H27V13H24zM29,12H32V13H29z M4,13H5V14H4zM7,13H9V14H7zM13,13H16V14H13zM18,13H19V14H18zM22,13H24V14H22zM27,13H29V14H27zM30,13H32V14H30z M5,14H6V15H5zM10,14H11V15H10zM12,14H15V15H12zM24,14H25V15H24zM27,14H28V15H27z M7,15H8V16H7zM14,15H17V16H14zM18,15H21V16H18zM22,15H23V16H22zM24,15H26V16H24zM28,15H30V16H28z M5,16H6V17H5zM9,16H11V17H9zM12,16H15V17H12zM17,16H19V17H17zM20,16H21V17H20zM23,16H25V17H23zM26,16H27V17H26zM32,16H33V17H32z M5,17H6V18H5zM7,17H8V18H7zM9,17H10V18H9zM12,17H13V18H12zM14,17H16V18H14zM17,17H19V18H17zM22,17H25V18H22zM26,17H29V18H26zM31,17H33V18H31z M5,18H7V19H5zM9,18H12V19H9zM16,18H21V19H16zM26,18H27V19H26zM29,18H31V19H29z M4,19H9V20H4zM14,19H15V20H14zM16,19H20V20H16zM22,19H23V20H22zM27,19H28V20H27zM30,19H31V20H30zM32,19H33V20H32z M6,20H8V21H6zM9,20H12V21H9zM13,20H14V21H13zM16,20H17V21H16zM18,20H19V21H18zM21,20H22V21H21zM29,20H31V21H29z M4,21H7V22H4zM8,21H9V22H8zM11,21H12V22H11zM19,21H20V22H19zM22,21H29V22H22zM30,21H33V22H30z M4,22H8V23H4zM10,22H11V23H10zM12,22H16V23H12zM17,22H20V23H17zM21,22H27V23H21zM28,22H30V23H28zM32,22H33V23H32z M4,23H5V24H4zM8,23H9V24H8zM11,23H13V24H11zM18,23H19V24H18zM20,23H21V24H20zM23,23H27V24H23zM28,23H29V24H28z M4,24H5V25H4zM7,24H8V25H7zM9,24H12V25H9zM13,24H14V25H13zM16,24H17V25H16zM19,24H20V25H19zM21,24H22V25H21zM23,24H29V25H23zM30,24H33V25H30z M12,25H15V26H12zM17,25H18V26H17zM19,25H20V26H19zM21,25H23V26H21zM24,25H25V26H24zM28,25H30V26H28z M16,26H20V27H16zM21,26H22V27H21zM23,26H25V27H23zM26,26H27V27H26zM28,26H31V27H28z M14,27H15V28H14zM17,27H18V28H17zM19,27H20V28H19zM22,27H23V28H22zM24,27H25V28H24zM28,27H29V28H28zM31,27H32V28H31z M14,28H17V29H14zM17,28H18V29H17zM19,28H20V29H19zM23,28H27V29H23zM27,28H30V29H27zM31,28H33V29H31z M19,29H21V30H19zM22,29H24V30H22zM25,29H26V30H25zM29,29H31V30H29zM32,29H33V30H32z M14,30H15V31H14zM18,30H23V31H18zM24,30H28V31H24zM28,30H32V31H28z M14,31H17V32H14zM20,31H21V32H20zM25,31H27V32H25zM27,31H31V32H27zM32,31H33V32H32z M12,32H14V33H12zM16,32H20V33H16zM21,32H22V33H21zM23,32H24V33H23zM28,32H29V33H28zM30,32H31V33H30z" />
+          </svg>
+          <span style="font-weight: 600; font-size: 10.5px; color: var(--navy-900);">aansensei.dev/hiddencare</span>
+        </div>
+        <span style="font-size: 10.5px; color: var(--slate-500);">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
