@@ -357,6 +357,47 @@ function() {{
         setTimeout(initTocRail, 500);
         setTimeout(initTocRail, 1500);
 
+        const initPosterLightbox = function() {{
+            window.openPosterLightbox = function() {{
+                const modal = document.getElementById('hc-poster-lightbox');
+                if (!modal) return;
+                modal.style.display = 'flex';
+                modal.offsetHeight;
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+                window.addEventListener('keydown', window.handlePosterLightboxKeydown);
+                const closeBtn = document.getElementById('hc-poster-lightbox-close');
+                if (closeBtn) closeBtn.focus();
+            }};
+
+            window.closePosterLightbox = function(e) {{
+                if (e && e.stopPropagation) e.stopPropagation();
+                const modal = document.getElementById('hc-poster-lightbox');
+                if (!modal) return;
+                modal.classList.remove('is-open');
+                document.body.style.overflow = '';
+                window.removeEventListener('keydown', window.handlePosterLightboxKeydown);
+                setTimeout(function() {{
+                    if (!modal.classList.contains('is-open')) {{
+                        modal.style.display = 'none';
+                    }}
+                }}, 250);
+            }};
+
+            window.handlePosterLightboxClick = function(e) {{
+                if (e.target.id === 'hc-poster-lightbox' || e.target.classList.contains('hc-modal-backdrop')) {{
+                    window.closePosterLightbox(e);
+                }}
+            }};
+
+            window.handlePosterLightboxKeydown = function(e) {{
+                if (e.key === 'Escape' || e.key === 'Esc') {{
+                    window.closePosterLightbox(e);
+                }}
+            }};
+        }};
+        initPosterLightbox();
+
         const setFavicons = function() {{
             const icoUri = "{FAVICON_ICO_URI}";
             let links = document.querySelectorAll("link[rel*='icon']");

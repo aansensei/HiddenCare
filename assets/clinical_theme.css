@@ -2465,3 +2465,183 @@ table, tr, td, th,
     border-top: 1px solid var(--border) !important;
   }
 }
+
+
+/* ==========================================================================
+   Interactive Poster Lightbox Modal (Full-Screen Zoom & UX Safeguards)
+   ========================================================================== */
+.hc-poster-preview-container {
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  border-radius: var(--radius-sm, 8px) !important;
+  border: 1px solid var(--border) !important;
+  cursor: zoom-in !important;
+  background: #ffffff !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.hc-poster-preview-container:hover,
+.hc-poster-preview-container:focus-visible {
+  border-color: var(--accent, #0284c7) !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.15) !important;
+  outline: none !important;
+}
+
+.hc-poster-preview-container img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  transition: transform 0.25s ease !important;
+}
+
+.hc-poster-preview-container:hover img {
+  transform: scale(1.01) !important;
+}
+
+.hc-poster-hover-hint {
+  position: absolute !important;
+  bottom: 14px !important;
+  right: 14px !important;
+  background: rgba(10, 25, 47, 0.88) !important;
+  color: #ffffff !important;
+  padding: 8px 16px !important;
+  border-radius: 999px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  backdrop-filter: blur(6px) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+  pointer-events: none !important;
+  transition: background-color 0.2s ease, transform 0.2s ease !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.hc-poster-preview-container:hover .hc-poster-hover-hint {
+  background: rgba(2, 132, 199, 0.95) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Lightbox Backdrop */
+.hc-modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  background: rgba(7, 19, 38, 0.94) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease-in-out !important;
+}
+
+.hc-modal-backdrop.is-open {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Lightbox Dialog */
+.hc-modal-dialog {
+  position: relative !important;
+  max-width: 96vw !important;
+  max-height: 94vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  outline: none !important;
+}
+
+/* Close Button (Touch target >= 44x44px) */
+.hc-modal-close-btn {
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  border-radius: 50% !important;
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 1000000 !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.15s ease, background-color 0.15s ease !important;
+  padding: 0 !important;
+}
+
+.hc-modal-close-btn:hover,
+.hc-modal-close-btn:focus-visible {
+  background: #dc2626 !important;
+  border-color: #f87171 !important;
+  transform: scale(1.08) !important;
+  outline: none !important;
+}
+
+/* Image inside Lightbox */
+.hc-modal-img {
+  max-width: 94vw !important;
+  max-height: 84vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7) !important;
+  background: #ffffff !important;
+  display: block !important;
+}
+
+/* Lightbox Bottom Caption Bar */
+.hc-modal-caption {
+  margin-top: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  width: 100% !important;
+  color: #e2e8f0 !important;
+  font-size: 0.88rem !important;
+  padding: 0 6px !important;
+}
+
+.hc-modal-hint {
+  color: #94a3b8 !important;
+  font-size: 0.80rem !important;
+}
+
+@media (max-width: 640px) {
+  .hc-modal-close-btn {
+    top: 10px !important;
+    right: 10px !important;
+    position: fixed !important;
+  }
+  .hc-modal-img {
+    max-width: 98vw !important;
+    max-height: 78vh !important;
+  }
+  .hc-modal-caption {
+    font-size: 0.78rem !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}

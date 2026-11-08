@@ -515,12 +515,23 @@ def render_about_page_html() -> str:
   <section class="about-section" id="sec-about-poster" data-toc="04 • Academic Poster">
     <h3 class="t-h2">Academic Research Poster</h3>
     <p class="about-lead" style="font-size: 0.95rem; margin-bottom: 16px;">
-      One-page research conference poster synthesizing the core scientific hypothesis, CDC NHANES temporal validation protocol, the 61-patient proof, decision curve analysis, and health equity dividends.
+      One-page research conference poster synthesizing the core scientific hypothesis, CDC NHANES temporal validation protocol, the 61-patient proof, decision curve analysis, and health equity dividends. Click the poster below to enlarge full-screen.
     </p>
     <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 16px;">
-      <div style="width: 100%; overflow: hidden; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-        <img src="{POSTER_URI}" alt="HiddenCare Academic Research Poster" style="width: 100%; height: auto; display: block;" />
+      <!-- Interactive Click-to-Enlarge Poster Preview Container -->
+      <div class="hc-poster-preview-container" onclick="window.openPosterLightbox &amp;&amp; window.openPosterLightbox()" onkeydown="if(event.key==='Enter'||event.key===' '){{window.openPosterLightbox &amp;&amp; window.openPosterLightbox(); event.preventDefault();}}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Click to enlarge research poster fullscreen">
+        <img src="{POSTER_URI}" alt="HiddenCare Academic Research Poster" />
+        <div class="hc-poster-hover-hint">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+          <span>Click to enlarge full-screen</span>
+        </div>
       </div>
+
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
         <a href="{POSTER_PDF_URI}" download="HiddenCare_Research_Poster_CaoThienAnNguyen.pdf" class="hc-cta-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: var(--accent); color: #ffffff; border-radius: var(--radius-sm); min-height: 44px;">
           Download Vector PDF (36x24 in)
@@ -528,13 +539,76 @@ def render_about_page_html() -> str:
         <a href="{POSTER_URI}" download="HiddenCare_Research_Poster_CaoThienAnNguyen.png" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: #ffffff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); min-height: 44px;">
           Download High-Res Image (PNG)
         </a>
+        <button type="button" onclick="window.openPosterLightbox &amp;&amp; window.openPosterLightbox()" style="border: 1px solid var(--accent); background: #f0f9ff; color: var(--accent); padding: 10px 20px; font-size: 0.88rem; font-weight: 600; border-radius: var(--radius-sm); min-height: 44px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+          <span>Enlarge Poster (Lightbox)</span>
+        </button>
       </div>
       <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.82rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;">
         <span><strong>Author &amp; Attribution:</strong> Cao Thien An Nguyen (GitHub: <a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-weight: 600;">aansensei</a>)</span>
-        <span><strong>Copyright:</strong> &copy; 2026 Cao Thien An Nguyen &bull; All rights reserved</span>
+        <span><strong>Suggested Citation (APA 7th):</strong> Nguyen, C. T. A. (2026). <em>When training labels change who gets screened</em> [Poster]. UW&ndash;Madison.</span>
       </div>
     </div>
   </section>
+
+  <!-- Fullscreen Modal / Lightbox Component -->
+  <div id="hc-poster-lightbox" class="hc-modal-backdrop" role="dialog" aria-modal="true" aria-label="Enlarged HiddenCare Research Poster" style="display: none;" onclick="window.handlePosterLightboxClick &amp;&amp; window.handlePosterLightboxClick(event)">
+    <div class="hc-modal-dialog" onclick="event.stopPropagation()">
+      <button id="hc-poster-lightbox-close" class="hc-modal-close-btn" type="button" aria-label="Close enlarged preview" onclick="window.closePosterLightbox &amp;&amp; window.closePosterLightbox(event)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img src="{POSTER_URI}" alt="Enlarged HiddenCare Academic Research Poster (36x24 in)" class="hc-modal-img" />
+      <div class="hc-modal-caption">
+        <span><strong>When Training Labels Change Who Gets Screened</strong> &bull; 36 &times; 24 in Research Poster (NHANES 2017&ndash;2023)</span>
+        <span class="hc-modal-hint">Click outside or press <strong>Esc</strong> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {{
+    window.openPosterLightbox = function() {{
+      var modal = document.getElementById('hc-poster-lightbox');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      modal.offsetHeight;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', window.handlePosterLightboxKeydown);
+      var closeBtn = document.getElementById('hc-poster-lightbox-close');
+      if (closeBtn) closeBtn.focus();
+    }};
+
+    window.closePosterLightbox = function(e) {{
+      if (e && e.stopPropagation) e.stopPropagation();
+      var modal = document.getElementById('hc-poster-lightbox');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', window.handlePosterLightboxKeydown);
+      setTimeout(function() {{
+        if (!modal.classList.contains('is-open')) {{
+          modal.style.display = 'none';
+        }}
+      }}, 250);
+    }};
+
+    window.handlePosterLightboxClick = function(e) {{
+      if (e.target.id === 'hc-poster-lightbox' || e.target.classList.contains('hc-modal-backdrop')) {{
+        window.closePosterLightbox(e);
+      }}
+    }};
+
+    window.handlePosterLightboxKeydown = function(e) {{
+      if (e.key === 'Escape' || e.key === 'Esc') {{
+        window.closePosterLightbox(e);
+      }}
+    }};
+  }})();
+  </script>
 
   <!-- complex survey variance and model robustness -->
   <section class="about-section" id="sec-about-stats" data-toc="05 • Survey Variance & Robustness">

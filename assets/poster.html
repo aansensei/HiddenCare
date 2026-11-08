@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- poster nghien cuu hoc thuat hiddencare -->
+<!-- poster nghien cuu hoc thuat hiddencare kieu in 36x24 inch -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>When Training Labels Change Who Gets Screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES</title>
+  <title>When Training Labels Change Who Gets Screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels for diabetes screening in NHANES</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700&display=swap" rel="stylesheet">
@@ -14,11 +14,12 @@
     }
 
     :root {
-      --bg-page: #f1f5f9;
-      --bg-poster: #ffffff;
+      --bg-page: #ffffff;
+      --navy-950: #071326;
       --navy-900: #0a192f;
-      --navy-800: #0f172a;
-      --navy-700: #1e293b;
+      --navy-800: #0f2347;
+      --navy-700: #1e3a6d;
+      --slate-700: #334155;
       --slate-600: #475569;
       --slate-500: #64748b;
       --slate-400: #94a3b8;
@@ -26,10 +27,11 @@
       --slate-200: #e2e8f0;
       --slate-100: #f8fafc;
       --accent-blue: #0284c7;
-      --accent-dark-blue: #0369a1;
-      --accent-teal: #0d9488;
+      --accent-dark: #0369a1;
       --accent-light: #f0f9ff;
       --accent-border: #bae6fd;
+      --emerald-dark: #0f766e;
+      --emerald-light: #f0fdfa;
       --font-serif: 'Newsreader', Georgia, serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -41,26 +43,26 @@
     }
 
     body {
-      background: var(--bg-page);
+      background: #ffffff;
       font-family: var(--font-sans);
-      color: var(--navy-800);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
+      color: var(--navy-900);
       margin: 0;
+      padding: 0;
+      width: 36in;
+      height: 24in;
+      overflow: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Khung poster ty le 3:2 chuan 36x24 inch (2592x1728 px tai 72dpi, can le co gian 1440x960 px) */
+    /* Khung poster 36x24 inch thuc te (3456px x 2304px tai 96dpi) */
     .poster-canvas {
-      width: 1440px;
-      height: 960px;
-      background: var(--bg-poster);
+      width: 36in;
+      height: 24in;
+      background: #ffffff;
       display: flex;
       flex-direction: column;
-      padding: 28px 36px 20px 36px;
-      overflow: hidden;
+      padding: 0.65in 0.85in 0.45in 0.85in;
+      box-sizing: border-box;
       position: relative;
     }
 
@@ -69,37 +71,37 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 2px solid var(--navy-900);
-      padding-bottom: 12px;
-      margin-bottom: 14px;
+      border-bottom: 5px solid var(--navy-900);
+      padding-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     .header-main {
       flex: 1;
-      padding-right: 28px;
+      padding-right: 48px;
     }
 
     .header-kicker {
-      font-size: 10.5px;
+      font-size: 20pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--accent-blue);
-      margin-bottom: 3px;
+      margin-bottom: 8px;
     }
 
     .header-title {
       font-family: var(--font-serif);
-      font-size: 33px;
-      line-height: 1.15;
+      font-size: 64pt;
+      line-height: 1.1;
       font-weight: 700;
-      color: var(--navy-900);
-      letter-spacing: -0.01em;
-      margin-bottom: 3px;
+      color: var(--navy-950);
+      letter-spacing: -0.015em;
+      margin-bottom: 12px;
     }
 
     .header-subtitle {
-      font-size: 14.5px;
+      font-size: 26pt;
       font-weight: 500;
       color: var(--slate-600);
       line-height: 1.35;
@@ -107,34 +109,35 @@
 
     .header-author {
       text-align: right;
-      min-width: 290px;
+      min-width: 620px;
+      padding-top: 6px;
     }
 
     .author-name {
       font-family: var(--font-serif);
-      font-size: 19px;
-      font-weight: 600;
-      color: var(--navy-900);
+      font-size: 36pt;
+      font-weight: 700;
+      color: var(--navy-950);
     }
 
     .author-affil {
-      font-size: 12.5px;
+      font-size: 23pt;
       font-weight: 600;
-      color: var(--slate-600);
-      margin-top: 1px;
+      color: var(--slate-700);
+      margin-top: 6px;
     }
 
     .author-sub {
-      font-size: 11.5px;
+      font-size: 20pt;
       color: var(--slate-500);
-      margin-top: 1px;
+      margin-top: 4px;
     }
 
-    /* Luoi 3 cot bat doi xung */
+    /* Luoi 3 cot chinh */
     .poster-grid {
       display: grid;
-      grid-template-columns: 360px 1fr 360px;
-      gap: 18px;
+      grid-template-columns: 880px 1fr 880px;
+      gap: 36px;
       flex: 1;
       min-height: 0;
     }
@@ -142,31 +145,32 @@
     .col-panel {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 22px;
       min-height: 0;
     }
 
+    /* The noi dung */
     .card {
       background: #ffffff;
-      border: 1px solid var(--slate-200);
-      border-radius: 5px;
-      padding: 10px 12px;
+      border: 2px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 24px 28px;
       display: flex;
       flex-direction: column;
     }
 
     .card-title {
-      font-size: 12px;
+      font-size: 22pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--navy-900);
-      border-bottom: 1px solid var(--slate-200);
-      padding-bottom: 4px;
-      margin-bottom: 6px;
+      border-bottom: 2px solid var(--slate-200);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 12px;
     }
 
     .card-title .card-num {
@@ -175,130 +179,130 @@
     }
 
     .prose {
-      font-size: 11px;
-      line-height: 1.42;
-      color: var(--slate-600);
+      font-size: 20.5pt;
+      line-height: 1.48;
+      color: var(--slate-700);
     }
 
     .prose strong {
-      color: var(--navy-900);
+      color: var(--navy-950);
       font-weight: 600;
     }
 
-    /* Banner ket qua trong 5 giay */
+    /* Banner 5 giay giua poster */
     .takeaway-banner {
       background: var(--accent-light);
-      border: 1.5px solid var(--accent-blue);
-      border-radius: 5px;
-      padding: 9px 14px;
+      border: 3.5px solid var(--accent-blue);
+      border-radius: 12px;
+      padding: 20px 28px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 24px;
     }
 
     .takeaway-badge {
       background: var(--accent-blue);
       color: #ffffff;
-      font-size: 9.5px;
+      font-size: 18pt;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      padding: 3px 7px;
-      border-radius: 3px;
+      padding: 8px 18px;
+      border-radius: 8px;
       white-space: nowrap;
     }
 
     .takeaway-text {
       font-family: var(--font-serif);
-      font-size: 15.5px;
-      line-height: 1.3;
-      font-weight: 600;
-      color: var(--navy-900);
+      font-size: 31pt;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--navy-950);
     }
 
     /* So do vector */
     .vector-diagram {
       background: var(--slate-100);
-      border: 1px solid var(--slate-200);
-      border-radius: 4px;
-      padding: 6px;
-      margin-top: 5px;
+      border: 2px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 14px;
     }
 
     /* Bang so lieu */
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 10px;
-      margin-top: 5px;
+      font-size: 18.5pt;
+      margin-top: 14px;
     }
 
     .data-table th {
       background: var(--slate-100);
-      color: var(--navy-900);
+      color: var(--navy-950);
       font-weight: 700;
       text-align: left;
-      padding: 3.5px 5px;
-      border-bottom: 1.5px solid var(--slate-300);
+      padding: 10px 14px;
+      border-bottom: 3px solid var(--slate-300);
     }
 
     .data-table td {
-      padding: 3.5px 5px;
-      border-bottom: 1px solid var(--slate-200);
-      color: var(--slate-600);
+      padding: 11px 14px;
+      border-bottom: 1.5px solid var(--slate-200);
+      color: var(--slate-700);
     }
 
     .data-table tr.highlight-row {
       background: #f0fdf4;
       font-weight: 600;
-      color: var(--navy-900);
+      color: var(--navy-950);
     }
 
-    /* Chu thich chu chan nho */
+    /* Chu thich chu chan */
     .table-caption {
-      font-size: 9.5px;
-      line-height: 1.35;
+      font-size: 16.5pt;
+      line-height: 1.45;
       color: var(--slate-500);
-      margin-top: 5px;
+      margin-top: 10px;
     }
 
     /* Chan trang poster */
     .poster-footer {
-      border-top: 1px solid var(--slate-200);
-      padding-top: 8px;
-      margin-top: 8px;
+      border-top: 3px solid var(--slate-300);
+      padding-top: 16px;
+      margin-top: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 10.5px;
-      color: var(--slate-500);
+      font-size: 18pt;
+      color: var(--slate-600);
     }
 
     .footer-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .footer-right {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
     }
 
     .qr-container {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 12px;
       background: var(--slate-100);
-      border: 1px solid var(--slate-200);
-      padding: 3px 6px;
-      border-radius: 4px;
+      border: 1.5px solid var(--slate-300);
+      padding: 6px 14px;
+      border-radius: 8px;
     }
 
     .qr-container svg {
-      width: 24px;
-      height: 24px;
+      width: 48px;
+      height: 48px;
       display: block;
     }
   </style>
@@ -313,7 +317,7 @@
         <div class="header-kicker">Epidemiological Machine Learning &bull; Population Screening Triage</div>
         <h1 class="header-title">When Training Labels Change Who Gets Screened</h1>
         <p class="header-subtitle">
-          Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES under finite screening capacity
+          Temporal evaluation of diagnosis-based versus biomarker-augmented labels for diabetes screening in NHANES
         </p>
       </div>
       <div class="header-author">
@@ -329,76 +333,76 @@
       <!-- COT 1: CO SO VAN DE VA THIET KE NGHIEN CUU -->
       <div class="col-panel">
 
-        <!-- 01 The Clinical Problem (2 concise sentences) -->
+        <!-- 01 The Clinical Problem -->
         <article class="card">
           <h2 class="card-title"><span class="card-num">01</span> The Clinical Problem</h2>
           <p class="prose">
-            Screening triage algorithms often train on self-reported prior diagnoses or electronic health record proxies. However, clinical diagnoses require regular clinical encounters, misclassifying underserved individuals facing access barriers as healthy baselines.
+            Population screening triage algorithms frequently train on self-reported prior diagnoses or electronic health record proxies. However, clinical diagnoses require regular clinical encounters, misclassifying unrecorded disease as healthy baselines among underserved individuals facing access barriers.
           </p>
         </article>
 
-        <!-- 02 Study Design & Temporal Protocol (same dev -> two labels -> same holdout) -->
+        <!-- 02 Study Design & Temporal Protocol -->
         <article class="card">
           <h2 class="card-title"><span class="card-num">02</span> Study Design &amp; Temporal Protocol</h2>
           <p class="prose">
-            We evaluate whether augmenting self-reported diagnosis with objective laboratory biomonitoring alters triage priority, holding non-invasive predictors and screening capacity constant.
+            We evaluate whether augmenting self-reported diagnosis with objective venous HbA1c (glycated hemoglobin &ge; 6.5%) alters triage priorities in CDC NHANES (National Health and Nutrition Examination Survey), holding predictors and capacity constant.
           </p>
 
-          <!-- vector diagram the hien ro: Cung dev cohort -> Hai nhan -> Cung holdout -->
+          <!-- So do Study Design: Cung development -> Hai nhan -> Cung holdout -->
           <div class="vector-diagram">
-            <svg viewBox="0 0 330 148" width="100%" height="142" xmlns="http://www.w3.org/2000/svg" style="display: block;">
-              <!-- 1. Cung Development Cohort tren dau -->
-              <rect x="25" y="4" width="280" height="34" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" />
-              <text x="35" y="18" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0f172a">1. Shared Development Cohort (2017&ndash;March 2020)</text>
-              <text x="35" y="30" font-family="Inter, sans-serif" font-size="8" fill="#475569">N = 7,761 adults &bull; Non-invasive predictors: Age, Sex, BMI, Waist</text>
+            <svg viewBox="0 0 460 215" width="100%" height="210" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+              <!-- 1. Shared Development Cohort -->
+              <rect x="20" y="6" width="420" height="48" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+              <text x="35" y="27" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#071326">1. Shared Development Cohort (2017&ndash;March 2020)</text>
+              <text x="35" y="44" font-family="Inter, sans-serif" font-size="11.5" fill="#475569">N = 7,761 adults &bull; Non-invasive predictors: Age, Sex, BMI, Waist</text>
 
-              <!-- Mui ten re 2 nhanh xuong 2 nhan huan luyen -->
-              <path d="M 115 38 L 115 48 L 75 48 L 75 56" fill="none" stroke="#0284c7" stroke-width="1.2" />
-              <polygon points="72,56 75,60 78,56" fill="#0284c7" />
-              <path d="M 215 38 L 215 48 L 255 48 L 255 56" fill="none" stroke="#0284c7" stroke-width="1.2" />
-              <polygon points="252,56 255,60 258,56" fill="#0284c7" />
+              <!-- Mui ten re 2 nhanh -->
+              <path d="M 140 54 L 140 70 L 105 70 L 105 80" fill="none" stroke="#0284c7" stroke-width="2" />
+              <polygon points="101,80 105,87 109,80" fill="#0284c7" />
+              <path d="M 320 54 L 320 70 L 355 70 L 355 80" fill="none" stroke="#0284c7" stroke-width="2" />
+              <polygon points="351,80 355,87 359,80" fill="#0284c7" />
 
-              <!-- 2. Hai chien luoc nhan huan luyen o giua -->
-              <rect x="5" y="60" width="145" height="42" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1" />
-              <text x="10" y="73" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#334155">Model A (Diagnosis Only)</text>
-              <text x="10" y="84" font-family="Inter, sans-serif" font-size="7.5" fill="#64748b">DIQ010 == 1 (Self-reported dx)</text>
-              <text x="10" y="94" font-family="Inter, sans-serif" font-size="7" fill="#0284c7">L2 Logistic Regression (CV-tuned C)</text>
+              <!-- 2. Hai chien luoc nhan huan luyen -->
+              <rect x="10" y="88" width="195" height="58" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8" />
+              <text x="18" y="106" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" fill="#334155">Model A (Diagnosis Only)</text>
+              <text x="18" y="122" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b">Prior self-reported diagnosis</text>
+              <text x="18" y="137" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#0284c7">L2 Logistic Regression (CV-tuned C)</text>
 
-              <rect x="180" y="60" width="145" height="42" rx="3" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.3" />
-              <text x="185" y="73" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#0369a1">Model B (Biomarker Augmented)</text>
-              <text x="185" y="84" font-family="Inter, sans-serif" font-size="7.5" fill="#0284c7">DIQ010 == 1 OR HbA1c &ge; 6.5%</text>
-              <text x="185" y="94" font-family="Inter, sans-serif" font-size="7" fill="#0369a1">L2 Logistic Regression (CV-tuned C)</text>
+              <rect x="255" y="88" width="195" height="58" rx="5" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+              <text x="263" y="106" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" fill="#0369a1">Model B (Biomarker Augmented)</text>
+              <text x="263" y="122" font-family="Inter, sans-serif" font-size="10.5" fill="#0284c7">Prior diagnosis OR HbA1c &ge; 6.5%</text>
+              <text x="263" y="137" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#0369a1">L2 Logistic Regression (CV-tuned C)</text>
 
-              <!-- Mui ten hop lai xuong holdout duy nhat -->
-              <path d="M 75 102 L 75 110 L 115 110 L 115 116" fill="none" stroke="#0284c7" stroke-width="1.2" />
-              <polygon points="112,116 115,120 118,116" fill="#0284c7" />
-              <path d="M 255 102 L 255 110 L 215 110 L 215 116" fill="none" stroke="#0284c7" stroke-width="1.2" />
-              <polygon points="212,116 215,120 218,116" fill="#0284c7" />
+              <!-- Mui ten hop lai xuong holdout -->
+              <path d="M 105 146 L 105 158 L 140 158 L 140 166" fill="none" stroke="#0284c7" stroke-width="2" />
+              <polygon points="136,166 140,173 144,166" fill="#0284c7" />
+              <path d="M 355 146 L 355 158 L 320 158 L 320 166" fill="none" stroke="#0284c7" stroke-width="2" />
+              <polygon points="316,166 320,173 324,166" fill="#0284c7" />
 
-              <!-- 3. Cung Holdout Evaluation Cohort o duoi -->
-              <rect x="25" y="120" width="280" height="24" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" />
-              <text x="35" y="132" font-family="Inter, sans-serif" font-size="8.5" font-weight="700" fill="#0a192f">3. Shared Holdout Evaluation Cohort (2021&ndash;2023)</text>
-              <text x="35" y="141" font-family="Inter, sans-serif" font-size="7.5" fill="#475569">N = 4,698 undiagnosed adults &bull; 116 cases with venous HbA1c &ge; 6.5%</text>
+              <!-- 3. Shared Holdout Evaluation Cohort -->
+              <rect x="20" y="174" width="420" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+              <text x="35" y="191" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#0a192f">3. Shared Holdout Evaluation Cohort (2021&ndash;2023)</text>
+              <text x="35" y="204" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">N = 4,698 undiagnosed adults &bull; 116 meeting HbA1c &ge; 6.5% screening criterion</text>
             </svg>
           </div>
         </article>
 
-        <!-- 03 Methods & Data Engineering Note (concise single paragraph) -->
+        <!-- 03 Methods & Implementation Note -->
         <article class="card" style="flex: 1;">
           <h2 class="card-title"><span class="card-num">03</span> Methods &amp; Implementation Note</h2>
           <p class="prose">
-            Primary models are <strong>L2-regularized logistic regressions</strong> tuned via 5-fold cross-validation on median-imputed, standard-scaled anthropometrics (age, sex, BMI, waist circumference). Poverty Income Ratio (PIR) and insurance coverage were strictly excluded from model inputs and reserved solely for equity audits. Data pipeline ingested 10 XPT files across two survey eras using an embedded DuckDB lakehouse; Pandera contracts validated biological ranges (HbA1c: 2.0% to 25.0%) and confirmed 0 pregnant participants.
+            Primary models are <strong>L2-regularized logistic regressions</strong> tuned via 5-fold cross-validation on median-imputed, standard-scaled numeric features (age, BMI, waist circumference) and binary one-hot encoded sex. Poverty Income Ratio (PIR) and insurance were strictly excluded from model inputs and reserved solely for equity audits. Data pipeline ingested 10 XPT files across two survey periods using an embedded DuckDB lakehouse; Pandera contracts validated biological ranges (HbA1c: 2.0%&ndash;25.0%) and confirmed 0 pregnant participants.
           </p>
         </article>
 
       </div>
 
-      <!-- COT 2: KET QUA TRONG TAM (CHIEM DIEN TICH LON NHAT) -->
-      <div class="col-panel" style="gap: 10px;">
+      <!-- COT 2: KET QUA TRONG TAM (VISUAL CENTER) -->
+      <div class="col-panel" style="gap: 16px;">
 
         <!-- 5-Second Key Takeaway Banner -->
         <div class="takeaway-banner">
-          <div class="takeaway-badge">Key Takeaway</div>
+          <div class="takeaway-badge">Key Finding</div>
           <div class="takeaway-text">
             Changing training labels altered screening priorities and identified two additional potential cases at the same screening capacity.
           </div>
@@ -407,49 +411,50 @@
         <!-- 04 Paired-Selection Queue Analysis at 20% Screening Capacity -->
         <article class="card" style="flex: 1;">
           <h2 class="card-title" style="justify-content: space-between;">
-            <span><span class="card-num">04</span> Paired-Selection Queue Analysis (20% Clinic Capacity)</span>
-            <span style="font-size: 10.5px; font-weight: 600; color: var(--slate-500); text-transform: none;">Fixed Capacity K = 939 slots / 4,698 adults</span>
+            <span><span class="card-num">04</span> Paired-Selection Queue Analysis (20% Screening Capacity)</span>
+            <span style="font-size: 16.5pt; font-weight: 600; color: var(--slate-500); text-transform: none;">Fixed Capacity K = 939 slots / 4,698 adults</span>
           </h2>
 
-          <p class="prose" style="margin-bottom: 6px;">
-            Holding capacity fixed at 20% (939 slots), both models prioritize 878 shared individuals. Priorities diverge for 122 individuals at the decision threshold:
+          <p class="prose" style="margin-bottom: 10px;">
+            At 20% screening capacity (939 test slots), both models prioritize 878 shared individuals. Priorities diverge for 122 individuals at the margin:
           </p>
 
-          <!-- So do vector paired-selection tinh gon, khong tran chu -->
-          <div style="background: var(--slate-100); border: 1px solid var(--slate-200); border-radius: 5px; padding: 10px 12px;">
-            <svg viewBox="0 0 540 145" width="100%" height="140" xmlns="http://www.w3.org/2000/svg">
-              <!-- Nhom chung (Shared Selection) ben trai -->
-              <rect x="10" y="8" width="220" height="88" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.3" />
-              <text x="20" y="24" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#0f172a">Shared Selection (Both Models)</text>
-              <text x="20" y="44" font-family="Inter, sans-serif" font-size="17" font-weight="800" fill="#0284c7">878 Individuals</text>
-              <text x="20" y="60" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0f172a">52 Potential Cases</text>
-              <text x="20" y="74" font-family="Inter, sans-serif" font-size="9.5" fill="#64748b">Positivity Rate: 5.92% (52 / 878)</text>
-              <text x="20" y="86" font-family="Inter, sans-serif" font-size="8" fill="#475569">High-risk concordance across both label strategies</text>
+          <!-- So do vector paired-selection tinh gon, de hieu, khong roi mat -->
+          <div style="background: var(--slate-100); border: 2px solid var(--slate-200); border-radius: 10px; padding: 18px 24px;">
+            <svg viewBox="0 0 740 200" width="100%" height="195" xmlns="http://www.w3.org/2000/svg">
+              <!-- Nhom chung (Shared Selection) -->
+              <rect x="15" y="12" width="310" height="120" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+              <text x="30" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#0a192f">Shared Selection (Both Models)</text>
+              <text x="30" y="65" font-family="Inter, sans-serif" font-size="25" font-weight="800" fill="#0284c7">878 Individuals</text>
+              <text x="30" y="90" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">52 Potential Cases</text>
+              <text x="30" y="112" font-family="Inter, sans-serif" font-size="13.5" fill="#64748b">PPV / Yield: 5.92% (52 / 878)</text>
+              <text x="30" y="126" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8">Concordant high-risk prioritization</text>
 
-              <!-- Hai nhanh rieng ben phai (The 61-Person Boundary Swap) -->
-              <rect x="250" y="8" width="280" height="40" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1" />
-              <rect x="250" y="8" width="4" height="40" rx="1" fill="#94a3b8" />
-              <text x="262" y="22" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#475569">Model A Exclusive (Diagnosis Only)</text>
-              <text x="262" y="38" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#334155">61 people &bull; 1 case <tspan font-size="9" font-weight="500" fill="#64748b">(1.64% yield)</tspan></text>
+              <!-- Hai nhanh ranh gioi hoan doi (Exclusive Selections) -->
+              <rect x="355" y="12" width="370" height="56" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8" />
+              <rect x="355" y="12" width="6" height="56" rx="2" fill="#94a3b8" />
+              <text x="372" y="32" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#475569">Model A Exclusive (Diagnosis Only)</text>
+              <text x="372" y="54" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#334155">61 people &bull; 1 case <tspan font-size="13" font-weight="600" fill="#64748b">(1.64% yield)</tspan></text>
 
-              <rect x="250" y="56" width="280" height="40" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.3" />
-              <rect x="250" y="56" width="4" height="40" rx="1" fill="#0284c7" />
-              <text x="262" y="70" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#0369a1">Model B Exclusive (Biomarker Augmented)</text>
-              <text x="262" y="86" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0284c7">61 people &bull; 3 cases <tspan font-size="9" font-weight="600" fill="#0369a1">(4.92% yield)</tspan></text>
+              <rect x="355" y="76" width="370" height="56" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+              <rect x="355" y="76" width="6" height="56" rx="2" fill="#0284c7" />
+              <text x="372" y="96" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0369a1">Model B Exclusive (Biomarker Augmented)</text>
+              <text x="372" y="118" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#0284c7">61 people &bull; 3 cases <tspan font-size="13" font-weight="700" fill="#0369a1">(4.92% yield)</tspan></text>
 
-              <!-- Thanh tong ket toan bo hang doi ben duoi -->
-              <rect x="10" y="106" width="520" height="32" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
-              <text x="20" y="121" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#0a192f">Overall 20% Screening Yield (939 Slots):</text>
-              <text x="20" y="132" font-family="Inter, sans-serif" font-size="8.5" fill="#475569">Model A: 53 cases (5.64% PPV) &rarr; Model B: 55 cases (5.86% PPV) &bull; <tspan font-weight="700" fill="#0284c7">Net Gain: +2 Cases (+1.72 pp sensitivity)</tspan></text>
+              <!-- Thanh tong ket toan bo hang doi (Highlight: 53 -> 55 cases) -->
+              <rect x="15" y="140" width="710" height="52" rx="6" fill="#f8fafc" stroke="#0284c7" stroke-width="2" />
+              <text x="28" y="160" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" fill="#0a192f">Overall Screening Yield (939 Slots):</text>
+              <text x="272" y="160" font-family="Inter, sans-serif" font-size="12.5" font-weight="600" fill="#475569">Model A: 53 cases (5.64% PPV) &nbsp;|&nbsp; Model B: 55 cases (5.86% PPV)</text>
+              <text x="28" y="180" font-family="Inter, sans-serif" font-size="13.5" font-weight="800" fill="#0284c7">Net Difference: 53 &rarr; 55 cases (+2 potential cases, +1.72 pp unweighted sensitivity)</text>
             </svg>
           </div>
 
-          <p class="table-caption" style="margin-top: 4px;">
-            <em>Note on precision:</em> The 3.0&times; yield difference (4.92% vs 1.64%) applies strictly to the 61-person boundary swap, not to overall model precision (5.86% vs 5.64% unweighted). Overall case detection increased from 53 to 55 (+2 potential cases).
+          <p class="table-caption" style="margin-top: 8px;">
+            <em>Schematic: elements not to scale.</em> Positive Predictive Value (PPV) is the percentage of screened individuals who meet the HbA1c criterion. The 3.0&times; yield difference (4.92% vs 1.64%) applies strictly to the 61-person boundary swap, not to overall model precision (5.86% vs 5.64% unweighted). Overall case detection increased from 53 to 55 (+2 potential cases).
           </p>
 
           <!-- Bang so sanh so lieu benchmark va khao sat phuc hop -->
-          <h3 style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--navy-900); margin: 8px 0 3px 0;">
+          <h3 style="font-size: 19pt; font-weight: 700; text-transform: uppercase; color: var(--navy-900); margin: 16px 0 6px 0;">
             Benchmark Performance &amp; Complex Survey Variance (20% Capacity)
           </h3>
           <table class="data-table">
@@ -492,7 +497,7 @@
           </table>
 
           <p class="table-caption">
-            <em>Survey inference:</em> Weighted estimates use Taylor Series Linearization (WTPH2YR weights, df = 15). The observed point-estimate difference is small (+2 cases, +2.38 pp weighted sensitivity), and formal paired confidence intervals accounting for complex survey clustering have not been evaluated.
+            <em>Survey inference note:</em> Weighted estimates use Taylor Series Linearization (WTPH2YR weights, df = 15). The observed point-estimate difference is small (+2 cases, +2.38 pp weighted sensitivity), and formal paired confidence intervals accounting for complex survey clustering have not been evaluated.
           </p>
 
         </article>
@@ -506,10 +511,10 @@
         <article class="card">
           <h2 class="card-title"><span class="card-num">05</span> Health Equity Subgroup Audit</h2>
           <p class="prose">
-            Evaluating detection across insurance coverage at 20% budget:
+            Evaluating detection across insurance status at 20% budget:
           </p>
 
-          <table class="data-table" style="margin-top: 5px;">
+          <table class="data-table" style="margin-top: 8px;">
             <thead>
               <tr>
                 <th>Subgroup</th>
@@ -535,7 +540,7 @@
           </table>
 
           <p class="table-caption">
-            <em>Small denominator note:</em> The uninsured cohort contains only <strong>13 latent cases</strong>; detection changed by +1 case (2/13 to 3/13). While directionally consistent with hypothesis, small cell counts preclude claims of disparity elimination.
+            <em>Small denominator note:</em> The uninsured cohort contains only <strong>13 latent cases</strong>; detection changed by +1 case (2/13 to 3/13). While directionally consistent with hypothesis, small cell counts preclude claims of disparity elimination or causal improvement.
           </p>
         </article>
 
@@ -543,9 +548,9 @@
         <article class="card">
           <h2 class="card-title"><span class="card-num">06</span> Multi-Architecture Robustness</h2>
           <p class="prose">
-            Re-evaluated triage using alternative decision tree algorithms:
+            Triage re-evaluated under alternative tree architectures:
           </p>
-          <ul class="prose" style="padding-left: 14px; margin-top: 3px;">
+          <ul class="prose" style="padding-left: 20px; margin-top: 6px;">
             <li><strong>Random Forest:</strong> Model A detects 60 cases; Model B detects 61 cases (+1 case, 77 swaps).</li>
             <li><strong>HistGradientBoosting:</strong> Model A detects 59 cases; Model B detects 59 cases (0 net gain, 132 swaps).</li>
           </ul>
@@ -555,13 +560,21 @@
         </article>
 
         <!-- 07 Limitations & Scope -->
-        <article class="card" style="flex: 1;">
+        <article class="card">
           <h2 class="card-title"><span class="card-num">07</span> Limitations &amp; Scope</h2>
-          <ul class="prose" style="padding-left: 14px;">
+          <ul class="prose" style="padding-left: 20px;">
             <li><strong>Surveillance vs Diagnosis:</strong> Single venous HbA1c &ge; 6.5% represents an elevated screening criterion, not an autonomous clinical diagnosis.</li>
             <li><strong>Inference Bounds:</strong> Separate survey-weighted confidence intervals overlap; paired variance estimation is required for confirmatory testing.</li>
             <li><strong>Operational Scope:</strong> Assumes 100% screening adherence among prioritized adults and uniform laboratory costs.</li>
           </ul>
+        </article>
+
+        <!-- 08 Conclusion & Next Steps -->
+        <article class="card" style="flex: 1;">
+          <h2 class="card-title"><span class="card-num">08</span> Conclusion &amp; Next Steps</h2>
+          <p class="prose">
+            Augmenting administrative diagnosis labels with objective biomarker ground truth modestly refines borderline triage (+2 cases, 53 &rarr; 55) without expanding predictor requirements. Next steps require evaluating formal paired complex survey variance and conducting prospective validation in diverse clinical care settings.
+          </p>
         </article>
 
       </div>
@@ -571,7 +584,7 @@
     <!-- phan chan trang poster -->
     <footer class="poster-footer">
       <div class="footer-left">
-        <span><strong>References:</strong> ADA Standards of Care (2024) &bull; CDC NCHS NHANES Continuous Biomonitoring (2017&ndash;2023) &bull; Obermeyer et al., <em>Science</em> (2019) &bull; Pre-specified observational protocol</span>
+        <span><strong>References (APA 7th):</strong> American Diabetes Association. (2024). <em>Diabetes Care</em>, 47(Suppl. 1), S20&ndash;S42 &bull; CDC NCHS. (2024). <em>NHANES 2017&ndash;2023</em>. U.S. DHHS &bull; Obermeyer et al. (2019). <em>Science</em>, 366(6464), 447&ndash;453</span>
       </div>
       <div class="footer-right">
         <div class="qr-container">
@@ -579,9 +592,9 @@
             <!-- Inline vector path tu qr_hiddencare.svg -->
             <path d="M4,4H11V11H4zM5,5V10H10V5zM7,7H8V8H7z M26,4H33V11H26zM27,5V10H32V5zM29,7H30V8H29z M4,26H11V33H4zM5,27V32H10V27zM7,29H8V30H7z M14,4H15V5H14zM16,4H20V5H16zM22,4H23V5H22z M12,5H13V6H12zM15,5H17V6H15zM19,5H20V6H19zM22,5H23V6H22zM24,5H25V6H24z M12,6H13V7H12zM14,6H16V7H14zM18,6H19V7H18zM20,6H21V7H20zM22,6H25V7H22z M12,7H13V8H12zM14,7H15V8H14zM16,7H17V8H16zM18,7H20V8H18zM21,7H22V8H21zM23,7H25V8H23z M13,8H15V9H13zM17,8H20V9H17zM21,8H24V9H21z M14,9H16V10H14zM17,9H19V10H17zM20,9H21V10H20zM22,9H23V10H22z M12,10H13V11H12zM14,10H15V11H14zM16,10H17V11H16zM18,10H19V11H18zM20,10H21V11H20zM22,10H25V11H22z M12,11H15V12H12zM16,11H18V12H16zM23,11H25V12H23z M4,12H5V13H4zM10,12H11V13H10zM12,12H13V13H12zM14,12H17V13H14zM18,12H20V13H18zM21,12H22V13H21zM24,12H27V13H24zM29,12H32V13H29z M4,13H5V14H4zM7,13H9V14H7zM13,13H16V14H13zM18,13H19V14H18zM22,13H24V14H22zM27,13H29V14H27zM30,13H32V14H30z M5,14H6V15H5zM10,14H11V15H10zM12,14H15V15H12zM24,14H25V15H24zM27,14H28V15H27z M7,15H8V16H7zM14,15H17V16H14zM18,15H21V16H18zM22,15H23V16H22zM24,15H26V16H24zM28,15H30V16H28z M5,16H6V17H5zM9,16H11V17H9zM12,16H15V17H12zM17,16H19V17H17zM20,16H21V17H20zM23,16H25V17H23zM26,16H27V17H26zM32,16H33V17H32z M5,17H6V18H5zM7,17H8V18H7zM9,17H10V18H9zM12,17H13V18H12zM14,17H16V18H14zM17,17H19V18H17zM22,17H25V18H22zM26,17H29V18H26zM31,17H33V18H31z M5,18H7V19H5zM9,18H12V19H9zM16,18H21V19H16zM26,18H27V19H26zM29,18H31V19H29z M4,19H9V20H4zM14,19H15V20H14zM16,19H20V20H16zM22,19H23V20H22zM27,19H28V20H27zM30,19H31V20H30zM32,19H33V20H32z M6,20H8V21H6zM9,20H12V21H9zM13,20H14V21H13zM16,20H17V21H16zM18,20H19V21H18zM21,20H22V21H21zM29,20H31V21H29z M4,21H7V22H4zM8,21H9V22H8zM11,21H12V22H11zM19,21H20V22H19zM22,21H29V22H22zM30,21H33V22H30z M4,22H8V23H4zM10,22H11V23H10zM12,22H16V23H12zM17,22H20V23H17zM21,22H27V23H21zM28,22H30V23H28zM32,22H33V23H32z M4,23H5V24H4zM8,23H9V24H8zM11,23H13V24H11zM18,23H19V24H18zM20,23H21V24H20zM23,23H27V24H23zM28,23H29V24H28z M4,24H5V25H4zM7,24H8V25H7zM9,24H12V25H9zM13,24H14V25H13zM16,24H17V25H16zM19,24H20V25H19zM21,24H22V25H21zM23,24H29V25H23zM30,24H33V25H30z M12,25H15V26H12zM17,25H18V26H17zM19,25H20V26H19zM21,25H23V26H21zM24,25H25V26H24zM28,25H30V26H28z M16,26H20V27H16zM21,26H22V27H21zM23,26H25V27H23zM26,26H27V27H26zM28,26H31V27H28z M14,27H15V28H14zM17,27H18V28H17zM19,27H20V28H19zM22,27H23V28H22zM24,27H25V28H24zM28,27H29V28H28zM31,27H32V28H31z M14,28H17V29H14zM17,28H18V29H17zM19,28H20V29H19zM23,28H27V29H23zM27,28H30V29H27zM31,28H33V29H31z M19,29H21V30H19zM22,29H24V30H22zM25,29H26V30H25zM29,29H31V30H29zM32,29H33V30H32z M14,30H15V31H14zM18,30H23V31H18zM24,30H28V31H24zM28,30H32V31H28z M14,31H17V32H14zM20,31H21V32H20zM25,31H27V32H25zM27,31H31V32H27zM32,31H33V32H32z M12,32H14V33H12zM16,32H20V33H16zM21,32H22V33H21zM23,32H24V33H23zM28,32H29V33H28zM30,32H31V33H30z" />
           </svg>
-          <span style="font-weight: 600; font-size: 10px; color: var(--navy-900);">aansensei.dev/hiddencare</span>
+          <span style="font-weight: 600; font-size: 17pt; color: var(--navy-950);">aansensei.dev/hiddencare</span>
         </div>
-        <span style="font-size: 10px; color: var(--slate-500);">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span>
+        <span style="font-size: 17pt; color: var(--slate-600);">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span>
       </div>
     </footer>
 

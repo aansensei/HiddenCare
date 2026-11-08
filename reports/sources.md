@@ -1,81 +1,68 @@
-# Data Sources and Citations
+# Data Sources and APA 7th Edition Citations
 
-## CDC NHANES Source Files
+## Suggested Citation for This Research (APA 7th Edition)
 
-All data files were downloaded directly from the CDC National Center for Health Statistics (NCHS) public NHANES servers.
+```text
+Nguyen, C. T. A. (2026, November). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels for diabetes screening in NHANES [Poster presentation]. Department of Economics & Data Science, University of Wisconsin–Madison, Madison, WI, United States. https://aansensei.dev/hiddencare
+```
 
-### Development Release: NHANES 2017 to March 2020 Pre-pandemic
+### Software & Repository Citation (APA 7th Edition)
 
-1. Demographics (`P_DEMO.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/P_DEMO.xpt
-   - Description: Age, gender, pregnancy status, poverty income ratio, sampling design (PSU, strata), and pre-pandemic MEC examination sample weight (`WTMECPRP`).
-   - Size: 3,614,720 bytes
-   - SHA-256: 0ff1628d258cb88fc31d9ea4c40b54020c99a38eb7fa19c6e3b5e406aa843609
+```text
+Nguyen, C. T. A. (2026). HiddenCare: Algorithmic triage and health equity lab (Version 2.0) [Computer software]. GitHub. https://github.com/aansensei/HiddenCare
+```
 
-2. Diabetes Questionnaire (`P_DIQ.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/P_DIQ.xpt
-   - Description: Prior clinical diagnosis of diabetes (`DIQ010`).
-   - Size: 3,361,520 bytes
+---
 
-3. Glycohemoglobin (`P_GHB.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/P_GHB.xpt
-   - Description: Laboratory measurement of glycohemoglobin percentage (`LBXGH`).
-   - Size: 167,600 bytes
+## Primary Academic References (APA 7th Edition)
 
-4. Body Measures (`P_BMX.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/P_BMX.xpt
-   - Description: Examination measurements of body mass index (`BMXBMI`) and waist circumference (`BMXWAIST`).
-   - Size: 2,520,640 bytes
+1. **Foundational Algorithmic Proxy Bias:**
+   Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. *Science*, 366(6464), 447–453. https://doi.org/10.1126/science.aax2342
 
-5. Health Insurance (`P_HIQ.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/P_HIQ.xpt
-   - Description: Self-reported health insurance coverage (`HIQ011`).
-   - Size: 1,745,440 bytes
+2. **Clinical Diagnostic Criteria & Guidelines:**
+   American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes—2024. *Diabetes Care*, 47(Suppl. 1), S20–S42. https://doi.org/10.2337/dc24-S002
 
-### Evaluation Release: NHANES 2021 to 2023 Post-pandemic
+3. **Biomarker Surveillance & Diagnostic Thresholds:**
+   National Institute of Diabetes and Digestive and Kidney Diseases. (2022, December). *The A1C test & diabetes*. National Institutes of Health, U.S. Department of Health and Human Services. https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test
 
-1. Demographics (`DEMO_L.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/DEMO_L.xpt
-   - Description: Age, gender, pregnancy status, poverty income ratio, sampling design (PSU, strata), and 2-year examination weights.
-   - Size: 2,582,160 bytes
+4. **Health Economics & Decision Curve Analysis:**
+   Vickers, A. J., van Calster, B., & Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. *The BMJ*, 352, i6. https://doi.org/10.1136/bmj.i6
 
-2. Diabetes Questionnaire (`DIQ_L.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/DIQ_L.xpt
-   - Description: Prior clinical diagnosis of diabetes (`DIQ010`).
-   - Size: 847,600 bytes
+5. **Proxy Outcomes & Hierarchical Disparities:**
+   Ghassemi, M., Oakden-Rayner, L., & Beam, A. L. (2021). The false hope of current approaches to explainable artificial intelligence in health care. *The Lancet Digital Health*, 3(11), e745–e750. https://doi.org/10.1016/S2589-7500(21)00208-9
 
-3. Glycohemoglobin (`GHB_L.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/GHB_L.xpt
-   - Description: Laboratory measurement of glycohemoglobin percentage (`LBXGH`) and phlebotomy 2-year sample weight (`WTPH2YR`).
-   - Size: 174,000 bytes
+6. **Statistical Mitigation of Proxy Disparities:**
+   Foulds, J. R., Islam, R., Keya, K. N., & Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. *Journal of the Royal Statistical Society: Series A (Statistics in Society)*, 189(1), 242–265. https://doi.org/10.1093/jrsssa/qnae095
 
-4. Body Measures (`BMX_L.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BMX_L.xpt
-   - Description: Examination measurements of body mass index (`BMXBMI`) and waist circumference (`BMXWAIST`).
-   - Size: 1,563,200 bytes
+7. **EHR Data Reliability & Machine Learning:**
+   Nature Health. (2026). Access to care affects electronic health record reliability and AI-driven disease prediction. *Nature Health*, PMC13262972. https://pmc.ncbi.nlm.nih.gov/articles/PMC13262972/
 
-5. Health Insurance (`HIQ_L.xpt`)
-   - URL: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/HIQ_L.xpt
-   - Description: Self-reported health insurance coverage (`HIQ011`).
-   - Size: 455,840 bytes
+8. **Leakage-Controlled Epidemiological Machine Learning:**
+   MDPI Healthcare. (2024). Explainable machine learning for diabetes screening using NHANES 2021 to 2023 data: A leakage-controlled classification study. *Healthcare*, 12(5), 521. https://doi.org/10.3390/healthcare12050521
 
-## Clinical Guidance and Diagnostic Cutoffs
+---
 
-1. National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)
-   - The A1C Test and Diabetes
-   - URL: https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test/
-   - Guidance: An HbA1c level of 6.5 percent or higher on two separate tests indicates diabetes. In cross-sectional survey data like NHANES, a single measurement above 6.5 percent represents an elevated screening criterion rather than a confirmed clinical diagnosis.
+## Government Data Microdata Sources (APA 7th Edition)
 
-## Academic References
+1. **Development Cohort (2017 to March 2020 Pre-pandemic):**
+   Centers for Disease Control and Prevention, National Center for Health Statistics. (2021). *National Health and Nutrition Examination Survey: 2017–March 2020 pre-pandemic examination data files and documentation*. U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?Cycle=2017-2020
+   * Demographics (`P_DEMO.xpt`): Age, sex, pregnancy status, PIR, sampling strata, PSU, examination weight (`WTMECPRP`). SHA-256: `0ff1628d258cb88fc31d9ea4c40b54020c99a38eb7fa19c6e3b5e406aa843609`
+   * Diabetes Questionnaire (`P_DIQ.xpt`): Self-reported prior clinical diabetes diagnosis (`DIQ010`).
+   * Glycohemoglobin (`P_GHB.xpt`): Laboratory venous blood glycohemoglobin (`LBXGH`).
+   * Body Measures (`P_BMX.xpt`): Body mass index (`BMXBMI`), waist circumference (`BMXWAIST`).
+   * Health Insurance (`P_HIQ.xpt`): Insurance coverage status (`HIQ011`).
 
-1. Access to care affects electronic health record reliability and AI-driven disease prediction.
-   - Journal: Nature Health, 2026.
-   - Reference URL: https://pmc.ncbi.nlm.nih.gov/articles/PMC13262972/
+2. **Evaluation Cohort (2021 to 2023 Post-pandemic):**
+   Centers for Disease Control and Prevention, National Center for Health Statistics. (2024). *National Health and Nutrition Examination Survey: 2021–2023 examination data files and documentation*. U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?Cycle=2021-2023
+   * Demographics (`DEMO_L.xpt`): Age, sex, pregnancy status, PIR, sampling strata, PSU, examination weights.
+   * Diabetes Questionnaire (`DIQ_L.xpt`): Prior clinical diabetes diagnosis (`DIQ010`).
+   * Glycohemoglobin (`GHB_L.xpt`): Laboratory venous blood glycohemoglobin (`LBXGH`), phlebotomy weights (`WTPH2YR`).
+   * Body Measures (`BMX_L.xpt`): Body mass index (`BMXBMI`), waist circumference (`BMXWAIST`).
+   * Health Insurance (`HIQ_L.xpt`): Insurance coverage status (`HIQ011`).
 
-2. Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes.
-   - Journal: Journal of the Royal Statistical Society Series A.
-   - Reference URL: https://academic.oup.com/jrsssa/article/189/1/242/7932063
+---
 
-3. Explainable Machine Learning for Diabetes Screening Using NHANES 2021 to 2023 Data: A Leakage-Controlled Classification Study.
-   - Journal: MDPI Healthcare, 2024.
-   - Reference URL: https://www.mdpi.com/2297-8747/31/5/221
+## Complex Survey Variance Methodology Citation (APA 7th Edition)
+
+* Heeringa, S. G., West, B. T., & Berglund, P. A. (2017). *Applied survey data analysis* (2nd ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781315153278
+* Wolter, K. M. (2007). *Introduction to variance estimation* (2nd ed.). Springer. https://doi.org/10.1007/978-0-387-35099-8
