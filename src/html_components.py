@@ -522,12 +522,16 @@ def render_about_page_html() -> str:
         <img src="{POSTER_URI}" alt="HiddenCare Academic Research Poster" style="width: 100%; height: auto; display: block;" />
       </div>
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a href="{POSTER_PDF_URI}" download="HiddenCare_Research_Poster_AanSensei.pdf" class="hc-cta-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: var(--accent); color: #ffffff; border-radius: var(--radius-sm); min-height: 44px;">
-          Download Poster (PDF)
+        <a href="{POSTER_PDF_URI}" download="HiddenCare_Research_Poster_CaoThienAnNguyen.pdf" class="hc-cta-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: var(--accent); color: #ffffff; border-radius: var(--radius-sm); min-height: 44px;">
+          Download Vector PDF (36x24 in)
         </a>
-        <a href="{POSTER_URI}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: #ffffff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); min-height: 44px;">
-          View High-Res Image (PNG)
+        <a href="{POSTER_URI}" download="HiddenCare_Research_Poster_CaoThienAnNguyen.png" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: #ffffff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); min-height: 44px;">
+          Download High-Res Image (PNG)
         </a>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.82rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;">
+        <span><strong>Author &amp; Attribution:</strong> Cao Thien An Nguyen (GitHub: <a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-weight: 600;">aansensei</a>)</span>
+        <span><strong>Copyright:</strong> &copy; 2026 Cao Thien An Nguyen &bull; All rights reserved</span>
       </div>
     </div>
   </section>
@@ -844,7 +848,7 @@ def render_footer_html() -> str:
   </div>
 
   <div class="footer-bottom">
-    <div>&copy; 2026 Cao Thien An Nguyen. Academic and policy research.</div>
+    <div style="font-weight: 500;">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: <a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">aansensei</a> &bull; Academic and policy research.</div>
     <div class="footer-legal">
       <p class="footer-disclaimer">
         Educational and epidemiological research only. An elevated HbA1c measurement in cross-sectional surveillance is a clinical screening surrogate, not an autonomous medical diagnosis. Models and simulation outputs are designed to examine algorithmic fairness under resource limits and must not guide clinical decision-making without qualified medical review.

@@ -18,7 +18,7 @@ This directory contains the formal epidemiological research protocol, executive 
 | `data_dictionary.csv` | Semantic Data Dictionary | Machine-readable crosswalk from CDC raw codes to clean analytical variables |
 | `schema_drift_audit.json` / `.md` | Data Quality Audit Logs | Pandera drift metrics, KS test p-values, and PSI statistics across cycles |
 | `poster.html` / `.pdf` / `.png` | Academic Research Poster | 36x24 inch conference research poster in web, vector PDF, and high-res image |
-| `cornell_statement_draft.md` | Fellowship Statement | Technical research defense and application statement for Weill Cornell Medicine |
+| `fellowship_statement_draft.md` | Fellowship Statement | Technical research defense and application statement for graduate fellowships and research appointments |
 
 ## Detailed File Guide
 
@@ -49,5 +49,5 @@ This directory contains the formal epidemiological research protocol, executive 
 * **What it covers:** 36x24 inch academic poster formatted on a 4-column balanced grid with Newsreader serif headings and clinical sapphire figures.
 * **Role:** Ready for presentation at medical informatics conferences and printable in vector PDF format.
 
-### `cornell_statement_draft.md` (Weill Cornell Fellowship Statement)
-* **What it covers:** Research statement draft for the Weill Cornell Medicine Biostatistics Fellowship (February 2027 application window), synthesizing econometric access theory with empirical biostatistics.
+### `fellowship_statement_draft.md` (Graduate Fellowship & Research Statement)
+* **What it covers:** Technical research statement draft for graduate fellowships, academic research labs, and biostatistics appointments, synthesizing econometric access theory with empirical biostatistics.

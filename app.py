@@ -72,6 +72,9 @@ HEAD_HTML = f"""
 <meta name="twitter:description" content="Evaluating proxy outcome bias in algorithmic triage across N = 12,459 CDC NHANES participants.">
 <meta name="twitter:image" content="https://aansensei.dev/assets/images/preview.png">
 <meta name="twitter:creator" content="@aansensei">
+<meta name="author" content="Cao Thien An Nguyen">
+<meta name="copyright" content="Copyright 2026 Cao Thien An Nguyen">
+<meta name="github" content="https://github.com/aansensei">
 <style>
   @media (min-width: 1025px) {{
     #hc-toc-rail {{
@@ -474,10 +477,10 @@ with gr.Blocks(**blocks_kwargs) as demo:
             with gr.Row():
                 with gr.Column(scale=6):
                     plot_gain = gr.Plot(value=build_capacity_gain_chart(20))
-                    gr.HTML('<p class="hc-chart-caption"><strong>Cumulative yield:</strong> How many latent diabetes cases (HbA1c &ge; 6.5%) are identified as community screening capacity expands from 5% to 50%.</p>')
+                    gr.HTML('<p class="hc-chart-caption"><strong>Cumulative yield:</strong> How many latent diabetes cases (HbA1c &ge; 6.5%) are identified as community screening capacity expands from 5% to 50%.<span style="display: block; font-size: 0.76rem; color: #64748b; margin-top: 4px;">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span></p>')
                 with gr.Column(scale=6):
                     plot_nns = gr.Plot(value=build_nns_chart(20))
-                    gr.HTML('<p class="hc-chart-caption"><strong>Screening efficiency:</strong> Number of diagnostic blood tests needed to find one latent case. Lower values indicate higher testing efficiency.</p>')
+                    gr.HTML('<p class="hc-chart-caption"><strong>Screening efficiency:</strong> Number of diagnostic blood tests needed to find one latent case. Lower values indicate higher testing efficiency.<span style="display: block; font-size: 0.76rem; color: #64748b; margin-top: 4px;">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span></p>')
 
             # Section 02: The 61-Person Margin Inspector
             gr.HTML("""
@@ -494,10 +497,10 @@ with gr.Blocks(**blocks_kwargs) as demo:
             with gr.Row():
                 with gr.Column(scale=6):
                     plot_swap_bar = gr.Plot(value=build_margin_swap_comparison_chart())
-                    gr.HTML('<p class="hc-chart-caption"><strong>Boundary swap precision:</strong> In the 61-person boundary swap at 20% budget, Model B achieves a 4.92% hit rate (3 / 61 cases) compared to Model A\'s 1.64% (1 / 61 cases).</p>')
+                    gr.HTML('<p class="hc-chart-caption"><strong>Boundary swap precision:</strong> In the 61-person boundary swap at 20% budget, Model B achieves a 4.92% hit rate (3 / 61 cases) compared to Model A\'s 1.64% (1 / 61 cases).<span style="display: block; font-size: 0.76rem; color: #64748b; margin-top: 4px;">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span></p>')
                 with gr.Column(scale=6):
                     plot_scatter = gr.Plot(value=build_joint_ranking_scatter())
-                    gr.HTML('<p class="hc-chart-caption"><strong>Joint priority ranking:</strong> Each dot represents a patient. Points above the diagonal line are prioritized higher by Model B than Model A.</p>')
+                    gr.HTML('<p class="hc-chart-caption"><strong>Joint priority ranking:</strong> Each dot represents a patient. Points above the diagonal line are prioritized higher by Model B than Model A.<span style="display: block; font-size: 0.76rem; color: #64748b; margin-top: 4px;">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span></p>')
 
             with gr.Row():
                 margin_filter = gr.Radio(
@@ -529,7 +532,7 @@ with gr.Blocks(**blocks_kwargs) as demo:
             with gr.Row():
                 with gr.Column():
                     plot_equity = gr.Plot(value=build_equity_bar_chart())
-                    gr.HTML('<p class="hc-chart-caption"><strong>Health equity audit:</strong> Compares screening sensitivity between insured and uninsured populations, highlighting where biomarker training closes access-driven gaps.</p>')
+                    gr.HTML('<p class="hc-chart-caption"><strong>Health equity audit:</strong> Compares screening sensitivity between insured and uninsured populations, highlighting where biomarker training closes access-driven gaps.<span style="display: block; font-size: 0.76rem; color: #64748b; margin-top: 4px;">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span></p>')
 
             # Section 04: Health Economics & Decision Curves
             gr.HTML("""
@@ -556,7 +559,7 @@ with gr.Blocks(**blocks_kwargs) as demo:
             with gr.Row():
                 with gr.Column(scale=6):
                     plot_dca = gr.Plot(value=build_decision_curve_plot())
-                    gr.HTML('<p class="hc-chart-caption"><strong>Decision curve analysis:</strong> Evaluates net clinical and economic benefit across decision threshold probabilities compared to universal or zero screening.</p>')
+                    gr.HTML('<p class="hc-chart-caption"><strong>Decision curve analysis:</strong> Evaluates net clinical and economic benefit across decision threshold probabilities compared to universal or zero screening.<span style="display: block; font-size: 0.76rem; color: #64748b; margin-top: 4px;">&copy; 2026 Cao Thien An Nguyen &bull; GitHub: aansensei</span></p>')
                 with gr.Column(scale=6):
                     econ_summary_display = gr.HTML(
                         value=render_economic_ledger_html(20, 25.0, 8500.0)
