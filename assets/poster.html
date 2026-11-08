@@ -174,7 +174,7 @@
     .card {
       background: #ffffff;
       border: 2px solid var(--slate-200);
-      border-radius: 12px;
+      border-radius: 2px;
       padding: 24px 28px;
       display: flex;
       flex-direction: column;
@@ -214,7 +214,7 @@
     .takeaway-banner {
       background: var(--accent-light);
       border: 3.5px solid var(--accent-blue);
-      border-radius: 12px;
+      border-radius: 2px;
       padding: 18px 26px;
       display: flex;
       align-items: center;
@@ -229,7 +229,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       padding: 8px 18px;
-      border-radius: 8px;
+      border-radius: 2px;
       white-space: nowrap;
     }
 
@@ -245,7 +245,7 @@
     .vector-diagram {
       background: var(--slate-100);
       border: 2px solid var(--slate-200);
-      border-radius: 10px;
+      border-radius: 2px;
       padding: 14px;
       margin-top: 14px;
     }
@@ -318,7 +318,7 @@
       background: var(--slate-100);
       border: 1.5px solid var(--slate-300);
       padding: 6px 14px;
-      border-radius: 8px;
+      border-radius: 2px;
     }
 
     .qr-container svg {
@@ -356,7 +356,7 @@
 
         <!-- 01 The Clinical Problem -->
         <article class="card">
-          <h2 class="card-title"><span class="card-num">01</span> The Clinical Problem</h2>
+          <h2 class="card-title">The Clinical Problem</h2>
           <p class="prose">
             Population screening triage algorithms frequently train on self-reported prior diagnoses or electronic records. However, diagnosis-based labels can mark unrecorded disease negative when individuals face healthcare access barriers or lack recent clinical encounters.
           </p>
@@ -364,7 +364,7 @@
 
         <!-- 02 Study Design & Temporal Protocol (Enlarged Vector Diagram) -->
         <article class="card">
-          <h2 class="card-title"><span class="card-num">02</span> Study Design &amp; Temporal Protocol</h2>
+          <h2 class="card-title">Study Design &amp; Temporal Protocol</h2>
           <p class="prose">
             Evaluating whether augmenting diagnosis labels with venous HbA1c (&ge; 6.5%) alters triage priorities in CDC NHANES, holding predictors and testing capacity constant:
           </p>
@@ -373,7 +373,7 @@
           <div class="vector-diagram" style="padding: 18px;">
             <svg viewBox="0 0 810 430" width="100%" height="425" xmlns="http://www.w3.org/2000/svg" style="display: block;">
               <!-- 1. Shared Development Cohort -->
-              <rect x="15" y="10" width="780" height="92" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
+              <rect x="15" y="10" width="780" height="92" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
               <text x="35" y="46" font-family="Inter, sans-serif" font-size="26" font-weight="700" fill="#071326">1. Shared Development Cohort (2017&ndash;March 2020)</text>
               <text x="35" y="80" font-family="Inter, sans-serif" font-size="22" font-weight="500" fill="#334155">7,761 adults &bull; Non-invasive predictors: Age, Sex, BMI, Waist</text>
 
@@ -385,13 +385,13 @@
 
               <!-- 2. Hai chien luoc nhan huan luyen -->
               <!-- Nhanh Model A -->
-              <rect x="15" y="152" width="375" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2.5" />
+              <rect x="15" y="152" width="375" height="120" rx="2" fill="#ffffff" stroke="#cbd5e1" stroke-width="2.5" />
               <text x="30" y="188" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#334155">Model A (Diagnosis-Based)</text>
               <text x="30" y="222" font-family="Inter, sans-serif" font-size="20" fill="#475569">Prior self-reported diagnosis</text>
               <text x="30" y="252" font-family="Inter, sans-serif" font-size="19" font-weight="600" fill="#0284c7">Same predictors &amp; CV tuning</text>
 
               <!-- Nhanh Model B -->
-              <rect x="420" y="152" width="375" height="120" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.8" />
+              <rect x="420" y="152" width="375" height="120" rx="2" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.8" />
               <text x="435" y="188" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0369a1">Model B (Biomarker-Augmented)</text>
               <text x="435" y="222" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#0284c7">Prior diagnosis OR HbA1c &ge; 6.5%</text>
               <text x="435" y="252" font-family="Inter, sans-serif" font-size="19" font-weight="600" fill="#0369a1">Same predictors &amp; CV tuning</text>
@@ -403,7 +403,7 @@
               <polygon points="588,308 595,318 602,308" fill="#0284c7" />
 
               <!-- 3. Shared Holdout Evaluation Cohort -->
-              <rect x="15" y="320" width="780" height="98" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
+              <rect x="15" y="320" width="780" height="98" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
               <text x="35" y="352" font-family="Inter, sans-serif" font-size="25" font-weight="700" fill="#071326">3. Shared Holdout Evaluation Cohort (2021&ndash;2023)</text>
               <text x="35" y="380" font-family="Inter, sans-serif" font-size="21" font-weight="500" fill="#334155">4,698 previously undiagnosed adults</text>
               <text x="35" y="406" font-family="Inter, sans-serif" font-size="21" font-weight="700" fill="#0284c7">116 meeting HbA1c &ge; 6.5% screening criterion</text>
@@ -413,9 +413,9 @@
 
         <!-- 03 Methods & Implementation Note -->
         <article class="card">
-          <h2 class="card-title"><span class="card-num">03</span> Methods &amp; Implementation Note</h2>
+          <h2 class="card-title">Methods &amp; Implementation Note</h2>
           <p class="prose">
-            Primary models are <strong>L2-regularized logistic regressions</strong> tuned via 5-fold cross-validation on median-imputed, standard-scaled numeric features (age, BMI, waist circumference) and binary one-hot encoded sex. Poverty Income Ratio (PIR) and insurance were strictly excluded from model inputs and reserved solely for equity audits. Data pipeline ingested 10 XPT files across two survey periods using an embedded DuckDB lakehouse; Pandera contracts validated biological ranges (HbA1c: 2.0%&ndash;25.0%) and confirmed 0 pregnant participants.
+            Primary models are <strong>L2-regularized logistic regressions</strong> tuned via 5-fold cross-validation on median-imputed, standard-scaled numeric features (age, BMI, waist circumference) and binary one-hot encoded sex. Poverty Income Ratio (PIR) and insurance were strictly excluded from model inputs and reserved solely for equity audits. Data pipeline ingested 10 XPT files across two survey periods using a reproducible DuckDB and Pandera pipeline that verified biological ranges (HbA1c: 2.0%&ndash;25.0%) and confirmed 0 pregnant participants.
           </p>
         </article>
 
@@ -425,17 +425,16 @@
       <div class="col-panel" style="gap: 18px;">
 
         <!-- 5-Second Key Takeaway Banner -->
-        <div class="takeaway-banner">
-          <div class="takeaway-badge">Key Finding</div>
-          <div class="takeaway-text">
-            Changing training labels altered screening priorities and identified two additional potential cases at the same screening capacity.
+        <div class="takeaway-banner" style="border: 2px solid #0369a1; border-left: 8px solid #0369a1; border-radius: 2px; background: #f8fafc; padding: 18px 24px;">
+          <div class="takeaway-text" style="font-size: 26pt; font-family: var(--font-serif); color: var(--navy-950); line-height: 1.3;">
+            <strong style="color: #0369a1; font-family: var(--font-sans); text-transform: uppercase; font-size: 19pt; letter-spacing: 0.08em; display: inline-block; margin-right: 12px;">Key Finding:</strong>Retraining on observed venous biomonitoring alters screening prioritization and identifies two additional latent diabetes cases at identical 20% screening capacity.
           </div>
         </div>
 
         <!-- 04 Paired-Selection Queue Analysis at 20% Screening Capacity (Visual Center) -->
         <article class="card" style="padding: 26px 30px;">
           <h2 class="card-title" style="justify-content: space-between;">
-            <span><span class="card-num">04</span> Paired-Selection Queue Analysis (20% Screening Capacity)</span>
+            <span>Paired-Selection Queue Analysis (20% Screening Capacity)</span>
             <span style="font-size: 17pt; font-weight: 600; color: var(--slate-500); text-transform: none;">Fixed Capacity K = 939 slots / 4,698 adults</span>
           </h2>
 
@@ -444,48 +443,138 @@
           </p>
 
           <!-- So do vector paired-selection phong lon toan dien -->
-          <div style="background: var(--slate-100); border: 2.5px solid var(--slate-200); border-radius: 12px; padding: 20px 22px;">
-            <svg viewBox="0 0 1380 570" width="100%" height="540" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+          <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 2px; padding: 14px 16px;">
+            <svg viewBox="0 0 1380 580" width="100%" height="560" xmlns="http://www.w3.org/2000/svg" style="display: block; font-family: 'Inter', -apple-system, sans-serif;">
+  <!-- PANEL A: QUEUE ALLOCATION & 61-PERSON BOUNDARY SWAP -->
+  <g id="panel-a">
+    <rect x="15" y="12" width="670" height="555" rx="2" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <rect x="15" y="12" width="670" height="42" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="32" y="39" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#0f2347">PANEL A &bull; QUEUE TRIAGE &amp; 61-PERSON SWAP</text>
+    <text x="668" y="39" text-anchor="end" font-size="13.5" font-weight="600" fill="#64748b">Capacity K = 939 slots (20%)</text>
 
-              <!-- HERO RESULT BANNER (Ket qua trong tam: 53 -> 55 ca & 939 luot test) -->
-              <rect x="15" y="14" width="1350" height="108" rx="10" fill="#ffffff" stroke="#0284c7" stroke-width="3" />
-              <rect x="15" y="14" width="1350" height="8" rx="4" fill="#0284c7" />
+    <!-- Shared Concordant Group -->
+    <rect x="32" y="70" width="636" height="120" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="50" y="98" font-size="16.5" font-weight="700" fill="#334155">Shared Selection (Concordant Across Both Models)</text>
+    <text x="50" y="142" font-family="'Newsreader', Georgia, serif" font-size="34" font-weight="700" fill="#0f2347">878 Individuals <tspan font-size="24" font-family="'Inter', sans-serif" font-weight="700" fill="#0369a1">&bull; 52 Cases Identified</tspan></text>
+    <text x="50" y="172" font-size="14.5" font-weight="500" fill="#64748b">Yield: 5.92% (52 / 878) &bull; 93.5% triage concordance &bull; Identical high-risk ranking</text>
 
-              <text x="40" y="54" font-family="Inter, sans-serif" font-size="19" font-weight="800" text-transform="uppercase" letter-spacing="0.08em" fill="#0284c7">PRIMARY SCREENING OUTCOME</text>
-              <text x="40" y="96" font-family="Newsreader, serif" font-size="40" font-weight="700" fill="#071326">53 &rarr; 55 Potential Cases Identified</text>
+    <!-- Section Kicker for Boundary Swaps -->
+    <text x="32" y="214" font-size="14.5" font-weight="700" text-transform="uppercase" letter-spacing="0.06em" fill="#475569">Decision Boundary Swaps (122 Marginal Individuals):</text>
 
-              <text x="700" y="54" font-family="Inter, sans-serif" font-size="21" font-weight="700" fill="#334155">Screening Capacity: <tspan font-weight="800" fill="#071326">939 Tests in Both Models</tspan></text>
-              <text x="700" y="92" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#0369a1">+2 Potential Cases Detected <tspan font-size="18.5" font-weight="600" fill="#475569">(+1.72 pp sensitivity gain)</tspan></text>
+    <!-- Model A Exclusive -->
+    <rect x="32" y="228" width="636" height="110" rx="2" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="32" y="228" width="6" height="110" fill="#94a3b8" />
+    <text x="50" y="254" font-size="16" font-weight="700" fill="#475569">Model A Exclusive (Diagnosis Proxy Labels)</text>
+    <text x="50" y="286" font-size="24" font-weight="800" fill="#334155">61 People <tspan font-size="20" font-weight="700" fill="#0f2347">&bull; 1 Potential Case (1.64% Yield)</tspan></text>
+    <!-- Proportional Yield Bar A -->
+    <rect x="50" y="302" width="400" height="14" rx="2" fill="#f1f5f9" />
+    <rect x="50" y="302" width="131" height="14" rx="2" fill="#94a3b8" />
+    <text x="460" y="314" font-size="13" font-weight="600" fill="#64748b">1.64% Yield (1 / 61)</text>
 
-              <!-- NHOM CHUNG (Shared Concordant Selection) -->
-              <rect x="15" y="138" width="550" height="320" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
-              <text x="38" y="178" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#475569">Shared Selection (Both Models)</text>
-              <text x="38" y="244" font-family="Inter, sans-serif" font-size="50" font-weight="800" fill="#334155">878 People</text>
-              <text x="38" y="306" font-family="Inter, sans-serif" font-size="34" font-weight="800" fill="#071326">52 Potential Cases</text>
-              <text x="38" y="356" font-family="Inter, sans-serif" font-size="23" font-weight="600" fill="#64748b">Yield: 5.92% (52 / 878)</text>
-              <text x="38" y="398" font-family="Inter, sans-serif" font-size="20" fill="#94a3b8">93.5% concordance across triage models</text>
-              <text x="38" y="432" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#0284c7">Concordant high-risk prioritization</text>
+    <!-- Model B Exclusive -->
+    <rect x="32" y="352" width="636" height="115" rx="2" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5" />
+    <rect x="32" y="352" width="6" height="115" fill="#0284c7" />
+    <text x="50" y="378" font-size="16" font-weight="700" fill="#0369a1">Model B Exclusive (Biomarker-Augmented Labels)</text>
+    <text x="50" y="410" font-size="24" font-weight="800" fill="#0369a1">61 People <tspan font-size="20" font-weight="700" fill="#0284c7">&bull; 3 Potential Cases (4.92% Yield)</tspan></text>
+    <!-- Proportional Yield Bar B -->
+    <rect x="50" y="426" width="400" height="14" rx="2" fill="#e0f2fe" />
+    <rect x="50" y="426" width="393" height="14" rx="2" fill="#0284c7" />
+    <text x="460" y="438" font-size="13" font-weight="700" fill="#0369a1">4.92% Yield (3.0&times; Precision)</text>
 
-              <!-- HAI NHANH HOAN DOI RANH GIOI (Boundary Swaps) -->
-              <!-- Model A Exclusive -->
-              <rect x="590" y="138" width="775" height="150" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="2.2" />
-              <rect x="590" y="138" width="8" height="150" rx="4" fill="#94a3b8" />
-              <text x="618" y="176" font-family="Inter, sans-serif" font-size="23" font-weight="700" fill="#475569">Model A Exclusive (Diagnosis-Based Labels)</text>
-              <text x="618" y="226" font-family="Inter, sans-serif" font-size="38" font-weight="800" fill="#334155">61 People <tspan font-size="32" font-weight="800" fill="#071326">&bull; 1 Potential Case</tspan></text>
-              <text x="618" y="264" font-family="Inter, sans-serif" font-size="22" font-weight="600" fill="#64748b">Yield: 1.64% (1 / 61) &bull; Deprioritized under biomarker training</text>
+    <!-- Bottom Reallocation Ledger -->
+    <rect x="32" y="482" width="636" height="70" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="50" y="508" font-size="15.5" font-weight="700" fill="#0f2347">Boundary Precision Dividend:</text>
+    <text x="50" y="534" font-size="14.5" fill="#334155">Swapping 61 marginal individuals yielded <tspan font-weight="700" fill="#0369a1">+2 net cases (1 &rarr; 3)</tspan> at $0 added test cost.</text>
+  </g>
 
-              <!-- Model B Exclusive -->
-              <rect x="590" y="308" width="775" height="150" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.8" />
-              <rect x="590" y="308" width="8" height="150" rx="4" fill="#0284c7" />
-              <text x="618" y="346" font-family="Inter, sans-serif" font-size="23" font-weight="700" fill="#0369a1">Model B Exclusive (Biomarker-Augmented Labels)</text>
-              <text x="618" y="396" font-family="Inter, sans-serif" font-size="38" font-weight="800" fill="#0284c7">61 People <tspan font-size="32" font-weight="800" fill="#0369a1">&bull; 3 Potential Cases</tspan></text>
-              <text x="618" y="434" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0369a1">Yield: 4.92% (3 / 61) &bull; Newly prioritized into screening queue</text>
+  <!-- PANEL B: COMPLEX SURVEY FOREST PLOT (PAIRED DIFFERENCE) -->
+  <g id="panel-b">
+    <rect x="700" y="12" width="665" height="555" rx="2" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <rect x="700" y="12" width="665" height="42" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="718" y="39" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#0f2347">PANEL B &bull; PAIRED COMPLEX SURVEY FOREST PLOT</text>
+    <text x="1348" y="39" text-anchor="end" font-size="13.5" font-weight="600" fill="#64748b">Taylor Series (df = 15)</text>
 
-              <!-- THANH TOM TAT RANH GIOI (Decision Boundary Swap) -->
-              <rect x="15" y="478" width="1350" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
-              <text x="38" y="512" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0a192f">Decision Boundary Swap (122 Marginal Individuals):</text>
-              <text x="38" y="538" font-family="Inter, sans-serif" font-size="20" fill="#475569">Exchanging 61 marginal individuals yielded +2 additional potential cases (1 &rarr; 3 cases) at the identical 939 test capacity.</text>
-            </svg>
+    <!-- Sub-Section 1: Model Sensitivities -->
+    <text x="718" y="76" font-size="14.5" font-weight="700" text-transform="uppercase" letter-spacing="0.05em" fill="#475569">Survey-Weighted Population Sensitivity (%):</text>
+
+    <!-- Gridlines & Axis for Sensitivity (Scale 20% to 60%, width 380px from x=900 to x=1280) -->
+    <line x1="900" y1="92" x2="900" y2="215" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="995" y1="92" x2="995" y2="215" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="1090" y1="92" x2="1090" y2="215" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="1185" y1="92" x2="1185" y2="215" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="1280" y1="92" x2="1280" y2="215" stroke="#f1f5f9" stroke-width="1.5" />
+
+    <!-- Model A Row -->
+    <text x="718" y="124" font-size="15" font-weight="700" fill="#334155">Model A (Diagnosis)</text>
+    <text x="718" y="144" font-size="13.5" fill="#64748b">40.08% [28.9, 51.2]</text>
+    <!-- Error Bar A: 28.9% -> 985, 51.2% -> 1196 -->
+    <line x1="985" y1="130" x2="1196" y2="130" stroke="#64748b" stroke-width="2.5" />
+    <line x1="985" y1="122" x2="985" y2="138" stroke="#64748b" stroke-width="2" />
+    <line x1="1196" y1="122" x2="1196" y2="138" stroke="#64748b" stroke-width="2" />
+    <circle cx="1091" cy="130" r="6" fill="#334155" />
+
+    <!-- Model B Row -->
+    <text x="718" y="180" font-size="15" font-weight="700" fill="#0284c7">Model B (Biomarker)</text>
+    <text x="718" y="200" font-size="13.5" fill="#0369a1">42.47% [28.4, 56.5]</text>
+    <!-- Error Bar B: 28.4% -> 980, 56.5% -> 1247 -->
+    <line x1="980" y1="186" x2="1247" y2="186" stroke="#0284c7" stroke-width="2.5" />
+    <line x1="980" y1="178" x2="980" y2="194" stroke="#0284c7" stroke-width="2" />
+    <line x1="1247" y1="178" x2="1247" y2="194" stroke="#0284c7" stroke-width="2" />
+    <circle cx="1113" cy="186" r="6" fill="#0284c7" />
+
+    <!-- Sensitivity Axis Line & Labels -->
+    <line x1="900" y1="215" x2="1280" y2="215" stroke="#94a3b8" stroke-width="1.5" />
+    <text x="900" y="232" text-anchor="middle" font-size="12" fill="#64748b">20%</text>
+    <text x="995" y="232" text-anchor="middle" font-size="12" fill="#64748b">30%</text>
+    <text x="1090" y="232" text-anchor="middle" font-size="12" fill="#64748b">40%</text>
+    <text x="1185" y="232" text-anchor="middle" font-size="12" fill="#64748b">50%</text>
+    <text x="1280" y="232" text-anchor="middle" font-size="12" fill="#64748b">60%</text>
+
+    <!-- Sub-Section 2: Paired Sensitivity Difference -->
+    <line x1="718" y1="248" x2="1348" y2="248" stroke="#e2e8f0" stroke-width="1" />
+    <text x="718" y="274" font-size="14.5" font-weight="700" text-transform="uppercase" letter-spacing="0.05em" fill="#0f2347">Paired Difference on Identical Cohort (&Delta; Sensitivity, pp):</text>
+
+    <!-- Paired Axis: Scale -3.0 pp to +8.0 pp (width 385px, from x=900 to x=1285) -->
+    <line x1="935" y1="288" x2="935" y2="400" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="1075" y1="288" x2="1075" y2="400" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="1145" y1="288" x2="1145" y2="400" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="1215" y1="288" x2="1215" y2="400" stroke="#f1f5f9" stroke-width="1.5" />
+    <line x1="1285" y1="288" x2="1285" y2="400" stroke="#f1f5f9" stroke-width="1.5" />
+
+    <!-- Red Dashed Zero Reference Line (Null Hypothesis: Delta = 0) -->
+    <line x1="1005" y1="285" x2="1005" y2="400" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" />
+    <text x="1005" y="278" text-anchor="middle" font-size="12" font-weight="700" fill="#ef4444">Null (0 pp)</text>
+
+    <!-- Paired Row -->
+    <text x="718" y="342" font-size="15.5" font-weight="800" fill="#0f766e">Paired Sensitivity Gain</text>
+    <text x="718" y="364" font-size="14.5" font-weight="700" fill="#0f766e">+2.38 pp [-1.77, +6.53]</text>
+    <text x="718" y="386" font-size="13" fill="#64748b">Paired SE = 1.95 pp (df = 15)</text>
+
+    <!-- Paired Error Bar: -1.77 pp -> 943; +6.53 pp -> 1233 -->
+    <line x1="943" y1="350" x2="1233" y2="350" stroke="#0f766e" stroke-width="3" />
+    <line x1="943" y1="340" x2="943" y2="360" stroke="#0f766e" stroke-width="2.5" />
+    <line x1="1233" y1="340" x2="1233" y2="360" stroke="#0f766e" stroke-width="2.5" />
+    <!-- Diamond marker at +2.38 pp: 1088 -->
+    <polygon points="1088,342 1096,350 1088,358 1080,350" fill="#0f766e" />
+
+    <!-- Paired Axis Line & Ticks -->
+    <line x1="900" y1="400" x2="1285" y2="400" stroke="#94a3b8" stroke-width="1.5" />
+    <text x="935" y="416" text-anchor="middle" font-size="12" fill="#64748b">-2 pp</text>
+    <text x="1005" y="416" text-anchor="middle" font-size="12" font-weight="700" fill="#0f2347">0 pp</text>
+    <text x="1075" y="416" text-anchor="middle" font-size="12" fill="#64748b">+2 pp</text>
+    <text x="1145" y="416" text-anchor="middle" font-size="12" fill="#64748b">+4 pp</text>
+    <text x="1215" y="416" text-anchor="middle" font-size="12" fill="#64748b">+6 pp</text>
+    <text x="1285" y="416" text-anchor="middle" font-size="12" fill="#64748b">+8 pp</text>
+
+    <!-- Bottom Statistical Rigor Callout Box -->
+    <rect x="718" y="438" width="630" height="114" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="734" y="462" font-size="14" font-weight="700" fill="#0f2347">Complex Survey Variance &amp; Paired Correlation Note:</text>
+    <text x="734" y="484" font-size="13" fill="#334155">&bull; Both models evaluate identical N = 116 holdout cases (112 concordant, 4 discordant).</text>
+    <text x="734" y="504" font-size="13" fill="#334155">&bull; Positive covariance (Cov > 0) reduces variance of difference by 65% (SE: 5.23 &rarr; 1.95 pp).</text>
+    <text x="734" y="524" font-size="13" fill="#64748b">&bull; Proves that overlapping independent CIs do not imply lack of statistical pairing significance.</text>
+    <text x="734" y="542" font-size="12.5" font-weight="600" fill="#0369a1">&bull; Standard errors estimated via Taylor Series Linearization under phlebotomy weights (WTPH2YR).</text>
+  </g>
+</svg>
           </div>
 
           <p class="table-caption" style="margin-top: 10px;">
@@ -544,7 +633,7 @@
 
         <!-- 05 Health Equity Subgroup Audit -->
         <article class="card">
-          <h2 class="card-title"><span class="card-num">05</span> Health Equity Subgroup Audit</h2>
+          <h2 class="card-title">Health Equity Subgroup Audit</h2>
           <p class="prose">
             Evaluating detection across insurance status at 20% budget:
           </p>
@@ -581,7 +670,7 @@
 
         <!-- 06 Multi-Architecture Robustness -->
         <article class="card">
-          <h2 class="card-title"><span class="card-num">06</span> Multi-Architecture Robustness</h2>
+          <h2 class="card-title">Multi-Architecture Robustness</h2>
           <p class="prose">
             Triage re-evaluated under alternative tree architectures:
           </p>
@@ -596,7 +685,7 @@
 
         <!-- 07 Limitations & Scope -->
         <article class="card">
-          <h2 class="card-title"><span class="card-num">07</span> Limitations &amp; Scope</h2>
+          <h2 class="card-title">Limitations &amp; Scope</h2>
           <ul class="prose" style="padding-left: 20px;">
             <li><strong>Surveillance vs Diagnosis:</strong> Single venous HbA1c &ge; 6.5% represents an elevated screening criterion, not an autonomous clinical diagnosis.</li>
             <li><strong>Inference Bounds:</strong> Paired survey sensitivity difference is +2.38 pp (paired 95% CI: [-1.77 pp, +6.53 pp]); overlapping separate marginal CIs reflect small holdout cluster degrees of freedom.</li>
@@ -606,9 +695,9 @@
 
         <!-- 08 Conclusion & Next Steps -->
         <article class="card">
-          <h2 class="card-title"><span class="card-num">08</span> Conclusion &amp; Next Steps</h2>
+          <h2 class="card-title">Conclusion &amp; Next Steps</h2>
           <p class="prose">
-            Augmenting administrative diagnosis labels with objective biomarker-augmented labels modestly refines borderline triage (+2 cases, 53 &rarr; 55) without expanding predictor requirements. Next steps require evaluating formal paired complex survey variance and conducting prospective validation in diverse clinical care settings.
+            Augmenting administrative diagnosis labels with objective biomarker-augmented labels modestly refines borderline triage (+2 cases, 53 &rarr; 55) without expanding predictor requirements. Next steps require pooling additional survey cycles to reduce cluster-level variance (paired 95% CI: [-1.77, +6.53 pp]) and evaluating multimodal glycemic outcomes (fasting plasma glucose and OGTT) across diverse clinical settings.
           </p>
         </article>
 
