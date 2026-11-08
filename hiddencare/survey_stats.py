@@ -146,3 +146,68 @@ def evaluate_survey_variance_summary(
         })
         
     return pd.DataFrame(records)
+
+
+# tinh toan sai so phuong sai bat cap cho hieu so do nhay giua hai mo hinh
+def compute_paired_survey_difference(
+    df: pd.DataFrame,
+    sel_a_col: str,
+    sel_b_col: str,
+    case_col: str = "potential_case",
+    weight_col: str = "weight",
+    strata_col: str = "strata",
+    psu_col: str = "psu",
+    alpha: float = 0.05,
+) -> dict[str, float]:
+    df_calc = df.copy()
+    df_calc["diff_num"] = (df_calc[sel_b_col].values - df_calc[sel_a_col].values) * df_calc[case_col].values
+    df_calc["sens_denom"] = df_calc[case_col].values
+    
+    w = df_calc[weight_col].values
+    y = df_calc["diff_num"].values.astype(float)
+    x = df_calc["sens_denom"].values.astype(float)
+    
+    sum_w_x = np.sum(w * x)
+    sum_w_y = np.sum(w * y)
+    
+    if sum_w_x == 0:
+        return {
+            "diff_ratio": 0.0,
+            "se": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "df": 0,
+        }
+        
+    diff_hat = sum_w_y / sum_w_x
+    z = (w * (y - diff_hat * x)) / sum_w_x
+    
+    df_var = df_calc[[strata_col, psu_col]].copy()
+    df_var["z"] = z
+    
+    psu_sums = df_var.groupby([strata_col, psu_col])["z"].sum().reset_index()
+    total_var = 0.0
+    total_psus = len(psu_sums)
+    total_strata = psu_sums[strata_col].nunique()
+    df_degrees = max(1, total_psus - total_strata)
+    
+    for _, group in psu_sums.groupby(strata_col):
+        n_h = len(group)
+        if n_h > 1:
+            z_vals = group["z"].values
+            z_bar = np.mean(z_vals)
+            s_h2 = np.sum((z_vals - z_bar) ** 2)
+            total_var += (n_h / (n_h - 1)) * s_h2
+            
+    se = float(np.sqrt(total_var))
+    t_crit = stats.t.ppf(1.0 - alpha / 2.0, df=df_degrees)
+    ci_lower = float(diff_hat - t_crit * se)
+    ci_upper = float(diff_hat + t_crit * se)
+    
+    return {
+        "diff_ratio": float(diff_hat),
+        "se": se,
+        "ci_lower": ci_lower,
+        "ci_upper": ci_upper,
+        "df": df_degrees,
+    }

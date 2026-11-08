@@ -479,7 +479,7 @@
               <rect x="590" y="308" width="8" height="150" rx="4" fill="#0284c7" />
               <text x="618" y="346" font-family="Inter, sans-serif" font-size="23" font-weight="700" fill="#0369a1">Model B Exclusive (Biomarker-Augmented Labels)</text>
               <text x="618" y="396" font-family="Inter, sans-serif" font-size="38" font-weight="800" fill="#0284c7">61 People <tspan font-size="32" font-weight="800" fill="#0369a1">&bull; 3 Potential Cases</tspan></text>
-              <text x="618" y="434" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0369a1">Yield: 4.92% (3 / 61) &bull; Rescued into screening queue</text>
+              <text x="618" y="434" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0369a1">Yield: 4.92% (3 / 61) &bull; Newly prioritized into screening queue</text>
 
               <!-- THANH TOM TAT RANH GIOI (Decision Boundary Swap) -->
               <rect x="15" y="478" width="1350" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
@@ -525,14 +525,14 @@
                 <td><strong>Net Change (&Delta;)</strong></td>
                 <td><strong>+2 Cases</strong></td>
                 <td><strong>+1.72 pp</strong></td>
-                <td><strong>+2.38 pp</strong> (overlapping CIs)</td>
+                <td><strong>+2.38 pp</strong> [paired CI: -1.77, +6.53]</td>
                 <td><strong>+0.22 pp</strong> (overlapping CIs)</td>
               </tr>
             </tbody>
           </table>
 
           <p class="table-caption">
-            <em>Survey inference note:</em> Weighted estimates use Taylor Series Linearization (WTPH2YR weights, df = 15). The observed point-estimate difference is small (+2 cases, +2.38 pp weighted sensitivity), and formal paired confidence intervals accounting for complex survey clustering have not been evaluated.
+            <em>Survey inference note:</em> Weighted estimates use Taylor Series Linearization (WTPH2YR weights, df = 15). Paired survey analysis on identical N = 116 holdout cases reduces standard error to 1.95 pp (+2.38 pp sensitivity difference, paired 95% CI: [-1.77 pp, +6.53 pp]). Overlapping separate marginal CIs reflect small cluster degrees of freedom.
           </p>
 
         </article>
@@ -575,7 +575,7 @@
           </table>
 
           <p class="table-caption">
-            <em>Small denominator note:</em> The uninsured cohort contains only <strong>13 participants meeting the HbA1c screening criterion</strong>; detection changed by +1 case (2/13 to 3/13). While directionally consistent with hypothesis, small cell counts preclude claims of disparity elimination or causal improvement.
+            <em>Small denominator note:</em> The uninsured cohort contains only <strong>13 participants meeting the HbA1c screening criterion</strong>; detection changed by +1 case (2/13 to 3/13). While directionally consistent with hypothesis, small cell counts preclude claims of disparity elimination or causal improvement (1 participant has unrecorded insurance coverage; total holdout cases = 116).
           </p>
         </article>
 
@@ -590,7 +590,7 @@
             <li><strong>HistGradientBoosting:</strong> Model A detects 59 cases; Model B detects 59 cases (0 net gain, 132 swaps).</li>
           </ul>
           <p class="table-caption">
-            Confirms priority shifts occur across architectures, while overall yield gains remain modest (+0 to +2 cases).
+            Confirms priority shifts persist across architectures (+0 to +2 cases, up to 132 queue swaps). Linear logistic regression remains the primary reference model for clinical transparency, monotonicity, and guideline compliance.
           </p>
         </article>
 
@@ -599,7 +599,7 @@
           <h2 class="card-title"><span class="card-num">07</span> Limitations &amp; Scope</h2>
           <ul class="prose" style="padding-left: 20px;">
             <li><strong>Surveillance vs Diagnosis:</strong> Single venous HbA1c &ge; 6.5% represents an elevated screening criterion, not an autonomous clinical diagnosis.</li>
-            <li><strong>Inference Bounds:</strong> Separate survey-weighted confidence intervals overlap; paired variance estimation is required for confirmatory testing.</li>
+            <li><strong>Inference Bounds:</strong> Paired survey sensitivity difference is +2.38 pp (paired 95% CI: [-1.77 pp, +6.53 pp]); overlapping separate marginal CIs reflect small holdout cluster degrees of freedom.</li>
             <li><strong>Operational Scope:</strong> Assumes 100% screening adherence among prioritized adults and uniform laboratory costs.</li>
           </ul>
         </article>
