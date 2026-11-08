@@ -2645,3 +2645,327 @@ table, tr, td, th,
     text-align: center !important;
   }
 }
+
+
+/* ==========================================================================
+   ACADEMIC REFERENCES & GLOBAL MODAL STYLING (APA 7th Edition)
+   ========================================================================== */
+.hc-ref-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  margin-top: 14px !important;
+}
+
+.hc-ref-card {
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 16px 20px !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
+}
+
+.hc-ref-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08) !important;
+  border-color: var(--border-strong) !important;
+}
+
+.hc-ref-badge-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.hc-ref-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px 10px !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  border-radius: 9999px !important;
+  background: rgba(2, 132, 199, 0.08) !important;
+  color: var(--accent) !important;
+}
+
+.hc-ref-journal {
+  font-size: 0.80rem !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+}
+
+.hc-ref-citation {
+  font-size: 0.92rem !important;
+  line-height: 1.55 !important;
+  color: var(--text) !important;
+  margin-bottom: 12px !important;
+}
+
+.hc-ref-citation em {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  color: #0369a1 !important;
+}
+
+.hc-ref-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  padding-top: 10px !important;
+  border-top: 1px dashed var(--border) !important;
+}
+
+.hc-ref-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.82rem !important;
+  color: var(--accent) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: color 0.15s ease !important;
+}
+
+.hc-ref-link:hover {
+  color: var(--accent-hover) !important;
+  text-decoration: underline !important;
+}
+
+.hc-ref-copy-btn,
+.hc-copy-bib-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 5px 12px !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  background: #f8fafc !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  cursor: pointer !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hc-ref-copy-btn:hover,
+.hc-copy-bib-btn:hover {
+  background: #f0f9ff !important;
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  transform: translateY(-1px) !important;
+}
+
+.hc-ref-copy-btn:active,
+.hc-copy-bib-btn:active {
+  transform: scale(0.96) !important;
+}
+
+/* Modal Dialog for References */
+.hc-ref-modal-dialog {
+  position: relative !important;
+  max-width: 880px !important;
+  width: 92vw !important;
+  max-height: 88vh !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border-strong) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 25px 60px -10px rgba(15, 23, 42, 0.45) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  animation: hcModalDialog 0.32s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+.hc-ref-modal-header {
+  padding: 18px 24px !important;
+  border-bottom: 1px solid var(--border) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: #fafafa !important;
+}
+
+.hc-ref-modal-body {
+  padding: 20px 24px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  max-height: calc(88vh - 130px) !important;
+}
+
+.hc-ref-modal-footer {
+  padding: 12px 24px !important;
+  border-top: 1px solid var(--border) !important;
+  background: #f8fafc !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 0.82rem !important;
+  color: var(--text-muted) !important;
+}
+
+/* ==========================================================================
+   HIGH-END EDITORIAL ANIMATION SYSTEM (Silky 60fps Micro-Interactions)
+   ========================================================================== */
+@keyframes hcFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hcFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes hcScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hcModalDialog {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes hcGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(5, 150, 105, 0);
+  }
+}
+
+@keyframes hcShimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Page entrance animations */
+.hc-header-card {
+  animation: hcFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+.hc-plain-summary-card {
+  animation: hcFadeInUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both !important;
+}
+
+.hc-section-card-header {
+  animation: hcFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both !important;
+}
+
+.about-section {
+  animation: hcFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+.tabitem > div {
+  animation: hcFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+/* Status indicator live breathing */
+.footer-status-dot,
+.status-live-dot {
+  animation: hcGlowPulse 2.4s infinite ease-in-out !important;
+}
+
+/* Card elevation & soft micro-interactions */
+.card-base,
+.about-section,
+.disclaimer-callout,
+.about-summary-box {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
+}
+
+.card-base:hover,
+.about-summary-box:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+/* Button click tactile feedback */
+button:active,
+.hc-cta-btn:active,
+.gr-button:active {
+  transform: scale(0.97) !important;
+  transition: transform 0.08s ease !important;
+}
+
+/* Smooth Table Row Transitions */
+table tbody tr {
+  transition: background-color 0.16s ease !important;
+}
+
+table tbody tr:hover {
+  background-color: rgba(2, 132, 199, 0.035) !important;
+}
+
+/* Accessibility: Reduce motion if preferred */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.hc-ref-close-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: var(--radius-sm) !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
+  cursor: pointer !important;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  padding: 0 !important;
+}
+
+.hc-ref-close-btn:hover,
+.hc-ref-close-btn:focus-visible {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+  transform: scale(1.05) !important;
+  outline: none !important;
+}
+
+.hc-ref-close-btn:active {
+  transform: scale(0.95) !important;
+}

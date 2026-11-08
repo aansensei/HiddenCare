@@ -396,6 +396,253 @@ def render_economic_ledger_html(
       <b>Incremental Net Benefit of +${econ['incremental_nmb']:,.0f}</b> on this holdout cohort (or <b>+${econ['nmb_gain_10k']:,.0f} per 10,000 undiagnosed adults</b>) by identifying {econ['incremental_cases']} additional cases at zero additional laboratory expenditure.
     </div>
   </div>
+
+  <!-- Global Academic References Modal -->
+  <div id="hc-references-modal" class="hc-modal-backdrop" role="dialog" aria-modal="true" aria-label="Academic References (APA 7th)" style="display: none;" onclick="window.handleReferencesBackdropClick &amp;&amp; window.handleReferencesBackdropClick(event)">
+    <div class="hc-ref-modal-dialog" onclick="event.stopPropagation()">
+      <div class="hc-ref-modal-header">
+        <div>
+          <span class="hc-ref-badge" style="margin-bottom: 4px;">Primary Literature &amp; Sources</span>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 0; font-family: var(--font-serif);">Academic References (APA 7th Edition)</h3>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button type="button" class="hc-copy-bib-btn" onclick="window.copyFullBibliography &amp;&amp; window.copyFullBibliography(this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>Copy Full Bibliography</span>
+          </button>
+          <button id="hc-references-modal-close" class="hc-ref-close-btn" type="button" aria-label="Close references modal" onclick="window.closeReferencesModal &amp;&amp; window.closeReferencesModal(event)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="hc-ref-modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px;">
+          Peer-reviewed theoretical foundations, clinical diagnostic standards, health economics decision models, and government surveillance data cited in HiddenCare:
+        </p>
+        
+        <!-- 1. Obermeyer -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Foundational Proxy Bias</span>
+            <span class="hc-ref-journal">Science (2019)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Obermeyer, Z., Powers, B., Vogeli, C., &amp; Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. <em>Science</em>, 366(6464), 447, 453.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.1126/science.aax2342" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.1126/science.aax2342</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science, 366(6464), 447-453. https://doi.org/10.1126/science.aax2342')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 2. ADA -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Clinical Standards</span>
+            <span class="hc-ref-journal">Diabetes Care (2024)</span>
+          </div>
+          <div class="hc-ref-citation">
+            American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. <em>Diabetes Care</em>, 47(Suppl. 1), S20, S42.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.2337/dc24-S002" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.2337/dc24-S002</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. Diabetes Care, 47(Suppl. 1), S20-S42. https://doi.org/10.2337/dc24-S002')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 3. Vickers -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Health Economics &amp; DCA</span>
+            <span class="hc-ref-journal">The BMJ (2016)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Vickers, A. J., van Calster, B., &amp; Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. <em>The BMJ</em>, 352, i6.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.1136/bmj.i6" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.1136/bmj.i6</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Vickers, A. J., van Calster, B., & Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. The BMJ, 352, i6. https://doi.org/10.1136/bmj.i6')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 4. Foulds -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Statistical Mitigation</span>
+            <span class="hc-ref-journal">JRSS Series A (2024)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Foulds, J. R., Islam, R., Keya, K. N., &amp; Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em>, 189(1), 242, 265.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.1093/jrsssa/qnae095" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.1093/jrsssa/qnae095</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Foulds, J. R., Islam, R., Keya, K. N., & Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. Journal of the Royal Statistical Society: Series A, 189(1), 242-265. https://doi.org/10.1093/jrsssa/qnae095')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 5. CDC NHANES -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">CDC NHANES Microdata</span>
+            <span class="hc-ref-journal">NCHS (2017 to 2023)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). <em>National Health and Nutrition Examination Survey: Continuous biomonitoring laboratory and examination files</em>. U.S. Department of Health and Human Services.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://wwwn.cdc.gov/nchs/nhanes/" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>wwwn.cdc.gov/nchs/nhanes</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). National Health and Nutrition Examination Survey microdata files. U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 6. Study citation -->
+        <div class="hc-ref-card" style="border-left: 3px solid var(--accent); background: #f8fafc;">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent);">This Study &amp; Software</span>
+            <span class="hc-ref-journal">UW-Madison (2026)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Nguyen, C. T. A. (2026). <em>When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES</em> [Research poster]. Department of Economics &amp; Data Science, University of Wisconsin, Madison.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://aansensei.dev/hiddencare" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>aansensei.dev/hiddencare</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research poster]. University of Wisconsin, Madison. https://aansensei.dev/hiddencare')">Copy APA</button>
+          </div>
+        </div>
+      </div>
+      <div class="hc-ref-modal-footer">
+        <span>HiddenCare Algorithmic Epidemiology Lab &bull; APA 7th Edition</span>
+        <span>Press <strong>Esc</strong> or click outside to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {{
+    window.openReferencesModal = function() {{
+      var modal = document.getElementById('hc-references-modal');
+      if (!modal) return;
+      if (modal.parentElement !== document.body) {{
+        document.body.appendChild(modal);
+      }}
+      modal.style.display = 'flex';
+      modal.offsetHeight;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', window.handleReferencesModalKeydown);
+      var closeBtn = document.getElementById('hc-references-modal-close');
+      if (closeBtn) closeBtn.focus();
+    }};
+
+    window.closeReferencesModal = function(e) {{
+      if (e && e.stopPropagation) e.stopPropagation();
+      var modal = document.getElementById('hc-references-modal');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', window.handleReferencesModalKeydown);
+      setTimeout(function() {{
+        if (!modal.classList.contains('is-open')) {{
+          modal.style.display = 'none';
+        }}
+      }}, 250);
+    }};
+
+    window.handleReferencesBackdropClick = function(e) {{
+      if (e.target.id === 'hc-references-modal' || e.target.classList.contains('hc-modal-backdrop')) {{
+        window.closeReferencesModal(e);
+      }}
+    }};
+
+    window.handleReferencesModalKeydown = function(e) {{
+      if (e.key === 'Escape') {{
+        window.closeReferencesModal(e);
+      }}
+    }};
+
+    window.copySingleCitation = function(btn, text) {{
+      if (navigator.clipboard && navigator.clipboard.writeText) {{
+        navigator.clipboard.writeText(text).then(function() {{
+          var orig = btn.innerText;
+          btn.innerText = 'Copied!';
+          btn.style.color = '#059669';
+          btn.style.borderColor = '#059669';
+          setTimeout(function() {{
+            btn.innerText = orig;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+          }}, 2000);
+        }});
+      }}
+    }};
+
+    window.copyFullBibliography = function(btn) {{
+      var bib = [
+        "1. Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science, 366(6464), 447-453. https://doi.org/10.1126/science.aax2342",
+        "2. American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. Diabetes Care, 47(Suppl. 1), S20-S42. https://doi.org/10.2337/dc24-S002",
+        "3. Vickers, A. J., van Calster, B., & Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. The BMJ, 352, i6. https://doi.org/10.1136/bmj.i6",
+        "4. Foulds, J. R., Islam, R., Keya, K. N., & Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. Journal of the Royal Statistical Society: Series A, 189(1), 242-265. https://doi.org/10.1093/jrsssa/qnae095",
+        "5. National Institute of Diabetes and Digestive and Kidney Diseases. (2022). The A1C test & diabetes. National Institutes of Health. https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test",
+        "6. Ghassemi, M., Oakden-Rayner, L., & Beam, A. L. (2021). The false hope of current approaches to explainable artificial intelligence in health care. The Lancet Digital Health, 3(11), e745-e750. https://doi.org/10.1016/S2589-7500(21)00208-9",
+        "7. Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). National Health and Nutrition Examination Survey microdata files (2017-2023). U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/",
+        "8. Heeringa, S. G., West, B. T., & Berglund, P. A. (2017). Applied survey data analysis (2nd ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781315153278",
+        "9. Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research poster]. University of Wisconsin, Madison. https://aansensei.dev/hiddencare"
+      ].join(String.fromCharCode(10, 10));
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {{
+        navigator.clipboard.writeText(bib).then(function() {{
+          var span = btn.querySelector('span');
+          var orig = span ? span.innerText : btn.innerText;
+          if (span) span.innerText = 'Copied Full Bibliography!';
+          else btn.innerText = 'Copied!';
+          btn.style.color = '#059669';
+          btn.style.borderColor = '#059669';
+          setTimeout(function() {{
+            if (span) span.innerText = orig;
+            else btn.innerText = orig;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+          }}, 2200);
+        }});
+      }}
+    }};
+
+    function attachModalsToBody() {{
+      ['hc-poster-lightbox', 'hc-references-modal'].forEach(function(id) {{
+        var m = document.getElementById(id);
+        if (m && m.parentElement !== document.body) {{
+          document.body.appendChild(m);
+        }}
+      }});
+    }}
+    if (document.readyState === 'loading') {{
+      document.addEventListener('DOMContentLoaded', attachModalsToBody);
+    }} else {{
+      attachModalsToBody();
+    }}
+    setTimeout(attachModalsToBody, 600);
+    setTimeout(attachModalsToBody, 1800);
+  }})();
+  </script>
+
 </div>
 """
 
@@ -554,7 +801,7 @@ def render_about_page_html() -> str:
   <!-- Fullscreen Modal / Lightbox Component -->
   <div id="hc-poster-lightbox" class="hc-modal-backdrop" role="dialog" aria-modal="true" aria-label="Enlarged HiddenCare Research Poster" style="display: none;" onclick="window.handlePosterLightboxClick &amp;&amp; window.handlePosterLightboxClick(event)">
     <div class="hc-modal-dialog" onclick="event.stopPropagation()">
-      <button id="hc-poster-lightbox-close" class="hc-modal-close-btn" type="button" aria-label="Close enlarged preview" onclick="window.closePosterLightbox &amp;&amp; window.closePosterLightbox(event)">
+      <button id="hc-poster-lightbox-close" class="hc-ref-close-btn" type="button" aria-label="Close enlarged preview" onclick="window.closePosterLightbox &amp;&amp; window.closePosterLightbox(event)">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -828,6 +1075,188 @@ def render_about_page_html() -> str:
       </p>
     </div>
   </section>
+
+  <!-- Academic References Section -->
+  <section class="about-section" id="sec-about-references" data-toc="08 • References" aria-labelledby="about-references">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+      <div>
+        <span class="disclaimer-badge" style="background: rgba(2, 132, 199, 0.08); color: var(--accent); border-color: rgba(2, 132, 199, 0.2);">Scientific Bibliography</span>
+        <h3 class="t-h2" id="about-references" style="margin-top: 6px;">Academic References (APA 7th Edition)</h3>
+      </div>
+      <button type="button" class="hc-copy-bib-btn" onclick="window.copyFullBibliography &amp;&amp; window.copyFullBibliography(this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        <span>Copy Full Bibliography</span>
+      </button>
+    </div>
+    <p class="about-lead" style="font-size: 0.92rem; margin-bottom: 20px; color: var(--text-muted);">
+      Primary academic literature, clinical diagnostic criteria, biostatistical survey methodology, and CDC NHANES biomonitoring microdata informing the HiddenCare algorithmic triage investigation.
+    </p>
+
+    <div class="hc-ref-grid">
+      <!-- Ref 1 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Foundational Proxy Bias</span>
+          <span class="hc-ref-journal">Science (2019)</span>
+        </div>
+        <div class="hc-ref-citation">
+          Obermeyer, Z., Powers, B., Vogeli, C., &amp; Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. <em>Science</em>, 366(6464), 447, 453.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://doi.org/10.1126/science.aax2342" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>doi.org/10.1126/science.aax2342</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science, 366(6464), 447-453. https://doi.org/10.1126/science.aax2342')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Ref 2 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Clinical Standards &amp; Criteria</span>
+          <span class="hc-ref-journal">Diabetes Care (2024)</span>
+        </div>
+        <div class="hc-ref-citation">
+          American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. <em>Diabetes Care</em>, 47(Suppl. 1), S20, S42.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://doi.org/10.2337/dc24-S002" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>doi.org/10.2337/dc24-S002</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. Diabetes Care, 47(Suppl. 1), S20-S42. https://doi.org/10.2337/dc24-S002')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Ref 3 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Health Economics &amp; Decision Curves</span>
+          <span class="hc-ref-journal">The BMJ (2016)</span>
+        </div>
+        <div class="hc-ref-citation">
+          Vickers, A. J., van Calster, B., &amp; Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. <em>The BMJ</em>, 352, i6.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://doi.org/10.1136/bmj.i6" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>doi.org/10.1136/bmj.i6</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Vickers, A. J., van Calster, B., & Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. The BMJ, 352, i6. https://doi.org/10.1136/bmj.i6')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Ref 4 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Statistical Mitigation of Proxy Disparities</span>
+          <span class="hc-ref-journal">JRSS Series A (2024)</span>
+        </div>
+        <div class="hc-ref-citation">
+          Foulds, J. R., Islam, R., Keya, K. N., &amp; Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em>, 189(1), 242, 265.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://doi.org/10.1093/jrsssa/qnae095" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>doi.org/10.1093/jrsssa/qnae095</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Foulds, J. R., Islam, R., Keya, K. N., & Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. Journal of the Royal Statistical Society: Series A, 189(1), 242-265. https://doi.org/10.1093/jrsssa/qnae095')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Ref 5 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Biomarker Surveillance &amp; Cutoffs</span>
+          <span class="hc-ref-journal">NIH / NIDDK (2022)</span>
+        </div>
+        <div class="hc-ref-citation">
+          National Institute of Diabetes and Digestive and Kidney Diseases. (2022). <em>The A1C test &amp; diabetes</em>. National Institutes of Health, U.S. Department of Health and Human Services.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>niddk.nih.gov/health-information/diagnostic-tests/a1c-test</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'National Institute of Diabetes and Digestive and Kidney Diseases. (2022). The A1C test & diabetes. National Institutes of Health. https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Ref 6 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Clinical AI Reliability</span>
+          <span class="hc-ref-journal">The Lancet Digital Health (2021)</span>
+        </div>
+        <div class="hc-ref-citation">
+          Ghassemi, M., Oakden-Rayner, L., &amp; Beam, A. L. (2021). The false hope of current approaches to explainable artificial intelligence in health care. <em>The Lancet Digital Health</em>, 3(11), e745, e750.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://doi.org/10.1016/S2589-7500(21)00208-9" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>doi.org/10.1016/S2589-7500(21)00208-9</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Ghassemi, M., Oakden-Rayner, L., & Beam, A. L. (2021). The false hope of current approaches to explainable artificial intelligence in health care. The Lancet Digital Health, 3(11), e745-e750. https://doi.org/10.1016/S2589-7500(21)00208-9')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Ref 7 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Continuous Biomonitoring Microdata</span>
+          <span class="hc-ref-journal">CDC NCHS (2021, 2024)</span>
+        </div>
+        <div class="hc-ref-citation">
+          Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). <em>National Health and Nutrition Examination Survey: Continuous biomonitoring microdata files (2017 to March 2020 pre-pandemic and 2021 to 2023 post-pandemic)</em>. U.S. Department of Health and Human Services.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://wwwn.cdc.gov/nchs/nhanes/" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>wwwn.cdc.gov/nchs/nhanes</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). National Health and Nutrition Examination Survey microdata files. U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Ref 8 -->
+      <div class="hc-ref-card">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge">Complex Survey Variance Estimation</span>
+          <span class="hc-ref-journal">CRC Press &amp; Springer</span>
+        </div>
+        <div class="hc-ref-citation">
+          Heeringa, S. G., West, B. T., &amp; Berglund, P. A. (2017). <em>Applied survey data analysis</em> (2nd ed.). Chapman and Hall/CRC. &amp; Wolter, K. M. (2007). <em>Introduction to variance estimation</em> (2nd ed.). Springer.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://doi.org/10.1201/9781315153278" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>doi.org/10.1201/9781315153278</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Heeringa, S. G., West, B. T., & Berglund, P. A. (2017). Applied survey data analysis (2nd ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781315153278')">Copy APA</button>
+        </div>
+      </div>
+
+      <!-- Study Citation -->
+      <div class="hc-ref-card" style="border-left: 3px solid var(--accent); background: #f8fafc;">
+        <div class="hc-ref-badge-row">
+          <span class="hc-ref-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent);">This Study &amp; Software</span>
+          <span class="hc-ref-journal">University of Wisconsin, Madison (2026)</span>
+        </div>
+        <div class="hc-ref-citation">
+          Nguyen, C. T. A. (2026). <em>When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES</em> [Research poster]. Department of Economics &amp; Data Science, University of Wisconsin, Madison.
+        </div>
+        <div class="hc-ref-actions">
+          <a href="https://aansensei.dev/hiddencare" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+            <span>aansensei.dev/hiddencare</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research poster]. University of Wisconsin, Madison. https://aansensei.dev/hiddencare')">Copy APA</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </article>
 """
 
@@ -916,6 +1345,7 @@ def render_footer_html() -> str:
         <li><a class="footer-link" href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">Source Code (GitHub)</a></li>
         <li><a class="footer-link" href="https://huggingface.co/spaces/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">Hugging Face Space</a></li>
         <li><a class="footer-link" href="https://aansensei.dev" target="_blank" rel="noopener noreferrer">Author Portfolio</a></li>
+        <li><a class="footer-link" href="javascript:void(0)" onclick="window.openReferencesModal &amp;&amp; window.openReferencesModal(); return false;">Academic References (APA 7th)</a></li>
         <li><a class="footer-link" href="https://github.com/aansensei/HiddenCare/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
       </ul>
     </div>
@@ -932,5 +1362,252 @@ def render_footer_html() -> str:
       </p>
     </div>
   </div>
+
+  <!-- Global Academic References Modal -->
+  <div id="hc-references-modal" class="hc-modal-backdrop" role="dialog" aria-modal="true" aria-label="Academic References (APA 7th)" style="display: none;" onclick="window.handleReferencesBackdropClick &amp;&amp; window.handleReferencesBackdropClick(event)">
+    <div class="hc-ref-modal-dialog" onclick="event.stopPropagation()">
+      <div class="hc-ref-modal-header">
+        <div>
+          <span class="hc-ref-badge" style="margin-bottom: 4px;">Primary Literature &amp; Sources</span>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 0; font-family: var(--font-serif);">Academic References (APA 7th Edition)</h3>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button type="button" class="hc-copy-bib-btn" onclick="window.copyFullBibliography &amp;&amp; window.copyFullBibliography(this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>Copy Full Bibliography</span>
+          </button>
+          <button id="hc-references-modal-close" class="hc-ref-close-btn" type="button" aria-label="Close references modal" onclick="window.closeReferencesModal &amp;&amp; window.closeReferencesModal(event)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="hc-ref-modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px;">
+          Peer-reviewed theoretical foundations, clinical diagnostic standards, health economics decision models, and government surveillance data cited in HiddenCare:
+        </p>
+        
+        <!-- 1. Obermeyer -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Foundational Proxy Bias</span>
+            <span class="hc-ref-journal">Science (2019)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Obermeyer, Z., Powers, B., Vogeli, C., &amp; Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. <em>Science</em>, 366(6464), 447, 453.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.1126/science.aax2342" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.1126/science.aax2342</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science, 366(6464), 447-453. https://doi.org/10.1126/science.aax2342')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 2. ADA -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Clinical Standards</span>
+            <span class="hc-ref-journal">Diabetes Care (2024)</span>
+          </div>
+          <div class="hc-ref-citation">
+            American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. <em>Diabetes Care</em>, 47(Suppl. 1), S20, S42.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.2337/dc24-S002" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.2337/dc24-S002</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. Diabetes Care, 47(Suppl. 1), S20-S42. https://doi.org/10.2337/dc24-S002')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 3. Vickers -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Health Economics &amp; DCA</span>
+            <span class="hc-ref-journal">The BMJ (2016)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Vickers, A. J., van Calster, B., &amp; Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. <em>The BMJ</em>, 352, i6.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.1136/bmj.i6" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.1136/bmj.i6</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Vickers, A. J., van Calster, B., & Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. The BMJ, 352, i6. https://doi.org/10.1136/bmj.i6')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 4. Foulds -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">Statistical Mitigation</span>
+            <span class="hc-ref-journal">JRSS Series A (2024)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Foulds, J. R., Islam, R., Keya, K. N., &amp; Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em>, 189(1), 242, 265.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://doi.org/10.1093/jrsssa/qnae095" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>doi.org/10.1093/jrsssa/qnae095</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Foulds, J. R., Islam, R., Keya, K. N., & Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. Journal of the Royal Statistical Society: Series A, 189(1), 242-265. https://doi.org/10.1093/jrsssa/qnae095')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 5. CDC NHANES -->
+        <div class="hc-ref-card">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge">CDC NHANES Microdata</span>
+            <span class="hc-ref-journal">NCHS (2017 to 2023)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). <em>National Health and Nutrition Examination Survey: Continuous biomonitoring laboratory and examination files</em>. U.S. Department of Health and Human Services.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://wwwn.cdc.gov/nchs/nhanes/" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>wwwn.cdc.gov/nchs/nhanes</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). National Health and Nutrition Examination Survey microdata files. U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/')">Copy APA</button>
+          </div>
+        </div>
+
+        <!-- 6. Study citation -->
+        <div class="hc-ref-card" style="border-left: 3px solid var(--accent); background: #f8fafc;">
+          <div class="hc-ref-badge-row">
+            <span class="hc-ref-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent);">This Study &amp; Software</span>
+            <span class="hc-ref-journal">UW-Madison (2026)</span>
+          </div>
+          <div class="hc-ref-citation">
+            Nguyen, C. T. A. (2026). <em>When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES</em> [Research poster]. Department of Economics &amp; Data Science, University of Wisconsin, Madison.
+          </div>
+          <div class="hc-ref-actions">
+            <a href="https://aansensei.dev/hiddencare" target="_blank" rel="noopener noreferrer" class="hc-ref-link">
+              <span>aansensei.dev/hiddencare</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button type="button" class="hc-ref-copy-btn" onclick="window.copySingleCitation(this, 'Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research poster]. University of Wisconsin, Madison. https://aansensei.dev/hiddencare')">Copy APA</button>
+          </div>
+        </div>
+      </div>
+      <div class="hc-ref-modal-footer">
+        <span>HiddenCare Algorithmic Epidemiology Lab &bull; APA 7th Edition</span>
+        <span>Press <strong>Esc</strong> or click outside to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {{
+    window.openReferencesModal = function() {{
+      var modal = document.getElementById('hc-references-modal');
+      if (!modal) return;
+      if (modal.parentElement !== document.body) {{
+        document.body.appendChild(modal);
+      }}
+      modal.style.display = 'flex';
+      modal.offsetHeight;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', window.handleReferencesModalKeydown);
+      var closeBtn = document.getElementById('hc-references-modal-close');
+      if (closeBtn) closeBtn.focus();
+    }};
+
+    window.closeReferencesModal = function(e) {{
+      if (e && e.stopPropagation) e.stopPropagation();
+      var modal = document.getElementById('hc-references-modal');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', window.handleReferencesModalKeydown);
+      setTimeout(function() {{
+        if (!modal.classList.contains('is-open')) {{
+          modal.style.display = 'none';
+        }}
+      }}, 250);
+    }};
+
+    window.handleReferencesBackdropClick = function(e) {{
+      if (e.target.id === 'hc-references-modal' || e.target.classList.contains('hc-modal-backdrop')) {{
+        window.closeReferencesModal(e);
+      }}
+    }};
+
+    window.handleReferencesModalKeydown = function(e) {{
+      if (e.key === 'Escape') {{
+        window.closeReferencesModal(e);
+      }}
+    }};
+
+    window.copySingleCitation = function(btn, text) {{
+      if (navigator.clipboard && navigator.clipboard.writeText) {{
+        navigator.clipboard.writeText(text).then(function() {{
+          var orig = btn.innerText;
+          btn.innerText = 'Copied!';
+          btn.style.color = '#059669';
+          btn.style.borderColor = '#059669';
+          setTimeout(function() {{
+            btn.innerText = orig;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+          }}, 2000);
+        }});
+      }}
+    }};
+
+    window.copyFullBibliography = function(btn) {{
+      var bib = [
+        "1. Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science, 366(6464), 447-453. https://doi.org/10.1126/science.aax2342",
+        "2. American Diabetes Association. (2024). 2. Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. Diabetes Care, 47(Suppl. 1), S20-S42. https://doi.org/10.2337/dc24-S002",
+        "3. Vickers, A. J., van Calster, B., & Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. The BMJ, 352, i6. https://doi.org/10.1136/bmj.i6",
+        "4. Foulds, J. R., Islam, R., Keya, K. N., & Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. Journal of the Royal Statistical Society: Series A, 189(1), 242-265. https://doi.org/10.1093/jrsssa/qnae095",
+        "5. National Institute of Diabetes and Digestive and Kidney Diseases. (2022). The A1C test & diabetes. National Institutes of Health. https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test",
+        "6. Ghassemi, M., Oakden-Rayner, L., & Beam, A. L. (2021). The false hope of current approaches to explainable artificial intelligence in health care. The Lancet Digital Health, 3(11), e745-e750. https://doi.org/10.1016/S2589-7500(21)00208-9",
+        "7. Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). National Health and Nutrition Examination Survey microdata files (2017-2023). U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/",
+        "8. Heeringa, S. G., West, B. T., & Berglund, P. A. (2017). Applied survey data analysis (2nd ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781315153278",
+        "9. Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research poster]. University of Wisconsin, Madison. https://aansensei.dev/hiddencare"
+      ].join(String.fromCharCode(10, 10));
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {{
+        navigator.clipboard.writeText(bib).then(function() {{
+          var span = btn.querySelector('span');
+          var orig = span ? span.innerText : btn.innerText;
+          if (span) span.innerText = 'Copied Full Bibliography!';
+          else btn.innerText = 'Copied!';
+          btn.style.color = '#059669';
+          btn.style.borderColor = '#059669';
+          setTimeout(function() {{
+            if (span) span.innerText = orig;
+            else btn.innerText = orig;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+          }}, 2200);
+        }});
+      }}
+    }};
+
+    function attachModalsToBody() {{
+      ['hc-poster-lightbox', 'hc-references-modal'].forEach(function(id) {{
+        var m = document.getElementById(id);
+        if (m && m.parentElement !== document.body) {{
+          document.body.appendChild(m);
+        }}
+      }});
+    }}
+    if (document.readyState === 'loading') {{
+      document.addEventListener('DOMContentLoaded', attachModalsToBody);
+    }} else {{
+      attachModalsToBody();
+    }}
+    setTimeout(attachModalsToBody, 600);
+    setTimeout(attachModalsToBody, 1800);
+  }})();
+  </script>
+
 </div>
 """

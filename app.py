@@ -404,6 +404,9 @@ function() {{
             window.openPosterLightbox = function() {{
                 const modal = document.getElementById('hc-poster-lightbox');
                 if (!modal) return;
+                if (modal.parentElement !== document.body) {{
+                    document.body.appendChild(modal);
+                }}
                 modal.style.display = 'flex';
                 modal.offsetHeight;
                 modal.classList.add('is-open');
