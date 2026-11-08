@@ -858,7 +858,49 @@ def render_about_page_html() -> str:
   </script>
 
   <!-- complex survey variance and model robustness -->
-  <section class="about-section" id="sec-about-stats" data-toc="05 • Survey Variance & Robustness">
+  
+  <!-- Section 05: How to Cite & Attribution (APA 7th) -->
+  <section class="about-section" id="sec-about-citation" data-toc="05 • How to Cite (APA 7th)" style="margin-top: 48px;">
+    <div class="hc-section-card-header" style="margin-bottom: 20px;">
+      <span class="hc-section-kicker" style="color: #0284c7; font-weight: 700;">05 / Academic Citation &amp; Attribution</span>
+      <h3 class="t-h2" style="font-size: 1.35rem; font-weight: 700; color: var(--navy-900); margin: 6px 0;">
+        How to Cite HiddenCare (APA 7th Edition)
+      </h3>
+      <p class="section-lead" style="font-size: 0.92rem; color: var(--text-muted); margin: 0; line-height: 1.6;">
+        If you reference HiddenCare findings, the 61-person boundary swap methodology, or the paired complex survey variance analysis in academic papers, policy briefs, or curriculum materials, please use the following formal citation:
+      </p>
+    </div>
+
+    <div style="background: #ffffff; border: 1.5px solid #bae6fd; border-radius: var(--radius-md); padding: 22px 26px; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.06); display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; font-family: var(--font-serif); font-size: 0.96rem; line-height: 1.65; color: var(--navy-900);">
+        Nguyen, C. T. A. (2026). <em>When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES</em> [Research Poster &amp; Interactive Lab]. University of Wisconsin&ndash;Madison. <span style="word-break: break-all; color: var(--accent);">https://aansensei.dev/hiddencare/</span>
+      </div>
+
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+        <button type="button" id="btn-copy-apa" class="hc-cta-btn" onclick="window.copyApaCitation &amp;&amp; window.copyApaCitation()" style="padding: 10px 18px; font-size: 0.86rem; font-weight: 600; background: var(--accent); color: #ffffff; border: none; border-radius: var(--radius-sm); cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span id="txt-copy-apa">Copy APA Citation</span>
+        </button>
+
+        <button type="button" id="btn-copy-bibtex" style="padding: 10px 18px; font-size: 0.86rem; font-weight: 600; background: #ffffff; color: var(--navy-900); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span id="txt-copy-bibtex">Copy BibTeX Entry</span>
+        </button>
+
+        <button type="button" onclick="window.openReferencesModal &amp;&amp; window.openReferencesModal()" style="padding: 10px 18px; font-size: 0.86rem; font-weight: 600; background: #f0f9ff; color: var(--accent); border: 1px solid #bae6fd; border-radius: var(--radius-sm); cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>View Literature References</span>
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.84rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 14px; margin-top: 4px;">
+        <span><strong>Principal Investigator:</strong> Cao Thien An Nguyen &bull; University of Wisconsin&ndash;Madison</span>
+        <span><strong>Author GitHub:</strong> <a href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 600; text-decoration: underline;">aansensei</a> &bull; <strong>Email:</strong> nguyencaothienan937@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="sec-about-stats" data-toc="06 • Survey Variance & Robustness">
     <h3 class="t-h2">Survey Variance & Model Robustness</h3>
     <p class="about-lead" style="font-size: 0.95rem; margin-bottom: 16px;">
       Addressing complex multistage survey variance via Taylor Series Linearization and verifying algorithmic fairness across nonlinear machine learning architectures.
@@ -976,7 +1018,7 @@ def render_about_page_html() -> str:
   </section>
 
 <!-- Author Profile -->
-  <section class="about-section" id="sec-about-author" data-toc="06 • Author Profile" aria-labelledby="about-author">
+  <section class="about-section" id="sec-about-author" data-toc="07 • Author Profile" aria-labelledby="about-author">
     <h3 class="t-h2" id="about-author" style="margin-bottom: 16px;">Author</h3>
     <div class="author-card" style="display: grid; grid-template-columns: 110px 1fr; gap: 28px; align-items: start; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
       {avatar_html}
@@ -1058,7 +1100,7 @@ def render_about_page_html() -> str:
   </section>
 
   <!-- Prominent Clinical & Methodological Disclaimer -->
-  <section class="disclaimer-callout" id="sec-about-disclaimer" data-toc="07 • Disclaimer" aria-labelledby="about-disclaimer">
+  <section class="disclaimer-callout" id="sec-about-disclaimer" data-toc="08 • Disclaimer" aria-labelledby="about-disclaimer">
     <div class="disclaimer-header">
       <span class="disclaimer-badge">Institutional & Research Notice</span>
       <h3 class="disclaimer-title" id="about-disclaimer">Clinical & Methodological Disclaimer</h3>
@@ -1077,7 +1119,7 @@ def render_about_page_html() -> str:
   </section>
 
   <!-- Academic References Section -->
-  <section class="about-section" id="sec-about-references" data-toc="08 • References" aria-labelledby="about-references">
+  <section class="about-section" id="sec-about-references" data-toc="09 • Literature References" aria-labelledby="about-references">
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
       <div>
         <span class="disclaimer-badge" style="background: rgba(2, 132, 199, 0.08); color: var(--accent); border-color: rgba(2, 132, 199, 0.2);">Scientific Bibliography</span>

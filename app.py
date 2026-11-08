@@ -419,6 +419,43 @@ function() {{
             }}
         }};
 
+        
+        window.copyApaCitation = function() {{
+            const apa = "Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research Poster & Interactive Lab]. University of Wisconsin–Madison. https://aansensei.dev/hiddencare/";
+            if (navigator.clipboard && navigator.clipboard.writeText) {{
+                navigator.clipboard.writeText(apa).then(function() {{
+                    const span = document.getElementById('txt-copy-apa');
+                    if (span) {{
+                        const prev = span.textContent;
+                        span.textContent = "Copied to Clipboard!";
+                        setTimeout(function() {{ span.textContent = prev; }}, 2200);
+                    }}
+                }});
+            }}
+        }};
+
+        window.copyBibtexCitation = function() {{
+            const bibtex = `@misc{nguyen2026hiddencare,
+  author = {Cao Thien An Nguyen},
+  title = {When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES},
+  year = {2026},
+  month = {November},
+  howpublished = {Research Poster & Interactive Lab},
+  institution = {University of Wisconsin-Madison},
+  url = {https://aansensei.dev/hiddencare/}
+}`;
+            if (navigator.clipboard && navigator.clipboard.writeText) {{
+                navigator.clipboard.writeText(bibtex).then(function() {{
+                    const span = document.getElementById('txt-copy-bibtex');
+                    if (span) {{
+                        const prev = span.textContent;
+                        span.textContent = "BibTeX Copied!";
+                        setTimeout(function() {{ span.textContent = prev; }}, 2200);
+                    }}
+                }});
+            }}
+        }};
+
         window.switchToLabTab = function() {{
             const tabs = document.querySelectorAll('#hc-main-tabs button[role="tab"]');
             if (tabs.length > 0) {{
@@ -796,14 +833,14 @@ with gr.Blocks(**blocks_kwargs) as demo:
 
             # Section 05: Transition Portal to About & Methodology (Added to Table of Contents)
             gr.HTML("""
-            <div class="hc-section-card-header hc-next-tab-card" id="sec-to-methodology" data-toc="05 • About &amp; Methodology" style="margin-top: 56px; margin-bottom: 24px; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); border: 1.5px solid #bae6fd; border-radius: var(--radius-md); padding: 26px 30px; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+            <div class="hc-section-card-header hc-next-tab-card" id="sec-to-methodology" data-toc="05 • How to Cite &amp; Methodology" style="margin-top: 56px; margin-bottom: 24px; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); border: 1.5px solid #bae6fd; border-radius: var(--radius-md); padding: 26px 30px; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
               <div style="max-width: 820px;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                   <span class="hc-section-kicker" style="margin: 0; color: #0284c7; font-weight: 700;">Part 2 / Academic Dossier</span>
                   <span style="display: inline-flex; align-items: center; padding: 2px 8px; background: #0284c7; color: #ffffff; font-size: 0.72rem; font-weight: 700; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">Poster &amp; Citations</span>
                 </div>
                 <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--navy-900); margin: 0 0 6px 0; font-family: var(--font-serif);">
-                  05 &bull; Complete Study Methodology, 1-Page Poster, Sources &amp; Author Bio
+                  05 &bull; How to Cite (APA 7th), Methodology, Research Poster &amp; Sources
                 </h3>
                 <p style="font-size: 0.90rem; color: var(--text-muted); margin: 0; line-height: 1.55;">
                   Inspect the vector research poster (36&times;24 in), review complex survey variance proofs, examine formal APA 7th literature citations, and explore author background.
