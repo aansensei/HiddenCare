@@ -968,46 +968,117 @@ body::-webkit-scrollbar-corner,
   margin-bottom: 24px !important;
 }
 
+/* ==========================================================================
+   HIGH-END SEGMENTED TAB NAVIGATION SYSTEM
+   ========================================================================== */
 .tab-container,
-.tab-nav {
-  display: flex !important;
+.tab-nav,
+#hc-main-tabs .tab-nav {
+  display: inline-flex !important;
   flex-wrap: wrap !important;
-  border-bottom: 2px solid var(--border) !important;
-  background: transparent !important;
+  background: #f1f5f9 !important;
+  padding: 6px !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--border-strong) !important;
   gap: 8px !important;
   height: auto !important;
   overflow: visible !important;
+  margin: 16px 0 24px 0 !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  border-bottom: 1px solid var(--border-strong) !important;
 }
 
 .tab-container button[role="tab"],
-.tab-nav button {
+.tab-nav button,
+#hc-main-tabs button[role="tab"] {
   font-family: var(--font-sans) !important;
-  font-size: 0.92rem !important;
-  font-weight: 500 !important;
-  color: var(--text-muted) !important;
+  font-size: 0.94rem !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
   background: transparent !important;
-  border: none !important;
-  border-bottom: 2px solid transparent !important;
-  margin-bottom: -2px !important;
-  padding: 10px 18px !important;
-  transition: all 0.15s ease !important;
-  border-radius: 0 !important;
-  min-height: 44px !important;
+  border: 1px solid transparent !important;
+  margin: 0 !important;
+  padding: 10px 22px !important;
+  border-radius: 9px !important;
+  min-height: 46px !important;
   cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-bottom: none !important;
 }
 
 .tab-container button[role="tab"]:hover,
-.tab-nav button:hover {
-  color: var(--accent) !important;
-  background: var(--accent-tint) !important;
+.tab-nav button:hover,
+#hc-main-tabs button[role="tab"]:hover {
+  background: rgba(255, 255, 255, 0.75) !important;
+  color: #0284c7 !important;
+  transform: translateY(-1px) !important;
 }
 
 .tab-container button[role="tab"].selected,
-.tab-nav button.selected {
-  color: var(--accent) !important;
-  font-weight: 600 !important;
-  border-bottom: 2px solid var(--accent) !important;
-  background: transparent !important;
+.tab-nav button.selected,
+#hc-main-tabs button[role="tab"].selected {
+  background: #ffffff !important;
+  color: #0369a1 !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+  transform: translateY(0) !important;
+}
+
+/* Badges inside Tab Headers */
+.hc-tab-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px 10px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  border-radius: 9999px !important;
+  transition: all 0.2s ease !important;
+}
+
+.hc-tab-badge--primary {
+  background: #e2e8f0 !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.hc-tab-badge--highlight {
+  background: #e0f2fe !important;
+  color: #0284c7 !important;
+  border: 1px solid #bae6fd !important;
+  animation: hcGlowPulse 2.8s infinite ease-in-out !important;
+}
+
+button[role="tab"].selected .hc-tab-badge--primary {
+  background: #f0f9ff !important;
+  color: #0284c7 !important;
+  border-color: #bae6fd !important;
+}
+
+button[role="tab"].selected .hc-tab-badge--highlight {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35) !important;
+}
+
+/* Next Tab Transition Card */
+.hc-next-tab-card {
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
+}
+
+.hc-next-tab-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 32px -4px rgba(2, 132, 199, 0.14) !important;
+  border-color: #7dd3fc !important;
 }
 
 /* Preset Buttons: Segmented Control Look */

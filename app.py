@@ -312,7 +312,11 @@ function() {{
                     item.appendChild(tooltip);
 
                     item.onclick = function() {{
-                        sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+                        if (sec.id === 'sec-to-methodology') {{
+                            window.switchToAboutTab && window.switchToAboutTab();
+                        }} else {{
+                            sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+                        }}
                     }};
                     rail.appendChild(item);
                 }});
@@ -334,7 +338,11 @@ function() {{
                         dItem.onclick = function() {{
                             scrim.classList.remove('is-open');
                             sheet.classList.remove('is-open');
-                            sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+                            if (sec.id === 'sec-to-methodology') {{
+                                window.switchToAboutTab && window.switchToAboutTab();
+                            }} else {{
+                                sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+                            }}
                         }};
                         drawerItems.appendChild(dItem);
                     }});
@@ -400,6 +408,48 @@ function() {{
         setTimeout(initTocRail, 500);
         setTimeout(initTocRail, 1500);
 
+        
+        window.switchToAboutTab = function() {{
+            const tabs = document.querySelectorAll('#hc-main-tabs button[role="tab"]');
+            if (tabs.length > 1) {{
+                tabs[1].click();
+                setTimeout(function() {{
+                    window.scrollTo({{ top: 0, behavior: 'smooth' }});
+                }}, 100);
+            }}
+        }};
+
+        window.switchToLabTab = function() {{
+            const tabs = document.querySelectorAll('#hc-main-tabs button[role="tab"]');
+            if (tabs.length > 0) {{
+                tabs[0].click();
+                setTimeout(function() {{
+                    window.scrollTo({{ top: 0, behavior: 'smooth' }});
+                }}, 100);
+            }}
+        }};
+
+        const enhanceTabHeaders = function() {{
+            const tabs = document.querySelectorAll('#hc-main-tabs button[role="tab"]');
+            if (tabs.length >= 2) {{
+                if (!tabs[0].querySelector('.hc-tab-badge')) {{
+                    const badge0 = document.createElement('span');
+                    badge0.className = 'hc-tab-badge hc-tab-badge--primary';
+                    badge0.textContent = 'Simulator & Triage';
+                    tabs[0].appendChild(badge0);
+                }}
+                if (!tabs[1].querySelector('.hc-tab-badge')) {{
+                    const badge1 = document.createElement('span');
+                    badge1.className = 'hc-tab-badge hc-tab-badge--highlight';
+                    badge1.textContent = 'Poster & Sources';
+                    tabs[1].appendChild(badge1);
+                }}
+            }}
+        }};
+        enhanceTabHeaders();
+        setTimeout(enhanceTabHeaders, 300);
+        setTimeout(enhanceTabHeaders, 1200);
+
         const initPosterLightbox = function() {{
             window.openPosterLightbox = function() {{
                 const modal = document.getElementById('hc-poster-lightbox');
@@ -443,6 +493,98 @@ function() {{
             }};
         }};
         initPosterLightbox();
+
+        const initReferencesModal = function() {{
+            window.openReferencesModal = function() {{
+                const modal = document.getElementById('hc-references-modal');
+                if (!modal) return;
+                if (modal.parentElement !== document.body) {{
+                    document.body.appendChild(modal);
+                }}
+                modal.style.display = 'flex';
+                modal.offsetHeight;
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+                window.addEventListener('keydown', window.handleReferencesModalKeydown);
+                const closeBtn = document.getElementById('hc-references-modal-close');
+                if (closeBtn) closeBtn.focus();
+            }};
+
+            window.closeReferencesModal = function(e) {{
+                if (e && e.stopPropagation) e.stopPropagation();
+                const modal = document.getElementById('hc-references-modal');
+                if (!modal) return;
+                modal.classList.remove('is-open');
+                document.body.style.overflow = '';
+                window.removeEventListener('keydown', window.handleReferencesModalKeydown);
+                setTimeout(function() {{
+                    if (!modal.classList.contains('is-open')) {{
+                        modal.style.display = 'none';
+                    }}
+                }}, 250);
+            }};
+
+            window.handleReferencesBackdropClick = function(e) {{
+                if (e.target.id === 'hc-references-modal' || e.target.classList.contains('hc-modal-backdrop')) {{
+                    window.closeReferencesModal(e);
+                }}
+            }};
+
+            window.handleReferencesModalKeydown = function(e) {{
+                if (e.key === 'Escape' || e.key === 'Esc') {{
+                    window.closeReferencesModal(e);
+                }}
+            }};
+
+            window.copySingleCitation = function(btn, text) {{
+                if (navigator.clipboard && navigator.clipboard.writeText) {{
+                    navigator.clipboard.writeText(text).then(function() {{
+                        const orig = btn.innerText;
+                        btn.innerText = 'Copied!';
+                        btn.style.color = '#059669';
+                        btn.style.borderColor = '#059669';
+                        setTimeout(function() {{
+                            btn.innerText = orig;
+                            btn.style.color = '';
+                            btn.style.borderColor = '';
+                        }}, 2000);
+                    }});
+                }}
+            }};
+
+            window.copyFullBibliography = function(btn) {{
+                const bib = [
+                    "1. Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissecting racial bias in an algorithm used to manage the health of populations. Science, 366(6464), 447, 453. https://doi.org/10.1126/science.aax2342",
+                    "2. American Diabetes Association. (2024). Classification and diagnosis of diabetes: Standards of care in diabetes: 2024. Diabetes Care, 47(Suppl. 1), S20, S42. https://doi.org/10.2337/dc24-S002",
+                    "3. Vickers, A. J., van Calster, B., & Steyerberg, E. W. (2016). Net benefit approaches to the evaluation of prediction models, molecular markers, and diagnostic tests. The BMJ, 352, i6. https://doi.org/10.1136/bmj.i6",
+                    "4. Foulds, J. R., Islam, R., Keya, K. N., & Pan, S. (2024). Hierarchical Bayesian models to mitigate systematic disparities in prediction with proxy outcomes. Journal of the Royal Statistical Society: Series A, 189(1), 242, 265. https://doi.org/10.1093/jrsssa/qnae095",
+                    "5. National Institute of Diabetes and Digestive and Kidney Diseases. (2022). The A1C test & diabetes. National Institutes of Health. https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test",
+                    "6. Ghassemi, M., Oakden-Rayner, L., & Beam, A. L. (2021). The false hope of current approaches to explainable artificial intelligence in health care. The Lancet Digital Health, 3(11), e745, e750. https://doi.org/10.1016/S2589-7500(21)00208-9",
+                    "7. Centers for Disease Control and Prevention, National Center for Health Statistics. (2021, 2024). National Health and Nutrition Examination Survey microdata files (2017 to 2023). U.S. Department of Health and Human Services. https://wwwn.cdc.gov/nchs/nhanes/",
+                    "8. Heeringa, S. G., West, B. T., & Berglund, P. A. (2017). Applied survey data analysis (2nd ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781315153278",
+                    "9. Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research poster]. University of Wisconsin, Madison. https://aansensei.dev/hiddencare"
+                ].join(String.fromCharCode(10, 10));
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {{
+                    navigator.clipboard.writeText(bib).then(function() {{
+                        const span = btn.querySelector('span');
+                        const orig = span ? span.innerText : btn.innerText;
+                        if (span) span.innerText = 'Copied Full Bibliography!';
+                        else btn.innerText = 'Copied!';
+                        btn.style.color = '#059669';
+                        btn.style.borderColor = '#059669';
+                        setTimeout(function() {{
+                            if (span) span.innerText = orig;
+                            else btn.innerText = orig;
+                            btn.style.color = '';
+                            btn.style.borderColor = '';
+                        }}, 2200);
+                    }});
+                }}
+            }};
+        }};
+        initReferencesModal();
+
 
         const setFavicons = function() {{
             const icoUri = "{FAVICON_ICO_URI}";
@@ -651,6 +793,28 @@ with gr.Blocks(**blocks_kwargs) as demo:
                     econ_summary_display = gr.HTML(
                         value=render_economic_ledger_html(20, 25.0, 8500.0)
                     )
+
+            # Section 05: Transition Portal to About & Methodology (Added to Table of Contents)
+            gr.HTML("""
+            <div class="hc-section-card-header hc-next-tab-card" id="sec-to-methodology" data-toc="05 • About &amp; Methodology" style="margin-top: 56px; margin-bottom: 24px; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); border: 1.5px solid #bae6fd; border-radius: var(--radius-md); padding: 26px 30px; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+              <div style="max-width: 820px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                  <span class="hc-section-kicker" style="margin: 0; color: #0284c7; font-weight: 700;">Part 2 / Academic Dossier</span>
+                  <span style="display: inline-flex; align-items: center; padding: 2px 8px; background: #0284c7; color: #ffffff; font-size: 0.72rem; font-weight: 700; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">Poster &amp; Citations</span>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--navy-900); margin: 0 0 6px 0; font-family: var(--font-serif);">
+                  05 &bull; Complete Study Methodology, 1-Page Poster, Sources &amp; Author Bio
+                </h3>
+                <p style="font-size: 0.90rem; color: var(--text-muted); margin: 0; line-height: 1.55;">
+                  Inspect the vector research poster (36&times;24 in), review complex survey variance proofs, examine formal APA 7th literature citations, and explore author background.
+                </p>
+              </div>
+              <button type="button" class="hc-cta-btn" onclick="window.switchToAboutTab &amp;&amp; window.switchToAboutTab()" style="padding: 12px 24px; font-size: 0.92rem; font-weight: 600; background: var(--accent); color: #ffffff; border: none; border-radius: var(--radius-sm); cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25); transition: all 0.2s ease;">
+                <span>Explore About &amp; Methodology</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            """)
 
         # Tab 2: About & Methodology (Complete Narrative, Author & Disclaimers)
         with gr.TabItem("About & Methodology"):
