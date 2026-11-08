@@ -4,9 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <title>When Training Labels Change Who Gets Screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels for diabetes screening in NHANES</title>
+  <meta name="description" content="Academic conference poster on proxy outcome bias in algorithmic screening using CDC NHANES Continuous Biomonitoring data (N = 12,459). Demonstrating how proxy training labels systematically reorder screening queues.">
+  <meta name="keywords" content="Cao Thien An Nguyen, Thien An Nguyen, aansensei, aansensei.dev, aansensei GitHub, aansensei Hugging Face, Cao Thien An Nguyen UW Madison, Cao Thien An Nguyen Data Science, Cao Thien An Nguyen Economics, An Nguyen HiddenCare, aansensei HiddenCare, nguyencaothienan937, HiddenCare, HiddenCare Lab, When Training Labels Change Who Gets Screened, Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES, Algorithmic Triage & Health Equity Lab, HiddenCare Research Poster, HiddenCare NHANES, Algorithmic Triage Simulator, 61-Patient Margin Inspector, 61-Person Boundary Swap Proof, Proxy Outcome Bias, Proxy Label Bias, Algorithmic Fairness in Healthcare, Health Equity Machine Learning, Healthcare Access Disparities, Algorithmic Bias in Population Health, Diagnostic Access Disparities, Undiagnosed Population Misclassification, Medical Under-diagnosis Bias, Healthcare Utilization Proxies, Electronic Health Record Bias, EHR Proxy Outcome Bias, Health Equity Subgroup Audit, Uninsured Healthcare Disparities, PIR Poverty Income Ratio Audit, Population Screening Triage, Diabetes Screening Machine Learning, Type 2 Diabetes Screening Algorithm, Undiagnosed Diabetes Screening, Venous HbA1c Glycated Hemoglobin, Venous Blood Biomonitoring, HbA1c 6.5 Screening Criterion, Biomarker-Augmented Training Labels, Self-Reported Diabetes Diagnosis, Non-Invasive Predictors Screening, Anthropometric Screening Predictors, BMI Waist Circumference Screening, Community Health Screening Triage, Finite Screening Capacity Allocation, Targeted Screening Queue, CDC NHANES Microdata, National Health and Nutrition Examination Survey, CDC National Center for Health Statistics, NCHS Continuous Biomonitoring, NHANES 2017-2020 Pre-pandemic, NHANES 2021-2023 Post-pandemic, P_DEMO Demographics, P_DIQ Diabetes Questionnaire, P_GHB Glycohemoglobin Laboratory, P_BMX Body Measures, P_HIQ Health Insurance Coverage, DEMO_L 2021-2023, DIQ_L 2021-2023, GHB_L 2021-2023, SAS Transport XPT Files, Taylor Series Linearization, Complex Survey Variance Estimation, WTPH2YR Phlebotomy Weights, WTMEC2YR Examination Weights, Multistage Clustered Sampling Design, Masked Primary Sampling Units PSU, Masked Strata Variance, L2-Regularized Logistic Regression, Cross-Validated Regularization Penalty C, Positive Predictive Value PPV, Sensitivity at Fixed Capacity, Numbers Needed to Screen NNS, Random Forest Screening Robustness, HistGradientBoosting Robustness, Paired-Selection Queue Analysis, Decision Curve Analysis DCA, Net Monetary Benefit NMB, Health Economics Screening Policy, Screening Budget Optimization, Early Intervention Cost Savings, Diagnostic Test Kit Costs, Cost-Effectiveness of Triage Algorithms, Value of Information in Screening, Universal vs Targeted Screening DCA, Resource-Constrained Healthcare Triage, Embedded DuckDB Lakehouse, Pandera Data Validation Contracts, Population Stability Index PSI, Schema Drift Detection Lakehouse, Reproducible Epidemiological Pipeline, UW-Madison Data Science Portfolio, Biostatistics Graduate Fellowship Portfolio, Healthcare Machine Learning Portfolio">
+  <meta name="author" content="Cao Thien An Nguyen">
+  <meta name="citation_title" content="When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES">
+  <meta name="citation_author" content="Nguyen, Cao Thien An">
+  <meta name="citation_publication_date" content="2026/11">
+  <meta name="citation_technical_report_institution" content="University of Wisconsin-Madison">
+  <meta name="citation_pdf_url" content="https://aansensei.dev/hiddencare/assets/poster.pdf">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES",
+    "author": {
+      "@type": "Person",
+      "name": "Cao Thien An Nguyen",
+      "url": "https://aansensei.dev"
+    },
+    "datePublished": "2026-11-08"
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700&display=swap" rel="stylesheet">
   <style>
     @page {
       size: 36in 24in;
@@ -61,7 +82,7 @@
       background: #ffffff;
       display: flex;
       flex-direction: column;
-      padding: 0.65in 0.85in 0.45in 0.85in;
+      padding: 0.60in 0.85in 0.45in 0.85in;
       box-sizing: border-box;
       position: relative;
     }
@@ -72,8 +93,8 @@
       justify-content: space-between;
       align-items: flex-start;
       border-bottom: 5px solid var(--navy-900);
-      padding-bottom: 26px;
-      margin-bottom: 24px;
+      padding-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .header-main {
@@ -87,7 +108,7 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--accent-blue);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .header-title {
@@ -97,11 +118,11 @@
       font-weight: 700;
       color: var(--navy-950);
       letter-spacing: -0.015em;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .header-subtitle {
-      font-size: 26pt;
+      font-size: 25pt;
       font-weight: 500;
       color: var(--slate-600);
       line-height: 1.35;
@@ -136,8 +157,8 @@
     /* Luoi 3 cot chinh */
     .poster-grid {
       display: grid;
-      grid-template-columns: 880px 1fr 880px;
-      gap: 36px;
+      grid-template-columns: 890px 1fr 890px;
+      gap: 32px;
       flex: 1;
       min-height: 0;
     }
@@ -145,7 +166,7 @@
     .col-panel {
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 20px;
       min-height: 0;
     }
 
@@ -167,7 +188,7 @@
       color: var(--navy-900);
       border-bottom: 2px solid var(--slate-200);
       padding-bottom: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -179,8 +200,8 @@
     }
 
     .prose {
-      font-size: 20.5pt;
-      line-height: 1.48;
+      font-size: 20pt;
+      line-height: 1.46;
       color: var(--slate-700);
     }
 
@@ -194,10 +215,10 @@
       background: var(--accent-light);
       border: 3.5px solid var(--accent-blue);
       border-radius: 12px;
-      padding: 20px 28px;
+      padding: 18px 26px;
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 22px;
     }
 
     .takeaway-badge {
@@ -214,7 +235,7 @@
 
     .takeaway-text {
       font-family: var(--font-serif);
-      font-size: 31pt;
+      font-size: 30pt;
       line-height: 1.25;
       font-weight: 700;
       color: var(--navy-950);
@@ -225,7 +246,7 @@
       background: var(--slate-100);
       border: 2px solid var(--slate-200);
       border-radius: 10px;
-      padding: 16px;
+      padding: 14px;
       margin-top: 14px;
     }
 
@@ -233,8 +254,8 @@
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 18.5pt;
-      margin-top: 14px;
+      font-size: 19pt;
+      margin-top: 12px;
     }
 
     .data-table th {
@@ -242,12 +263,12 @@
       color: var(--navy-950);
       font-weight: 700;
       text-align: left;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-bottom: 3px solid var(--slate-300);
     }
 
     .data-table td {
-      padding: 11px 14px;
+      padding: 13px 16px;
       border-bottom: 1.5px solid var(--slate-200);
       color: var(--slate-700);
     }
@@ -274,7 +295,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 18pt;
+      font-size: 17.5pt;
       color: var(--slate-600);
     }
 
@@ -301,8 +322,8 @@
     }
 
     .qr-container svg {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       display: block;
     }
   </style>
@@ -337,58 +358,61 @@
         <article class="card">
           <h2 class="card-title"><span class="card-num">01</span> The Clinical Problem</h2>
           <p class="prose">
-            Population screening triage algorithms frequently train on self-reported prior diagnoses or electronic health record proxies. However, clinical diagnoses require regular clinical encounters, misclassifying unrecorded disease as healthy baselines among underserved individuals facing access barriers.
+            Population screening triage algorithms frequently train on self-reported prior diagnoses or electronic records. However, diagnosis-based labels can mark unrecorded disease negative when individuals face healthcare access barriers or lack recent clinical encounters.
           </p>
         </article>
 
-        <!-- 02 Study Design & Temporal Protocol -->
+        <!-- 02 Study Design & Temporal Protocol (Enlarged Vector Diagram) -->
         <article class="card">
           <h2 class="card-title"><span class="card-num">02</span> Study Design &amp; Temporal Protocol</h2>
           <p class="prose">
-            We evaluate whether augmenting self-reported diagnosis with objective venous HbA1c (glycated hemoglobin &ge; 6.5%) alters triage priorities in CDC NHANES (National Health and Nutrition Examination Survey), holding predictors and capacity constant.
+            Evaluating whether augmenting diagnosis labels with venous HbA1c (&ge; 6.5%) alters triage priorities in CDC NHANES, holding predictors and testing capacity constant:
           </p>
 
-          <!-- So do Study Design: Cung development -> Hai nhan -> Cung holdout -->
-          <div class="vector-diagram">
-            <svg viewBox="0 0 460 215" width="100%" height="210" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+          <!-- So do Study Design: Kich thuoc in lon, ro rang, khong ep chieu cao nho -->
+          <div class="vector-diagram" style="padding: 18px;">
+            <svg viewBox="0 0 810 430" width="100%" height="425" xmlns="http://www.w3.org/2000/svg" style="display: block;">
               <!-- 1. Shared Development Cohort -->
-              <rect x="20" y="6" width="420" height="48" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
-              <text x="35" y="27" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#071326">1. Shared Development Cohort (2017&ndash;March 2020)</text>
-              <text x="35" y="44" font-family="Inter, sans-serif" font-size="11.5" fill="#475569">N = 7,761 adults &bull; Non-invasive predictors: Age, Sex, BMI, Waist</text>
+              <rect x="15" y="10" width="780" height="92" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
+              <text x="35" y="46" font-family="Inter, sans-serif" font-size="26" font-weight="700" fill="#071326">1. Shared Development Cohort (2017&ndash;March 2020)</text>
+              <text x="35" y="80" font-family="Inter, sans-serif" font-size="22" font-weight="500" fill="#334155">7,761 adults &bull; Non-invasive predictors: Age, Sex, BMI, Waist</text>
 
               <!-- Mui ten re 2 nhanh -->
-              <path d="M 140 54 L 140 70 L 105 70 L 105 80" fill="none" stroke="#0284c7" stroke-width="2" />
-              <polygon points="101,80 105,87 109,80" fill="#0284c7" />
-              <path d="M 320 54 L 320 70 L 355 70 L 355 80" fill="none" stroke="#0284c7" stroke-width="2" />
-              <polygon points="351,80 355,87 359,80" fill="#0284c7" />
+              <path d="M 215 102 L 215 140" fill="none" stroke="#0284c7" stroke-width="3" />
+              <polygon points="208,140 215,150 222,140" fill="#0284c7" />
+              <path d="M 595 102 L 595 140" fill="none" stroke="#0284c7" stroke-width="3" />
+              <polygon points="588,140 595,150 602,140" fill="#0284c7" />
 
               <!-- 2. Hai chien luoc nhan huan luyen -->
-              <rect x="10" y="88" width="195" height="58" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8" />
-              <text x="18" y="106" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" fill="#334155">Model A (Diagnosis Only)</text>
-              <text x="18" y="122" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b">Prior self-reported diagnosis</text>
-              <text x="18" y="137" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#0284c7">L2 Logistic Regression (CV-tuned C)</text>
+              <!-- Nhanh Model A -->
+              <rect x="15" y="152" width="375" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2.5" />
+              <text x="30" y="188" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#334155">Model A (Diagnosis-Based)</text>
+              <text x="30" y="222" font-family="Inter, sans-serif" font-size="20" fill="#475569">Prior self-reported diagnosis</text>
+              <text x="30" y="252" font-family="Inter, sans-serif" font-size="19" font-weight="600" fill="#0284c7">Same predictors &amp; CV tuning</text>
 
-              <rect x="255" y="88" width="195" height="58" rx="5" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
-              <text x="263" y="106" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" fill="#0369a1">Model B (Biomarker Augmented)</text>
-              <text x="263" y="122" font-family="Inter, sans-serif" font-size="10.5" fill="#0284c7">Prior diagnosis OR HbA1c &ge; 6.5%</text>
-              <text x="263" y="137" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#0369a1">L2 Logistic Regression (CV-tuned C)</text>
+              <!-- Nhanh Model B -->
+              <rect x="420" y="152" width="375" height="120" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.8" />
+              <text x="435" y="188" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0369a1">Model B (Biomarker-Augmented)</text>
+              <text x="435" y="222" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#0284c7">Prior diagnosis OR HbA1c &ge; 6.5%</text>
+              <text x="435" y="252" font-family="Inter, sans-serif" font-size="19" font-weight="600" fill="#0369a1">Same predictors &amp; CV tuning</text>
 
               <!-- Mui ten hop lai xuong holdout -->
-              <path d="M 105 146 L 105 158 L 140 158 L 140 166" fill="none" stroke="#0284c7" stroke-width="2" />
-              <polygon points="136,166 140,173 144,166" fill="#0284c7" />
-              <path d="M 355 146 L 355 158 L 320 158 L 320 166" fill="none" stroke="#0284c7" stroke-width="2" />
-              <polygon points="316,166 320,173 324,166" fill="#0284c7" />
+              <path d="M 215 272 L 215 308" fill="none" stroke="#0284c7" stroke-width="3" />
+              <polygon points="208,308 215,318 222,308" fill="#0284c7" />
+              <path d="M 595 272 L 595 308" fill="none" stroke="#0284c7" stroke-width="3" />
+              <polygon points="588,308 595,318 602,308" fill="#0284c7" />
 
               <!-- 3. Shared Holdout Evaluation Cohort -->
-              <rect x="20" y="174" width="420" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
-              <text x="35" y="191" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#0a192f">3. Shared Holdout Evaluation Cohort (2021&ndash;2023)</text>
-              <text x="35" y="204" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">N = 4,698 undiagnosed adults &bull; 116 meeting HbA1c &ge; 6.5% screening criterion</text>
+              <rect x="15" y="320" width="780" height="98" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
+              <text x="35" y="352" font-family="Inter, sans-serif" font-size="25" font-weight="700" fill="#071326">3. Shared Holdout Evaluation Cohort (2021&ndash;2023)</text>
+              <text x="35" y="380" font-family="Inter, sans-serif" font-size="21" font-weight="500" fill="#334155">4,698 previously undiagnosed adults</text>
+              <text x="35" y="406" font-family="Inter, sans-serif" font-size="21" font-weight="700" fill="#0284c7">116 meeting HbA1c &ge; 6.5% screening criterion</text>
             </svg>
           </div>
         </article>
 
         <!-- 03 Methods & Implementation Note -->
-        <article class="card" style="flex: 1;">
+        <article class="card">
           <h2 class="card-title"><span class="card-num">03</span> Methods &amp; Implementation Note</h2>
           <p class="prose">
             Primary models are <strong>L2-regularized logistic regressions</strong> tuned via 5-fold cross-validation on median-imputed, standard-scaled numeric features (age, BMI, waist circumference) and binary one-hot encoded sex. Poverty Income Ratio (PIR) and insurance were strictly excluded from model inputs and reserved solely for equity audits. Data pipeline ingested 10 XPT files across two survey periods using an embedded DuckDB lakehouse; Pandera contracts validated biological ranges (HbA1c: 2.0%&ndash;25.0%) and confirmed 0 pregnant participants.
@@ -398,7 +422,7 @@
       </div>
 
       <!-- COT 2: KET QUA TRONG TAM (VISUAL CENTER) -->
-      <div class="col-panel" style="gap: 16px;">
+      <div class="col-panel" style="gap: 18px;">
 
         <!-- 5-Second Key Takeaway Banner -->
         <div class="takeaway-banner">
@@ -408,78 +432,90 @@
           </div>
         </div>
 
-        <!-- 04 Paired-Selection Queue Analysis at 20% Screening Capacity -->
-        <article class="card" style="flex: 1;">
+        <!-- 04 Paired-Selection Queue Analysis at 20% Screening Capacity (Visual Center) -->
+        <article class="card" style="padding: 26px 30px;">
           <h2 class="card-title" style="justify-content: space-between;">
             <span><span class="card-num">04</span> Paired-Selection Queue Analysis (20% Screening Capacity)</span>
-            <span style="font-size: 16.5pt; font-weight: 600; color: var(--slate-500); text-transform: none;">Fixed Capacity K = 939 slots / 4,698 adults</span>
+            <span style="font-size: 17pt; font-weight: 600; color: var(--slate-500); text-transform: none;">Fixed Capacity K = 939 slots / 4,698 adults</span>
           </h2>
 
-          <p class="prose" style="margin-bottom: 10px;">
-            At 20% screening capacity (939 test slots), both models prioritize 878 shared individuals. Priorities diverge for 122 individuals at the margin:
+          <p class="prose" style="margin-bottom: 12px;">
+            Holding screening capacity fixed at 20% (939 test slots), both models prioritize 878 shared individuals. Priorities diverge for 122 individuals at the decision threshold:
           </p>
 
-          <!-- So do vector paired-selection tinh gon, de hieu, khong roi mat -->
-          <div style="background: var(--slate-100); border: 2px solid var(--slate-200); border-radius: 10px; padding: 18px 24px;">
-            <svg viewBox="0 0 740 200" width="100%" height="195" xmlns="http://www.w3.org/2000/svg">
-              <!-- Nhom chung (Shared Selection) -->
-              <rect x="15" y="12" width="310" height="120" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
-              <text x="30" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#0a192f">Shared Selection (Both Models)</text>
-              <text x="30" y="65" font-family="Inter, sans-serif" font-size="25" font-weight="800" fill="#0284c7">878 Individuals</text>
-              <text x="30" y="90" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">52 Potential Cases</text>
-              <text x="30" y="112" font-family="Inter, sans-serif" font-size="13.5" fill="#64748b">PPV / Yield: 5.92% (52 / 878)</text>
-              <text x="30" y="126" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8">Concordant high-risk prioritization</text>
+          <!-- So do vector paired-selection phong lon toan dien -->
+          <div style="background: var(--slate-100); border: 2.5px solid var(--slate-200); border-radius: 12px; padding: 20px 22px;">
+            <svg viewBox="0 0 1380 570" width="100%" height="540" xmlns="http://www.w3.org/2000/svg" style="display: block;">
 
-              <!-- Hai nhanh ranh gioi hoan doi (Exclusive Selections) -->
-              <rect x="355" y="12" width="370" height="56" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8" />
-              <rect x="355" y="12" width="6" height="56" rx="2" fill="#94a3b8" />
-              <text x="372" y="32" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#475569">Model A Exclusive (Diagnosis Only)</text>
-              <text x="372" y="54" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#334155">61 people &bull; 1 case <tspan font-size="13" font-weight="600" fill="#64748b">(1.64% yield)</tspan></text>
+              <!-- HERO RESULT BANNER (Ket qua trong tam: 53 -> 55 ca & 939 luot test) -->
+              <rect x="15" y="14" width="1350" height="108" rx="10" fill="#ffffff" stroke="#0284c7" stroke-width="3" />
+              <rect x="15" y="14" width="1350" height="8" rx="4" fill="#0284c7" />
 
-              <rect x="355" y="76" width="370" height="56" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
-              <rect x="355" y="76" width="6" height="56" rx="2" fill="#0284c7" />
-              <text x="372" y="96" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0369a1">Model B Exclusive (Biomarker Augmented)</text>
-              <text x="372" y="118" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#0284c7">61 people &bull; 3 cases <tspan font-size="13" font-weight="700" fill="#0369a1">(4.92% yield)</tspan></text>
+              <text x="40" y="54" font-family="Inter, sans-serif" font-size="19" font-weight="800" text-transform="uppercase" letter-spacing="0.08em" fill="#0284c7">PRIMARY SCREENING OUTCOME</text>
+              <text x="40" y="96" font-family="Newsreader, serif" font-size="40" font-weight="700" fill="#071326">53 &rarr; 55 Potential Cases Identified</text>
 
-              <!-- Thanh tong ket toan bo hang doi (Highlight: 53 -> 55 cases) -->
-              <rect x="15" y="140" width="710" height="52" rx="6" fill="#f8fafc" stroke="#0284c7" stroke-width="2" />
-              <text x="28" y="160" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" fill="#0a192f">Overall Screening Yield (939 Slots):</text>
-              <text x="272" y="160" font-family="Inter, sans-serif" font-size="12.5" font-weight="600" fill="#475569">Model A: 53 cases (5.64% PPV) &nbsp;|&nbsp; Model B: 55 cases (5.86% PPV)</text>
-              <text x="28" y="180" font-family="Inter, sans-serif" font-size="13.5" font-weight="800" fill="#0284c7">Net Difference: 53 &rarr; 55 cases (+2 potential cases, +1.72 pp unweighted sensitivity)</text>
+              <text x="700" y="54" font-family="Inter, sans-serif" font-size="21" font-weight="700" fill="#334155">Screening Capacity: <tspan font-weight="800" fill="#071326">939 Tests in Both Models</tspan></text>
+              <text x="700" y="92" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#0369a1">+2 Potential Cases Detected <tspan font-size="18.5" font-weight="600" fill="#475569">(+1.72 pp sensitivity gain)</tspan></text>
+
+              <!-- NHOM CHUNG (Shared Concordant Selection) -->
+              <rect x="15" y="138" width="550" height="320" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" />
+              <text x="38" y="178" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#475569">Shared Selection (Both Models)</text>
+              <text x="38" y="244" font-family="Inter, sans-serif" font-size="50" font-weight="800" fill="#334155">878 People</text>
+              <text x="38" y="306" font-family="Inter, sans-serif" font-size="34" font-weight="800" fill="#071326">52 Potential Cases</text>
+              <text x="38" y="356" font-family="Inter, sans-serif" font-size="23" font-weight="600" fill="#64748b">Yield: 5.92% (52 / 878)</text>
+              <text x="38" y="398" font-family="Inter, sans-serif" font-size="20" fill="#94a3b8">93.5% concordance across triage models</text>
+              <text x="38" y="432" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#0284c7">Concordant high-risk prioritization</text>
+
+              <!-- HAI NHANH HOAN DOI RANH GIOI (Boundary Swaps) -->
+              <!-- Model A Exclusive -->
+              <rect x="590" y="138" width="775" height="150" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="2.2" />
+              <rect x="590" y="138" width="8" height="150" rx="4" fill="#94a3b8" />
+              <text x="618" y="176" font-family="Inter, sans-serif" font-size="23" font-weight="700" fill="#475569">Model A Exclusive (Diagnosis-Based Labels)</text>
+              <text x="618" y="226" font-family="Inter, sans-serif" font-size="38" font-weight="800" fill="#334155">61 People <tspan font-size="32" font-weight="800" fill="#071326">&bull; 1 Potential Case</tspan></text>
+              <text x="618" y="264" font-family="Inter, sans-serif" font-size="22" font-weight="600" fill="#64748b">Yield: 1.64% (1 / 61) &bull; Deprioritized under biomarker training</text>
+
+              <!-- Model B Exclusive -->
+              <rect x="590" y="308" width="775" height="150" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.8" />
+              <rect x="590" y="308" width="8" height="150" rx="4" fill="#0284c7" />
+              <text x="618" y="346" font-family="Inter, sans-serif" font-size="23" font-weight="700" fill="#0369a1">Model B Exclusive (Biomarker-Augmented Labels)</text>
+              <text x="618" y="396" font-family="Inter, sans-serif" font-size="38" font-weight="800" fill="#0284c7">61 People <tspan font-size="32" font-weight="800" fill="#0369a1">&bull; 3 Potential Cases</tspan></text>
+              <text x="618" y="434" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0369a1">Yield: 4.92% (3 / 61) &bull; Rescued into screening queue</text>
+
+              <!-- THANH TOM TAT RANH GIOI (Decision Boundary Swap) -->
+              <rect x="15" y="478" width="1350" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+              <text x="38" y="512" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0a192f">Decision Boundary Swap (122 Marginal Individuals):</text>
+              <text x="38" y="538" font-family="Inter, sans-serif" font-size="20" fill="#475569">Exchanging 61 marginal individuals yielded +2 additional potential cases (1 &rarr; 3 cases) at the identical 939 test capacity.</text>
             </svg>
           </div>
 
-          <p class="table-caption" style="margin-top: 8px;">
-            <em>Schematic: elements not to scale.</em> Positive Predictive Value (PPV) is the percentage of screened individuals who meet the HbA1c criterion. The 3.0&times; yield difference (4.92% vs 1.64%) applies strictly to the 61-person boundary swap, not to overall model precision (5.86% vs 5.64% unweighted). Overall case detection increased from 53 to 55 (+2 potential cases).
+          <p class="table-caption" style="margin-top: 10px;">
+            <em>Schematic: elements not to scale.</em> Positive Predictive Value (PPV) is the percentage of screened individuals meeting the HbA1c criterion. The 3.0&times; yield difference (4.92% vs 1.64%) applies strictly to the 61-person boundary swap, not to overall model precision (5.86% vs 5.64% unweighted). Overall case detection increased from 53 to 55 (+2 potential cases).
           </p>
 
-          <!-- Bang so sanh so lieu benchmark va khao sat phuc hop -->
-          <h3 style="font-size: 19pt; font-weight: 700; text-transform: uppercase; color: var(--navy-900); margin: 16px 0 6px 0;">
-            Benchmark Performance &amp; Complex Survey Variance (20% Capacity)
+          <!-- Bang so sanh so lieu benchmark va khao sat phuc hop (Khong lap lai cot Slots) -->
+          <h3 style="font-size: 20pt; font-weight: 700; text-transform: uppercase; color: var(--navy-900); margin: 18px 0 6px 0;">
+            Benchmark Performance &amp; Complex Survey Variance (20% Capacity &bull; 939 Slots)
           </h3>
           <table class="data-table">
             <thead>
               <tr>
                 <th>Screening Model</th>
-                <th>Slots (K)</th>
                 <th>Unweighted Cases</th>
-                <th>Unweighted Sens</th>
-                <th>Survey-Weighted Sens (95% CI)</th>
+                <th>Unweighted Sensitivity</th>
+                <th>Survey-Weighted Sensitivity (95% CI)</th>
                 <th>Survey-Weighted PPV (95% CI)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Model A (Diagnosis Only)</strong></td>
-                <td>939</td>
+                <td><strong>Model A (Diagnosis-Based)</strong></td>
                 <td>53 / 116</td>
                 <td>45.69%</td>
                 <td>40.08% [28.9%, 51.2%]</td>
                 <td>5.79% [3.6%, 8.0%]</td>
               </tr>
               <tr class="highlight-row">
-                <td><strong>Model B (Biomarker Augmented)</strong></td>
-                <td>939</td>
+                <td><strong>Model B (Biomarker-Augmented)</strong></td>
                 <td>55 / 116</td>
                 <td>47.41%</td>
                 <td>42.47% [28.4%, 56.5%]</td>
@@ -487,7 +523,6 @@
               </tr>
               <tr>
                 <td><strong>Net Change (&Delta;)</strong></td>
-                <td>0</td>
                 <td><strong>+2 Cases</strong></td>
                 <td><strong>+1.72 pp</strong></td>
                 <td><strong>+2.38 pp</strong> (overlapping CIs)</td>
@@ -540,7 +575,7 @@
           </table>
 
           <p class="table-caption">
-            <em>Small denominator note:</em> The uninsured cohort contains only <strong>13 latent cases</strong>; detection changed by +1 case (2/13 to 3/13). While directionally consistent with hypothesis, small cell counts preclude claims of disparity elimination or causal improvement.
+            <em>Small denominator note:</em> The uninsured cohort contains only <strong>13 participants meeting the HbA1c screening criterion</strong>; detection changed by +1 case (2/13 to 3/13). While directionally consistent with hypothesis, small cell counts preclude claims of disparity elimination or causal improvement.
           </p>
         </article>
 
@@ -570,10 +605,10 @@
         </article>
 
         <!-- 08 Conclusion & Next Steps -->
-        <article class="card" style="flex: 1;">
+        <article class="card">
           <h2 class="card-title"><span class="card-num">08</span> Conclusion &amp; Next Steps</h2>
           <p class="prose">
-            Augmenting administrative diagnosis labels with objective biomarker ground truth modestly refines borderline triage (+2 cases, 53 &rarr; 55) without expanding predictor requirements. Next steps require evaluating formal paired complex survey variance and conducting prospective validation in diverse clinical care settings.
+            Augmenting administrative diagnosis labels with objective biomarker-augmented labels modestly refines borderline triage (+2 cases, 53 &rarr; 55) without expanding predictor requirements. Next steps require evaluating formal paired complex survey variance and conducting prospective validation in diverse clinical care settings.
           </p>
         </article>
 
@@ -584,7 +619,7 @@
     <!-- phan chan trang poster -->
     <footer class="poster-footer">
       <div class="footer-left">
-        <span><strong>References (APA 7th):</strong> American Diabetes Association. (2024). <em>Diabetes Care</em>, 47(Suppl. 1), S20&ndash;S42 &bull; CDC NCHS. (2024). <em>NHANES 2017&ndash;2023</em>. U.S. DHHS &bull; Obermeyer et al. (2019). <em>Science</em>, 366(6464), 447&ndash;453</span>
+        <span><strong>References:</strong> American Diabetes Association. (2024). <em>Diabetes Care</em>, 47(Suppl. 1), S20&ndash;S42 &bull; CDC NCHS. (2024). <em>NHANES 2017&ndash;2023</em>. U.S. DHHS &bull; Obermeyer et al. (2019). <em>Science</em>, 366(6464), 447&ndash;453</span>
       </div>
       <div class="footer-right">
         <div class="qr-container">

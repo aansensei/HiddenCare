@@ -916,6 +916,7 @@ def render_footer_html() -> str:
         <li><a class="footer-link" href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">Source Code (GitHub)</a></li>
         <li><a class="footer-link" href="https://huggingface.co/spaces/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer">Hugging Face Space</a></li>
         <li><a class="footer-link" href="https://aansensei.dev" target="_blank" rel="noopener noreferrer">Author Portfolio</a></li>
+        <li><a class="footer-link" href="#sec-about-poster" onclick="setTimeout(function(){{window.openPosterLightbox &amp;&amp; window.openPosterLightbox();}}, 150);">How to Cite (APA 7th)</a></li>
         <li><a class="footer-link" href="https://github.com/aansensei/HiddenCare/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
       </ul>
     </div>

@@ -55,9 +55,52 @@ HEAD_HTML = f"""
 <link rel="apple-touch-icon" href="{FAVICON_PNG_URI}">
 <meta name="title" content="HiddenCare | Algorithmic Triage & Health Equity Lab">
 <meta name="description" content="An empirical investigation into proxy outcome bias in algorithmic screening using CDC NHANES Continuous Biomonitoring data (N = 12,459). Demonstrating how proxy training labels systematically reorder screening queues and deepen disparities for underserved populations.">
-<meta name="keywords" content="Biostatistics, Algorithmic Bias, Health Equity, CDC NHANES, Machine Learning, Triage, Diabetes Screening, Health Economics">
+<meta name="keywords" content="Cao Thien An Nguyen, Thien An Nguyen, aansensei, aansensei.dev, aansensei GitHub, aansensei Hugging Face, Cao Thien An Nguyen UW Madison, Cao Thien An Nguyen Data Science, Cao Thien An Nguyen Economics, An Nguyen HiddenCare, aansensei HiddenCare, nguyencaothienan937, HiddenCare, HiddenCare Lab, When Training Labels Change Who Gets Screened, Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES, Algorithmic Triage & Health Equity Lab, HiddenCare Research Poster, HiddenCare NHANES, Algorithmic Triage Simulator, 61-Patient Margin Inspector, 61-Person Boundary Swap Proof, Proxy Outcome Bias, Proxy Label Bias, Algorithmic Fairness in Healthcare, Health Equity Machine Learning, Healthcare Access Disparities, Algorithmic Bias in Population Health, Diagnostic Access Disparities, Undiagnosed Population Misclassification, Medical Under-diagnosis Bias, Healthcare Utilization Proxies, Electronic Health Record Bias, EHR Proxy Outcome Bias, Health Equity Subgroup Audit, Uninsured Healthcare Disparities, PIR Poverty Income Ratio Audit, Population Screening Triage, Diabetes Screening Machine Learning, Type 2 Diabetes Screening Algorithm, Undiagnosed Diabetes Screening, Venous HbA1c Glycated Hemoglobin, Venous Blood Biomonitoring, HbA1c 6.5 Screening Criterion, Biomarker-Augmented Training Labels, Self-Reported Diabetes Diagnosis, Non-Invasive Predictors Screening, Anthropometric Screening Predictors, BMI Waist Circumference Screening, Community Health Screening Triage, Finite Screening Capacity Allocation, Targeted Screening Queue, CDC NHANES Microdata, National Health and Nutrition Examination Survey, CDC National Center for Health Statistics, NCHS Continuous Biomonitoring, NHANES 2017-2020 Pre-pandemic, NHANES 2021-2023 Post-pandemic, P_DEMO Demographics, P_DIQ Diabetes Questionnaire, P_GHB Glycohemoglobin Laboratory, P_BMX Body Measures, P_HIQ Health Insurance Coverage, DEMO_L 2021-2023, DIQ_L 2021-2023, GHB_L 2021-2023, SAS Transport XPT Files, Taylor Series Linearization, Complex Survey Variance Estimation, WTPH2YR Phlebotomy Weights, WTMEC2YR Examination Weights, Multistage Clustered Sampling Design, Masked Primary Sampling Units PSU, Masked Strata Variance, L2-Regularized Logistic Regression, Cross-Validated Regularization Penalty C, Positive Predictive Value PPV, Sensitivity at Fixed Capacity, Numbers Needed to Screen NNS, Random Forest Screening Robustness, HistGradientBoosting Robustness, Paired-Selection Queue Analysis, Decision Curve Analysis DCA, Net Monetary Benefit NMB, Health Economics Screening Policy, Screening Budget Optimization, Early Intervention Cost Savings, Diagnostic Test Kit Costs, Cost-Effectiveness of Triage Algorithms, Value of Information in Screening, Universal vs Targeted Screening DCA, Resource-Constrained Healthcare Triage, Embedded DuckDB Lakehouse, Pandera Data Validation Contracts, Population Stability Index PSI, Schema Drift Detection Lakehouse, Reproducible Epidemiological Pipeline, UW-Madison Data Science Portfolio, Biostatistics Graduate Fellowship Portfolio, Healthcare Machine Learning Portfolio">
 <meta name="author" content="Cao Thien An Nguyen">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- Google Scholar Metadata (Highwire Press Standards) -->
+<meta name="citation_title" content="When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES">
+<meta name="citation_author" content="Nguyen, Cao Thien An">
+<meta name="citation_publication_date" content="2026/11">
+<meta name="citation_technical_report_institution" content="University of Wisconsin-Madison">
+<meta name="citation_online_date" content="2026/11/08">
+<meta name="citation_language" content="en">
+<meta name="citation_abstract" content="Population screening triage algorithms frequently train on self-reported diagnoses or electronic records, potentially marking unrecorded disease negative when individuals face healthcare access barriers. In CDC NHANES microdata (N = 12,459), augmenting administrative diagnosis labels with objective venous HbA1c biomonitoring alters triage queue prioritization and identifies two additional potential cases at identical 20% screening capacity.">
+<meta name="citation_pdf_url" content="https://aansensei.dev/hiddencare/assets/poster.pdf">
+
+<!-- Schema.org JSON-LD Structured Data for Google Rich Results & Google Scholar -->
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES",
+  "name": "HiddenCare: Algorithmic Triage & Health Equity Lab",
+  "author": {{
+    "@type": "Person",
+    "name": "Cao Thien An Nguyen",
+    "alternateName": ["An Nguyen", "aansensei"],
+    "url": "https://aansensei.dev",
+    "sameAs": [
+      "https://github.com/aansensei",
+      "https://linkedin.com/in/cao-thien-an-nguyen",
+      "https://huggingface.co/aansensei"
+    ],
+    "affiliation": {{
+      "@type": "EducationalOrganization",
+      "name": "University of Wisconsin–Madison"
+    }}
+  }},
+  "datePublished": "2026-11-08",
+  "description": "An empirical investigation into proxy outcome bias in algorithmic screening using CDC NHANES Continuous Biomonitoring data (N = 12,459). Demonstrating how proxy training labels systematically reorder screening queues and deepen disparities for underserved populations.",
+  "keywords": "Proxy Outcome Bias, Algorithmic Triage, Health Equity, CDC NHANES, Machine Learning, Diabetes Screening, Health Economics",
+  "url": "https://aansensei.dev/hiddencare/",
+  "publisher": {{
+    "@type": "Organization",
+    "name": "HiddenCare Research Initiative"
+  }}
+}}
+</script>
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aansensei-hiddencare.hf.space">
