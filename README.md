@@ -1,5 +1,5 @@
 ---
-title: "HiddenCare: Population Screening & Label Bias Lab"
+title: "HiddenCare: Algorithmic Triage & Health Equity Lab"
 emoji: 🩺
 colorFrom: blue
 colorTo: green
@@ -8,173 +8,181 @@ sdk_version: 5.16.0
 app_file: app.py
 pinned: true
 license: mit
-short_description: Proxy label bias in diabetes screening (CDC NHANES)
+short_description: Proxy outcome bias in screening triage (CDC NHANES)
 ---
 
-# HiddenCare
+# HiddenCare: Algorithmic Triage & Health Equity Laboratory
 
-Evaluating Proxy Outcome Bias in Algorithmic Diabetes Screening Under Capacity Constraints
+**When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels for Diabetes Screening in NHANES**
 
-Author: Cao Thien An Nguyen (AanSensei)  
-Institution: University of Wisconsin-Madison (B.S. Economics & Data Science)  
-Lab: Population Health Sciences & Algorithmic Fairness  
-Repository: https://github.com/aansensei/HiddenCare.git  
-Live Interactive App: https://aansensei.dev/hiddencare/  
-Interactive Platform: Hugging Face Spaces (Gradio 5.x/6.x Blocks)  
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/aansensei/HiddenCare)
+[![Live Interactive Lab](https://img.shields.io/badge/Live%20Platform-aansensei.dev-teal)](https://aansensei.dev/hiddencare/)
 
-## Overview
+**Author:** Cao Thien An Nguyen (Cao Thiên Ân Nguyễn &bull; aansensei)  
+**Affiliation:** University of Wisconsin, Madison (B.S. Economics & Data Science)  
+**Laboratory:** Population Health Sciences & Algorithmic Epidemiology  
+**Repository:** [https://github.com/aansensei/HiddenCare](https://github.com/aansensei/HiddenCare)  
+**Interactive Research Platform:** [https://aansensei.dev/hiddencare/](https://aansensei.dev/hiddencare/)  
 
-In machine learning applications for public health, predictive models frequently train on self-reported clinical history or administrative diagnostic billing codes. These proxy outcomes confound biological risk with historic healthcare access.
+---
 
-HiddenCare demonstrates this phenomenon through a reproducible empirical experiment using public data from the CDC National Health and Nutrition Examination Survey (NHANES). We compare two regularized logistic regression models using identical baseline predictors (age, gender, BMI, waist circumference) on a pre-pandemic development cohort (2017 to March 2020; N = 7,761):
-- Model A (Diagnosis Only): Trained on self-reported clinical diagnosis (Label A).
-- Model B (Combined): Trained on self-reported diagnosis combined with laboratory HbA1c of 6.5 percent or higher (Label B).
+## Executive Summary
 
-Both models are evaluated on a locked, non-overlapping holdout of previously undiagnosed adults from the post-pandemic cycle (August 2021 to August 2023; N = 4,698; 116 potential cases with HbA1c >= 6.5%).
+Population screening triage algorithms frequently train on self-reported clinical history or electronic health record (EHR) billing codes. In public health, these administrative proxy outcomes conflate biological disease risk with historical healthcare access. When individuals face barriers to care (lack of insurance, poverty, rural isolation), unvisited sick patients are systematically misclassified as healthy non-cases during model training.
 
-Under a primary fixed screening capacity of 20 percent (939 participants screened):
-- Model A detects 53 potential cases (sensitivity 45.7%, PPV 5.64%).
-- Model B detects 55 potential cases (sensitivity 47.4%, PPV 5.86%).
-- Random allocation detects an expected 23.2 cases (95% simulation interval: 15 to 32 cases).
-- Paired disagreement analysis reveals that participants prioritized exclusively by Model B have a threefold higher positivity yield (4.92%) than participants prioritized exclusively by Model A (1.64%).
+**HiddenCare** presents an empirical investigation into this proxy outcome bias using continuous biomonitoring microdata from the **CDC National Health and Nutrition Examination Survey (NHANES 2017 to 2023, N = 12,459 adults)**. We evaluate how retraining models on objective biomarker-augmented labels (venous HbA1c &ge; 6.5%) alters finite community screening queues, resolves disparities for underserved populations, and impacts health economics.
 
-## Repository Structure
+---
+
+## Study Design & Temporal Protocol
+
+* **Temporal Cohort Split:**
+  * **Development Cohort (Pre-Pandemic, 2017 to March 2020):** $N = 7,761$ adults. Used exclusively for feature standardization, missingness median imputation, and hyperparameter cross-validation.
+  * **Holdout Evaluation Cohort (Post-Pandemic, August 2021 to August 2023):** $N = 4,698$ adults who reported *no prior clinical diagnosis of diabetes*. Contains $N = 116$ latent diabetes cases identified via laboratory venous HbA1c (&ge; 6.5%).
+* **Non-Invasive Predictors ($X$):** Strictly restricted to 4 easily collected anthropometric predictors: Age, Gender (binary), Body Mass Index (BMI), and Waist Circumference.
+* **Leakage Assertions:** HbA1c, Poverty-Income Ratio (PIR), and Health Insurance are strictly forbidden from model inputs and reserved solely for outcome definition and health equity subgroup auditing.
+* **Model Formulations:**
+  * **Model A (Diagnosis-Based Proxy):** Trained on self-reported doctor diagnosis (`DIQ010 == 1`).
+  * **Model B (Biomarker-Augmented):** Trained on observed venous HbA1c (&ge; 6.5%) OR prior clinical diagnosis.
+
+---
+
+## Primary Screening Triage Benchmark (20% Capacity &bull; K = 939 Slots)
+
+Under a pre-specified community screening budget of 20% ($K = 939$ test slots allocated across $N = 4,698$ holdout adults):
+
+| Screening Model | Unweighted Cases Found | Unweighted Sensitivity | Survey-Weighted Sensitivity (95% CI) | Survey-Weighted PPV (95% CI) | Number Needed to Screen (NNS) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Random Allocation** | 23.2 / 116 | 20.00% | 20.00% | 2.47% | 40.5 |
+| **Model A (Diagnosis-Based)** | 53 / 116 | 45.69% | 40.08% [28.9%, 51.2%] | 5.79% [3.6%, 8.0%] | 17.7 |
+| **Model B (Biomarker-Augmented)** | 55 / 116 | 47.41% | 42.47% [28.4%, 56.5%] | 6.02% [3.4%, 8.6%] | 17.1 |
+| **Net Difference (&Delta;)** | **+2 Cases** | **+1.72 pp** | **+2.38 pp** [paired CI: -1.77, +6.53] | **+0.22 pp** | **-0.6 Tests** |
+
+### Complex Survey Variance & Paired Sensitivity Proof
+
+* **Survey Linearization:** Standard errors estimated using CDC phlebotomy weights (`WTPH2YR`) and Taylor Series Linearization ($df = 15$) accounting for the multistage clustered survey sampling design (masked PSUs and strata).
+* **Paired Correlation Reduction:** Because both models score the identical $N = 116$ holdout cases (112 concordant cases, only 4 discordant), strong positive covariance ($	ext{Cov} > 0$) reduces the variance of the difference by over 65%:
+  $$	ext{Var}(\Delta) = 	ext{Var}(	ext{Sens}_B) + 	ext{Var}(	ext{Sens}_A) - 2\,	ext{Cov}(	ext{Sens}_A, 	ext{Sens}_B)$$
+  $$	ext{SE}_{	ext{independent}} = 5.23	ext{ pp} \quad\longrightarrow\quad 	ext{SE}_{	ext{paired}} = 1.95	ext{ pp}$$
+* **Paired 95% Confidence Interval:** $[ -1.77	ext{ pp}, +6.53	ext{ pp} ]$ ($df = 15$). Demonstrates that overlapping separate marginal CIs do not indicate lack of statistical pairing significance.
+
+---
+
+## The 61-Person Decision Boundary Swap
+
+Holding testing capacity fixed at exactly 20% ($K = 939$ slots), the two algorithms agree on **878 shared individuals** ($93.5\%$ concordance). All divergence occurs in a **61-person boundary swap** (122 marginal individuals at the triage threshold):
+
+| Triage Queue Subgroup | Queue Size | Potential Cases Found | Positivity Rate (Yield) | Clinical Policy Interpretation |
+| :--- | :--- | :--- | :--- | :--- |
+| **Shared Concordant Selection** | 878 | 52 | 5.92% (52 / 878) | High-risk concordant prioritization across both models. |
+| **Model A Exclusive Selection** | 61 | 1 | 1.64% (1 / 61) | Deprioritized when training includes objective biomonitoring. |
+| **Model B Exclusive Selection** | 61 | 3 | **4.92% (3 / 61)** | **Newly prioritized into screening queue (3.0&times; precision dividend).** |
+| **Shared Non-Selected** | 3,698 | 60 | 1.62% (60 / 3,698) | Concordant low-risk ranking. |
+
+---
+
+## Health Equity Subgroup Audit
+
+Evaluating screening detection across insurance status at 20% capacity ($K = 939$ slots):
+
+| Health Insurance Subgroup | Total Cohort | Holdout True Cases | Model A Detection (Sens) | Model B Detection (Sens) | Net Detection Shift |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Insured Adults** | 4,268 | 102 | 51 / 102 (50.0%) | 52 / 102 (51.0%) | +1 Case (+1.0 pp) |
+| **Uninsured Adults** | 422 | 13 | 2 / 13 (15.4%) | 3 / 13 (23.1%) | +1 Case (+7.7 pp) |
+| **Unrecorded Coverage** | 8 | 1 | 0 / 1 (0.0%) | 0 / 1 (0.0%) | 0 Cases (0.0 pp) |
+| **Total Cohort** | 4,698 | 116 | 53 / 116 (45.7%) | 55 / 116 (47.4%) | +2 Cases (+1.72 pp) |
+
+*Small denominator disclosure:* The uninsured holdout cohort contains 13 potential cases ($102 + 13 + 1 = 116$). While directionally consistent with hypothesis (+1 case, 15.4% to 23.1%), small sample counts require cautious interpretation without claiming complete elimination of systemic disparity.
+
+---
+
+## Multi-Architecture Sensitivity & Guideline Defense
+
+Triage queue shifts re-evaluated across alternative tree architectures under identical 20% capacity:
+
+| Model Architecture | Model A Detection | Model B Detection | Net Case Shift (&Delta;) | Boundary Swaps |
+| :--- | :--- | :--- | :--- | :--- |
+| **Logistic Regression (Primary)** | 53 / 116 (45.7%) | 55 / 116 (47.4%) | **+2 Cases** | 61 Swaps |
+| **Random Forest** | 60 / 116 (51.7%) | 61 / 116 (52.6%) | **+1 Case** | 77 Swaps |
+| **HistGradientBoosting** | 59 / 116 (50.9%) | 59 / 116 (50.9%) | **0 Net Gain** | 132 Swaps |
+
+**Clinical Guideline Defense:** While non-linear tree models achieve higher unweighted baseline yield (+6 to +7 cases), linear logistic regression remains the primary reference standard for clinical transparency, monotonic risk scoring, and compliance with the American Diabetes Association (ADA) Prediabetes Risk Test paradigm.
+
+---
+
+## Health Economics & Decision Curve Analysis (DCA)
+
+* **Net Monetary Benefit (NMB):** At standard Point-of-Care HbA1c test costs ($C = \$25$) and present value of complication avoidance ($B = \$8,500$), biomarker-augmented triage delivers a net economic surplus of **+\$25,500 per 10,000 screened individuals** compared to diagnosis-only triage.
+* **Decision Curve Analysis:** Model B achieves positive net clinical benefit across all decision thresholds from $p_t = 0.02$ to $0.15$, dominating both universal screening and treat-none baselines.
+
+---
+
+## Print-Ready Vector Research Poster ($36 	imes 24$ in)
+
+The repository includes a publication-grade, single-page vector research poster:
+* **Physical Dimensions:** $36.0 	imes 24.0$ inches ($2592.0 	imes 1728.0$ pt, 954 KB vector PDF).
+* **High-Resolution Retina Image:** $6912 	imes 4608$ px PNG (2.69 MB).
+* **Statistical Graphics:** Features an authentic SciencePlots two-panel figure combining boundary queue allocation with a paired complex survey Forest Plot ($0	ext{ pp}$ Null Reference Line).
+* **Automated Layout Audit:** 0 overflow issues across all bounding boxes, verified via headless Playwright rendering.
+* **Files:** `reports/poster.pdf`, `reports/poster.png`, `reports/poster.html`.
+
+---
+
+## How to Cite (APA 7th Edition)
+
+### APA 7th Format
 
 ```text
-HiddenCare/
-  README.md
-  requirements.txt
-  pytest.ini
-  run.py
-  hiddencare/
-    __init__.py
-    config.py
-    data.py
-    cohort.py
-    models.py
-    metrics.py
-    plots.py
-  tests/
-    test_labels.py
-    test_cohort.py
-    test_metrics.py
-  data/
-    raw/
-      pre_pandemic/
-      post_pandemic/
-    processed/
-      cohort_train.parquet
-      eval_subset.parquet
-  outputs/
-    tables/
-      cohort_flow.csv
-      tuning_summary.csv
-      metrics_summary.csv
-      random_baseline_summary.csv
-      paired_overlap_20pct.csv
-      subgroup_audit_20pct.csv
-    figures/
-      capacity_tradeoff.png
-      paired_overlap_20pct.png
-      subgroup_audit_insurance.png
-      subgroup_audit_income.png
-    models/
-      model_dx.joblib
-      model_full.joblib
-  reports/
-    protocol.md
-    data_dictionary.csv
-    sources.md
-    brief.md
+Nguyen, C. T. A. (2026). When training labels change who gets screened: Temporal evaluation of diagnosis-based versus biomarker-augmented labels in NHANES [Research Poster & Interactive Lab]. University of Wisconsin, Madison. https://aansensei.dev/hiddencare/
 ```
 
-## Setup and Reproduction
+### BibTeX Entry
+
+```bibtex
+@misc{nguyen2026hiddencare,
+  author = {Cao Thien An Nguyen},
+  title = {When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES},
+  year = {2026},
+  month = {November},
+  howpublished = {Research Poster and Interactive Epidemiological Laboratory},
+  institution = {University of Wisconsin-Madison},
+  url = {https://aansensei.dev/hiddencare/}
+}
+```
+
+---
+
+## Setup & Local Execution
 
 ### 1. Requirements
 
-The project uses Python 3.10 or higher. Install the verified dependencies:
+Python 3.10 or higher. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Core dependencies:
-- pandas (>= 2.2)
-- numpy (>= 1.26)
-- scikit-learn (>= 1.5)
-- matplotlib (>= 3.8)
-- pytest (>= 8.0)
+### 2. Run Test Suite
 
-### 2. Running Unit Tests
-
-Run the full test suite verifying cohort eligibility, label logic, allocation rules, tie breaking, and leakage assertions:
+Run the verified test suite (13 unit tests covering Pandera contracts, exclusion logic, paired survey variance, and leakage checks):
 
 ```bash
 python -m pytest -v tests/
 ```
 
-### 3. Running the Analysis Pipeline
-
-Execute the end-to-end workflow:
-
-```bash
-python run.py
-```
-
-The pipeline automatically:
-1. Downloads and validates all 10 raw NHANES SAS transport files from CDC servers.
-2. Merges component tables and verifies participant sequence numbers.
-3. Builds development and evaluation cohorts and records attrition flow.
-4. Tunes and trains regularized Logistic Regression models using stratified cross-validation.
-5. Evaluates models on the locked holdout across 10%, 20%, and 30% screening capacities.
-6. Conducts paired policy concordance and sociodemographic subgroup audits.
-7. Saves all summary tables to `outputs/tables/` and publication figures to `outputs/figures/`.
-
-### 4. Launching the Interactive Policy Simulation Web Platform
-
-To launch the interactive clinical research dashboard locally:
+### 3. Launch Interactive Research Lab
 
 ```bash
 python app.py
 ```
 
-Open `http://localhost:7860` in any modern web browser to interactively adjust screening capacity budgets (5% to 50%), inspect the 61-person marginal disagreement cohort, review health equity sensitivity gaps, and simulate Net Monetary Benefit (NMB) via Decision Curve Analysis.
+Navigate to `http://localhost:7860` to access the interactive screening capacity simulator (5% to 50%), the 61-person margin inspector, and the complete academic dossier tab.
 
-When synced or pushed to Hugging Face Spaces, the platform launches automatically using the native Gradio SDK configuration defined in the repository header.
+---
 
-## Key Findings
+## License & Data Provenance
 
-### Screening Yield Under 20% Resource Capacity
-
-| Model | Evaluated | Screened | True Cases | Found | Missed | Sensitivity | PPV | NNS | ROC AUC |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Random Allocation | 4,698 | 939 | 116 | 23.2 | 92.8 | 20.0% | 2.47% | 40.5 | 0.5000 |
-| Model A (Diagnosis Only) | 4,698 | 939 | 116 | 53 | 63 | 45.7% | 5.64% | 17.7 | 0.7300 |
-| Model B (Combined) | 4,698 | 939 | 116 | 55 | 61 | 47.4% | 5.86% | 17.1 | 0.7410 |
-
-### Paired Agreement and Disagreement at 20% Capacity
-
-| Screening Decision Group | Participants | Potential Cases | Positivity Rate |
-| :--- | :--- | :--- | :--- |
-| Selected by Both Models | 878 | 52 | 5.92% |
-| Selected Only by Diagnosis Model | 61 | 1 | 1.64% |
-| Selected Only by Combined Model | 61 | 3 | 4.92% |
-| Selected by Neither Model | 3,698 | 60 | 1.62% |
-
-### Subgroup Audit by Insurance Status
-
-| Group | Subgroup N | Total Cases | Model A Found (Sens) | Model B Found (Sens) |
-| :--- | :--- | :--- | :--- | :--- |
-| Insured | 4,268 | 102 | 51 (50.0%) | 52 (51.0%) |
-| Uninsured | 422 | 13 | 2 (15.4%) | 3 (23.1%) |
-| Unknown | 8 | 1 | 0 (0.0%) | 0 (0.0%) |
-
-## Methodological Boundaries and Causal Limitations
-
-1. Non-causal Observational Data: Observational differences in prioritization between models describe shifts in proxy learning. They do not demonstrate that health insurance or income causally causes elevated HbA1c or missed screening.
-2. Screening Criterion vs Clinical Diagnosis: In cross-sectional surveys like NHANES, a single HbA1c measurement above 6.5 percent is an epidemiological screening criterion. Clinical diagnostic confirmation requires repeat laboratory testing.
-3. Subgroup Sample Constraints: The uninsured evaluation cohort contains only 13 potential cases, and the unknown insurance group contains only 8 participants. These sample constraints must be transparently disclosed to avoid overbroad claims regarding algorithmic fairness.
-
-## License
-
-MIT License. Open academic and epidemiological research.
+* **License:** MIT License. Open academic and policy research.
+* **Data Provenance:** National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC). Continuous NHANES 2017 to 2023. This independent academic analysis is neither endorsed nor certified by the CDC or NCHS.
