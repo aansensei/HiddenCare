@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HIDDENCARE DESIGN SYSTEM (v2.0 - High-End Editorial & Academic Lab)
+   HIDDENCARE DESIGN SYSTEM (v2.0: High-End Editorial & Academic Lab)
    Theme: Luxury Clinical Off-White | Palette: #f8fafc / #ffffff / #0284c7
    Author: Cao Thien An Nguyen (AanSensei) | Population Health Sciences Lab
    ========================================================================== */
@@ -160,7 +160,7 @@ body::-webkit-scrollbar-corner,
 }
 
 /* ==========================================================================
-   HEADER & MASTHEAD (Open Editorial Masthead - No Boxed Card Floating)
+   HEADER & MASTHEAD (Open Editorial Masthead: No Boxed Card Floating)
    ========================================================================== */
 .hc-header {
   background: transparent !important;
@@ -463,6 +463,8 @@ body::-webkit-scrollbar-corner,
   border-radius: var(--radius-md);
   padding: 22px 24px;
   box-shadow: var(--shadow-sm);
+  box-sizing: border-box !important;
+  max-width: 100% !important;
 }
 
 .hc-kpi-card--model-b {
@@ -961,13 +963,23 @@ body::-webkit-scrollbar-corner,
    GRADIO TABS & CONTROLS POLISH (Anti-Slop)
    ========================================================================== */
 /* Tabs styling */
-.tab-nav {
-  border-bottom: 2px solid var(--border) !important;
-  background: transparent !important;
-  gap: 8px !important;
+.tab-wrapper {
+  height: auto !important;
   margin-bottom: 24px !important;
 }
 
+.tab-container,
+.tab-nav {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  border-bottom: 2px solid var(--border) !important;
+  background: transparent !important;
+  gap: 8px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.tab-container button[role="tab"],
 .tab-nav button {
   font-family: var(--font-sans) !important;
   font-size: 0.92rem !important;
@@ -980,13 +992,17 @@ body::-webkit-scrollbar-corner,
   padding: 10px 18px !important;
   transition: all 0.15s ease !important;
   border-radius: 0 !important;
+  min-height: 44px !important;
+  cursor: pointer !important;
 }
 
+.tab-container button[role="tab"]:hover,
 .tab-nav button:hover {
   color: var(--accent) !important;
   background: var(--accent-tint) !important;
 }
 
+.tab-container button[role="tab"].selected,
 .tab-nav button.selected {
   color: var(--accent) !important;
   font-weight: 600 !important;
@@ -1358,6 +1374,8 @@ body > footer:not(.site-footer) {
   padding: 24px 28px !important;
   margin: 0 0 24px 0 !important;
   box-shadow: var(--shadow-sm) !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important;
 }
 
 .hc-plain-summary-kicker {
@@ -1416,7 +1434,7 @@ body > footer:not(.site-footer) {
 }
 
 /* ==========================================================================
-   VERTICAL TABLE OF CONTENTS DOT RAIL (MINIMAL FLOATING DOTS - NO BACKGROUND)
+   VERTICAL TABLE OF CONTENTS DOT RAIL (MINIMAL FLOATING DOTS: NO BACKGROUND)
    ========================================================================== */
 #hc-toc-rail {
   position: fixed !important;
@@ -1437,9 +1455,9 @@ body > footer:not(.site-footer) {
   -webkit-user-select: none !important;
 }
 
-@media (max-width: 1420px) {
+@media (min-width: 1201px) {
   #hc-toc-rail {
-    display: none !important;
+    display: flex !important;
   }
 }
 
@@ -1556,8 +1574,8 @@ body > footer:not(.site-footer) {
 
 /* ==========================================================================
    UI CHROME vs CONTENT SELECTION ARCHITECTURE
-   - UI Controls / Chrome: KHÔNG THỂ BÔI ĐEN (user-select: none)
-   - Nội dung nghiên cứu / Bài viết / Thẻ tóm tắt / Số liệu: HOÀN TOÀN COPY ĐƯỢC (user-select: text)
+  : UI Controls / Chrome: KHÔNG THỂ BÔI ĐEN (user-select: none)
+  : Nội dung nghiên cứu / Bài viết / Thẻ tóm tắt / Số liệu: HOÀN TOÀN COPY ĐƯỢC (user-select: text)
    ========================================================================== */
 
 /* 1. THÀNH PHẦN GIAO DIỆN / UI CHROME (Không cho bôi đen / copy) */
@@ -1637,7 +1655,7 @@ table, tr, td, th,
 
 /* ==========================================================================
 
-   STRICT FOOTER PROTECTION - ZERO TEXT SELECTION EVER
+   STRICT FOOTER PROTECTION: ZERO TEXT SELECTION EVER
 
    Khóa 100% khả năng bôi đen / highlight mọi chữ, dòng, thẻ p, div trong footer
 
@@ -1782,11 +1800,168 @@ table, tr, td, th,
   }
 }
 
-/* Phone portrait screen adjustments */
+
+/* phan dau va nut hanh dong */
+.hc-header-notice {
+  font-size: 0.90rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 14px 0;
+  line-height: 1.5;
+}
+
+.hc-header-problem {
+  background: #f8fafc;
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  margin: 0 0 16px 0;
+}
+
+.hc-header-problem p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.hc-what-i-built {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin: 0 0 18px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.hc-wib-header {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.hc-wib-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+.hc-wib-item {
+  font-size: 0.90rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.hc-wib-item strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.hc-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0 10px 0;
+  width: 100%;
+}
+
+.hc-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.hc-cta-btn--primary {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--accent) !important;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.3);
+}
+
+.hc-cta-btn--primary:hover {
+  background: var(--accent-hover) !important;
+  color: #ffffff !important;
+}
+
+.hc-cta-btn--secondary {
+  background: #ffffff !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.hc-cta-btn--secondary:hover {
+  background: var(--bg) !important;
+  border-color: var(--border-hover) !important;
+}
+
+.hc-usage-guide {
+  font-size: 0.90rem;
+  color: var(--text-muted);
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.hc-chart-caption {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 6px 0 16px 0;
+}
+
+.about-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* dinh dang man hinh dien thoai */
 @media (max-width: 640px) {
+  .gradio-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px max(16px, env(safe-area-inset-right)) 60px max(16px, env(safe-area-inset-left)) !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .gradio-container .fillable.app,
+  .gradio-container .main,
+  main.app {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .tabitem {
+    padding: 10px 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .html-container {
+    padding: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  #hc-toc-rail {
+    display: none !important;
+  }
   .hc-header {
-    padding: 8px 0 12px 0 !important;
-    margin-bottom: 12px !important;
+    padding: 6px 0 10px 0 !important;
+    margin-bottom: 10px !important;
   }
   .hc-header-meta {
     gap: 4px 6px !important;
@@ -1794,13 +1969,55 @@ table, tr, td, th,
     margin-bottom: 8px !important;
   }
   .hc-header-title {
-    font-size: clamp(1.2rem, 5vw, 1.55rem) !important;
-    line-height: 1.22 !important;
-    margin-bottom: 8px !important;
+    font-size: clamp(26px, 6.5vw, 30px) !important;
+    line-height: 1.25 !important;
+    font-family: var(--font-serif) !important;
+    font-weight: 600 !important;
+    color: var(--text) !important;
+    margin: 10px 0 8px 0 !important;
+    letter-spacing: -0.015em !important;
   }
-  .hc-header-lead {
-    font-size: 0.88rem !important;
+  .hc-header-notice {
+    font-size: 15px !important;
     line-height: 1.45 !important;
+    margin-bottom: 10px !important;
+  }
+  .hc-header-problem {
+    padding: 12px 14px !important;
+    margin-bottom: 14px !important;
+  }
+  .hc-header-problem p {
+    font-size: 18px !important;
+    line-height: 1.55 !important;
+  }
+  .hc-what-i-built {
+    padding: 14px 14px !important;
+    margin-bottom: 14px !important;
+  }
+  .hc-wib-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .hc-wib-item {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+  }
+  .hc-cta-row {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+    margin: 14px 0 10px 0 !important;
+  }
+  .hc-cta-btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    height: 50px !important;
+    font-size: 17px !important;
+  }
+  .hc-usage-guide {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 14px !important;
   }
   .hc-kpi-grid {
     grid-template-columns: 1fr !important;
@@ -1818,6 +2035,149 @@ table, tr, td, th,
   .gradio-container .column {
     width: 100% !important;
     min-width: 100% !important;
+  }
+  /* dieu huong tab tren man hinh nho */
+  .tab-wrapper {
+    height: auto !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+  .tab-wrapper .visually-hidden button {
+    font-size: 10px !important;
+    padding: 2px 4px !important;
+    min-width: 0 !important;
+    letter-spacing: -0.5px !important;
+  }
+  .tab-wrapper .overflow-menu {
+    display: none !important;
+  }
+  .tab-container,
+  .tab-nav {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    border-bottom: none !important;
+    background: #f1f5f9 !important;
+    padding: 4px !important;
+    border-radius: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .tab-container button[role="tab"],
+  .tab-nav button,
+  [role="tab"] {
+    width: 100% !important;
+    min-height: 44px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+    border: none !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 0 !important;
+    padding: 6px 8px !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
+    border-bottom: none !important;
+  }
+  .tab-container button[role="tab"].selected,
+  .tab-nav button.selected,
+  [role="tab"].selected {
+    background: #ffffff !important;
+    color: var(--accent) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: none !important;
+  }
+  .hc-plain-summary-card,
+  .hc-bento-card,
+  .hc-kpi-card,
+  .hc-findings-card,
+  .about-summary-box {
+    padding: 14px 16px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+  }
+  .about-summary-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .about-rows > div {
+    grid-template-columns: 1fr !important;
+    padding: 12px 0 !important;
+    gap: 4px !important;
+  }
+  .about-rows dt,
+  .about-rows dd {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+  }
+  /* co chu doc tren dien thoai */
+  p, li, .hc-header-lead, .hc-plain-col p, .hc-bento-card p, .hc-kpi-card p, .hc-findings-card p, .about-summary-box p, .about-rows dd {
+    font-size: 18px !important;
+    line-height: 1.55 !important;
+  }
+  .hc-section-title {
+    font-size: 24px !important;
+    line-height: 1.3 !important;
+  }
+  .hc-plain-summary-title {
+    font-size: 22px !important;
+    line-height: 1.35 !important;
+  }
+  .t-h1 {
+    font-size: 28px !important;
+    line-height: 1.25 !important;
+  }
+  .t-h2 {
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+  }
+  .gr-dataframe,
+  .gr-dataframe .table-wrap,
+  .gr-dataframe .wrap,
+  .gr-table,
+  .table-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-width: 100% !important;
+  }
+  .gr-dataframe table,
+  .table-wrap table {
+    min-width: 650px !important;
+    width: max-content !important;
+  }
+  #hc-back-to-top {
+    bottom: 20px !important;
+    right: 20px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: 50% !important;
+  }
+  .site-footer,
+  #hc-institutional-footer {
+    padding-bottom: 72px !important;
+  }
+  .js-plotly-plot .plotly .modebar-container {
+    display: none !important;
   }
 }
 
@@ -1878,5 +2238,230 @@ table, tr, td, th,
   .gradio-container {
     padding-left: calc(env(viewport-segment-left 0 0, 0px) + 16px) !important;
     padding-right: calc(env(viewport-segment-right 0 1, 0px) + 16px) !important;
+  }
+}
+
+
+/* nut muc luc vien thuoc tren di dong */
+#hc-mobile-toc-fab {
+  position: fixed !important;
+  left: max(14px, env(safe-area-inset-left)) !important;
+  bottom: max(16px, env(safe-area-inset-bottom)) !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  padding: 0 16px 0 14px !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border: 1px solid rgba(2, 132, 199, 0.28) !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: var(--accent) !important;
+  cursor: pointer !important;
+  z-index: 9998 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  box-sizing: border-box !important;
+  transition: transform 0.15s ease, background 0.15s ease !important;
+}
+
+#hc-mobile-toc-fab:active {
+  transform: scale(0.96) !important;
+  background: #ffffff !important;
+}
+
+/* man mo phu ngan keo */
+#hc-mobile-toc-scrim {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(15, 23, 42, 0.45) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 9999 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.25s ease !important;
+}
+
+#hc-mobile-toc-scrim.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* khung ngan keo muc luc truot tu duoi len */
+#hc-mobile-toc-sheet {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  max-height: 68vh !important;
+  background: #ffffff !important;
+  border-top: 1px solid var(--border) !important;
+  border-radius: 20px 20px 0 0 !important;
+  z-index: 10000 !important;
+  box-shadow: 0 -10px 35px rgba(15, 23, 42, 0.14) !important;
+  padding: 16px 18px calc(24px + env(safe-area-inset-bottom)) !important;
+  transform: translateY(105%) !important;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  box-sizing: border-box !important;
+}
+
+#hc-mobile-toc-sheet.is-open {
+  transform: translateY(0) !important;
+}
+
+.hc-drawer-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 12px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.hc-drawer-title {
+  font-family: var(--font-mono) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  color: var(--accent) !important;
+}
+
+#hc-drawer-close {
+  background: none !important;
+  border: none !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  color: var(--text-muted) !important;
+  cursor: pointer !important;
+  padding: 6px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.hc-drawer-item {
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 14px !important;
+  border-radius: 8px !important;
+  font-family: var(--font-serif) !important;
+  font-size: 17px !important;
+  line-height: 1.35 !important;
+  color: var(--text) !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+  margin-bottom: 4px !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.hc-drawer-item.is-active {
+  background: rgba(2, 132, 199, 0.10) !important;
+  color: var(--accent) !important;
+  font-weight: 700 !important;
+}
+
+
+/* khung tom tat executive summary trang about */
+.about-summary-box {
+  margin-bottom: 36px !important;
+  background-color: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 6px 20px -2px rgba(15, 23, 42, 0.04) !important;
+  padding: 28px 32px !important;
+  box-sizing: border-box !important;
+}
+
+.about-summary-kicker {
+  font-family: var(--font-mono) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--accent) !important;
+  margin-bottom: 8px !important;
+}
+
+.about-summary-title {
+  font-family: var(--font-serif) !important;
+  font-size: 1.55rem !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  line-height: 1.3 !important;
+  margin: 0 0 22px 0 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.about-summary-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0 !important;
+  border-top: 1px solid var(--border) !important;
+  padding-top: 22px !important;
+}
+
+.about-summary-col {
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+}
+
+.about-summary-col:first-child {
+  padding-left: 0 !important;
+}
+
+.about-summary-col:last-child {
+  padding-right: 0 !important;
+}
+
+.about-summary-col + .about-summary-col {
+  border-left: 1px solid var(--border) !important;
+}
+
+.about-col-label {
+  font-family: var(--font-mono) !important;
+  font-size: 0.80rem !important;
+  font-weight: 700 !important;
+  color: var(--accent) !important;
+  letter-spacing: 0.04em !important;
+  margin-bottom: 8px !important;
+}
+
+.about-col-text {
+  font-size: 0.90rem !important;
+  line-height: 1.6 !important;
+  color: var(--text-muted) !important;
+  margin: 0 !important;
+}
+/* dinh dang executive summary tren man hinh hep */
+@media (max-width: 860px) {
+  .about-summary-box {
+    padding: 20px 18px !important;
+  }
+  .about-summary-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .about-summary-col {
+    padding: 16px 0 0 0 !important;
+  }
+  .about-summary-col:first-child {
+    padding-top: 0 !important;
+  }
+  .about-summary-col + .about-summary-col {
+    border-left: none !important;
+    border-top: 1px solid var(--border) !important;
   }
 }

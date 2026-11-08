@@ -19,6 +19,8 @@ def get_base64_image(filename: str, mime: str = "image/png") -> str:
 
 LOGO_URI = get_base64_image("favicon-96x96.png", "image/png")
 AVATAR_URI = get_base64_image("avatar.jpg", "image/jpeg")
+POSTER_URI = get_base64_image("poster.png", "image/png")
+POSTER_PDF_URI = get_base64_image("poster.pdf", "application/pdf")
 
 
 def render_masthead_html() -> str:
@@ -28,21 +30,53 @@ def render_masthead_html() -> str:
         else ""
     )
     return f"""
-<header class="hc-header">
+<header class="hc-header" id="hc-top-header">
   <div class="hc-header-meta">
     {logo_img}
     <span class="hc-brand">HIDDENCARE</span>
-    <span class="hc-meta-bullet">•</span>
-    <span class="hc-meta-tag">CDC NHANES 2017–2023</span>
-    <span class="hc-meta-bullet">•</span>
-    <span class="hc-meta-tag">Population Health Sciences</span>
-    <span class="hc-meta-bullet">•</span>
+    <span class="hc-meta-bullet">&#8226;</span>
+    <span class="hc-meta-tag">CDC NHANES Data</span>
+    <span class="hc-meta-bullet">&#8226;</span>
     <span class="hc-meta-tag">Algorithmic Epidemiology Lab</span>
   </div>
-  <h1 class="hc-header-title">When Clinical History Masks Biological Reality</h1>
-  <p class="hc-header-lead">
-    How training label definitions reorder the undiagnosed screening queue in population diabetes detection: 
-    An empirical investigation of proxy outcome bias across N = 12,459 adults.
+  <h1 class="hc-header-title">
+    HiddenCare compares two ways of choosing who gets screened for diabetes when a clinic cannot test everyone.
+  </h1>
+  <p class="hc-header-notice">
+    Interactive research study on public health data. Not an individual diagnosis tool or hospital-deployed system.
+  </p>
+  <div class="hc-header-problem">
+    <p>
+      When screening algorithms learn only from past diagnosis records, people who rarely visit doctors can be misclassified as low risk. This project compares how training label definitions reorder screening triage priorities across a population under finite testing capacity.
+    </p>
+  </div>
+  <div class="hc-what-i-built">
+    <div class="hc-wib-header">What I Built</div>
+    <div class="hc-wib-grid">
+      <div class="hc-wib-item">
+        <strong>Data Engineering:</strong> Curated and validated N = 12,459 adult records from CDC NHANES (2017 to 2023) with complex survey weights and missingness audits.
+      </div>
+      <div class="hc-wib-item">
+        <strong>Model Comparison:</strong> Trained gradient-boosted models comparing administrative diagnosis labels (Model A) against biomarker-augmented labels (Model B: HbA1c &ge; 6.5%).
+      </div>
+      <div class="hc-wib-item">
+        <strong>Screening Simulator:</strong> Built an interactive triage engine simulating 5% to 50% capacity constraints with dynamic queue thresholds.
+      </div>
+      <div class="hc-wib-item">
+        <strong>Equity & Decision Audits:</strong> Quantified health insurance sensitivity divides, boundary queue swaps, and net monetary benefit via decision curves.
+      </div>
+    </div>
+  </div>
+  <div class="hc-cta-row">
+    <a href="#sec-simulation" class="hc-cta-btn hc-cta-btn--primary" id="btn-try-simulator">
+      Try the simulator
+    </a>
+    <a href="https://github.com/aansensei/HiddenCare" target="_blank" rel="noopener noreferrer" class="hc-cta-btn hc-cta-btn--secondary" id="btn-view-source">
+      View source code
+    </a>
+  </div>
+  <p class="hc-usage-guide">
+    <strong>How to use:</strong> Adjust the screening budget slider below to compare how both models allocate test slots and detect hidden cases.
   </p>
 </header>
 """
@@ -109,7 +143,7 @@ def render_hero_summary_cards() -> str:
     </div>
     <div class="hc-plain-col">
       <div class="hc-plain-step">3. The Biological Rescue</div>
-      <p>Retraining on actual CDC lab blood tests (Model B) swaps 61 overlooked people into the queue, finding 3.0× more hidden diabetes cases.</p>
+      <p>At the 20% budget cutoff, Model B swaps 61 overlooked people into the queue, achieving a 3.0x higher hit rate (4.92% vs 1.64%, or 3 cases vs 1 case) in that marginal swapped cohort compared to Model A. Across the full 939-person queue, Model B detects 55 latent cases compared to 53 for Model A (+2 net cases overall).</p>
     </div>
   </div>
 </section>
@@ -122,7 +156,8 @@ def render_hero_summary_cards() -> str:
       <div class="hc-finding-value num" style="color: var(--accent); margin: 8px 0 4px 0;">61 Patients Swapped</div>
       <p style="margin: 0 0 16px 0; font-size: 0.90rem; color: var(--text-muted); line-height: 1.55;">
         At the 939-slot boundary (K = 20%), Model B rescues <strong>3 true cases</strong> missed by Model A, 
-        delivering a <strong>3.0× higher marginal yield (4.92% vs 1.64%)</strong>.
+        delivering a <strong>3.0x higher marginal yield (4.92% vs 1.64%)</strong> among the 61 swapped candidates. 
+        Across the entire 939-person queue, Model B detects 55 latent cases vs 53 for Model A (+2 net cases overall).
       </p>
     </div>
     <div class="hc-finding-detail" style="border-top: 1px solid rgba(2, 132, 199, 0.2); padding-top: 12px; font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
@@ -134,7 +169,7 @@ def render_hero_summary_cards() -> str:
   <!-- Bento 2: Evaluation Holdout -->
   <article class="hc-bento-card">
     <div>
-      <span class="hc-section-kicker">Evaluation Cohort • Aug 2021–Aug 2023</span>
+      <span class="hc-section-kicker">Evaluation Cohort • Aug 2021 to Aug 2023</span>
       <div class="hc-finding-value num" style="margin: 8px 0 4px 0;">N = 4,698 Adults</div>
       <p style="margin: 0 0 16px 0; font-size: 0.90rem; color: var(--text-muted); line-height: 1.55;">
         Strictly previously undiagnosed adults with zero temporal overlap with training data. 
@@ -150,7 +185,7 @@ def render_hero_summary_cards() -> str:
   <!-- Bento 3: Development Benchmark -->
   <article class="hc-bento-card">
     <div>
-      <span class="hc-section-kicker">Training Benchmark • 2017–Mar 2020</span>
+      <span class="hc-section-kicker">Training Benchmark • 2017 to Mar 2020</span>
       <div class="hc-finding-value num" style="margin: 8px 0 4px 0;">N = 7,761 Adults</div>
       <p style="margin: 0 0 16px 0; font-size: 0.90rem; color: var(--text-muted); line-height: 1.55;">
         Pre-pandemic baseline comparing administrative self-report labels against 
@@ -380,30 +415,30 @@ def render_about_page_html() -> str:
     </p>
   </div>
 
-  <!-- Executive Summary Box (Top of About Page) -->
-  <section class="about-section about-summary-box" id="sec-about-summary" data-toc="00 • Executive Summary" style="margin-bottom: 32px; padding: 26px 30px; background: #ffffff; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-    <div style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 8px;">
+  <!-- executive summary tren dau trang about -->
+  <section class="about-section about-summary-box" id="sec-about-summary" data-toc="00 • Executive Summary">
+    <div class="about-summary-kicker">
       Executive Summary • Study Abstract
     </div>
-    <h3 style="font-family: var(--font-serif); font-size: 1.45rem; font-weight: 600; color: var(--text); line-height: 1.3; margin: 0 0 16px 0; letter-spacing: -0.015em;">
+    <h3 class="about-summary-title">
       Decoupling Disease Detection from Healthcare Access
     </h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
-      <div style="padding: 14px 16px; background-color: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
-        <div style="font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 6px;">The Structural Bias</div>
-        <p style="font-size: 0.86rem; line-height: 1.55; color: var(--text-muted); margin: 0;">
+    <div class="about-summary-grid">
+      <div class="about-summary-col">
+        <div class="about-col-label">01 / The Structural Bias</div>
+        <p class="about-col-text">
           Algorithms trained solely on self-reported doctor diagnoses or administrative billing codes conflate biological disease with healthcare access, misclassifying unvisited sick patients as healthy baseline.
         </p>
       </div>
-      <div style="padding: 14px 16px; background-color: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
-        <div style="font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 6px;">The 61-Patient Proof</div>
-        <p style="font-size: 0.86rem; line-height: 1.55; color: var(--text-muted); margin: 0;">
-          Across N = 4,698 undiagnosed adults from CDC NHANES 2021–2023, retraining on observed venous HbA1c swaps 61 individuals at the 20% budget line, uncovering 3 hidden diabetes cases at 3.0× higher precision ($0 extra cost).
+      <div class="about-summary-col">
+        <div class="about-col-label">02 / The 61-Patient Proof</div>
+        <p class="about-col-text">
+          Across N = 4,698 undiagnosed adults from CDC NHANES 2021 to 2023, retraining on observed venous HbA1c swaps 61 individuals at the 20% budget line, uncovering 3 hidden diabetes cases at 3.0x higher precision ($0 extra cost).
         </p>
       </div>
-      <div style="padding: 14px 16px; background-color: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
-        <div style="font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 6px;">The Health Equity Dividend</div>
-        <p style="font-size: 0.86rem; line-height: 1.55; color: var(--text-muted); margin: 0;">
+      <div class="about-summary-col">
+        <div class="about-col-label">03 / The Health Equity Dividend</div>
+        <p class="about-col-text">
           Biomarker-augmented triage eliminates an 8.6% sensitivity deficit suffered by uninsured Americans under traditional models, yielding +$25,500 net economic benefit per 10,000 screened individuals.
         </p>
       </div>
@@ -420,11 +455,11 @@ def render_about_page_html() -> str:
       </div>
       <div>
         <dt>What it does</dt>
-        <dd>Re-evaluates N = 4,698 previously undiagnosed US adults from the post-pandemic CDC NHANES 2021–2023 cycle under fixed screening budgets (10%, 20%, 30%). Identifies the exact individuals who shift in the triage queue and audits who gets left behind across insurance and income strata.</dd>
+        <dd>Re-evaluates N = 4,698 previously undiagnosed US adults from the post-pandemic CDC NHANES 2021 to 2023 cycle under fixed screening budgets (10%, 20%, 30%). Identifies the exact individuals who shift in the triage queue and audits who gets left behind across insurance and income strata.</dd>
       </div>
       <div>
         <dt>How</dt>
-        <dd>Trains regularized Logistic Regression on pre-pandemic NHANES (2017–March 2020; N = 7,761) comparing Diagnosis-Only labels (Label A) against Biomarker-Augmented labels (Label B: Diagnosis OR HbA1c &ge; 6.5%), holding non-invasive predictors (age, sex, BMI, waist circumference) completely identical.</dd>
+        <dd>Trains regularized Logistic Regression on pre-pandemic NHANES (2017 to March 2020; N = 7,761) comparing Diagnosis-Only labels (Label A) against Biomarker-Augmented labels (Label B: Diagnosis OR HbA1c &ge; 6.5%), holding non-invasive predictors (age, sex, BMI, waist circumference) completely identical.</dd>
       </div>
       <div>
         <dt>Built with</dt>
@@ -476,14 +511,153 @@ def render_about_page_html() -> str:
     </ul>
   </section>
 
-  <!-- Author Profile -->
-  <section class="about-section" id="sec-about-author" data-toc="04 • Author Profile" aria-labelledby="about-author">
+    <!-- academic research poster -->
+  <section class="about-section" id="sec-about-poster" data-toc="04 • Academic Poster">
+    <h3 class="t-h2">Academic Research Poster</h3>
+    <p class="about-lead" style="font-size: 0.95rem; margin-bottom: 16px;">
+      One-page research conference poster synthesizing the core scientific hypothesis, CDC NHANES temporal validation protocol, the 61-patient proof, decision curve analysis, and health equity dividends.
+    </p>
+    <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 16px;">
+      <div style="width: 100%; overflow: hidden; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+        <img src="{POSTER_URI}" alt="HiddenCare Academic Research Poster" style="width: 100%; height: auto; display: block;" />
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="{POSTER_PDF_URI}" download="HiddenCare_Research_Poster_AanSensei.pdf" class="hc-cta-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: var(--accent); color: #ffffff; border-radius: var(--radius-sm); min-height: 44px;">
+          Download Poster (PDF)
+        </a>
+        <a href="{POSTER_URI}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; font-size: 0.88rem; font-weight: 600; background: #ffffff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); min-height: 44px;">
+          View High-Res Image (PNG)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- complex survey variance and model robustness -->
+  <section class="about-section" id="sec-about-stats" data-toc="05 • Survey Variance & Robustness">
+    <h3 class="t-h2">Survey Variance & Model Robustness</h3>
+    <p class="about-lead" style="font-size: 0.95rem; margin-bottom: 16px;">
+      Addressing complex multistage survey variance via Taylor Series Linearization and verifying algorithmic fairness across nonlinear machine learning architectures.
+    </p>
+    
+    <!-- bang sai so khao sat phuc hop -->
+    <div style="margin-bottom: 24px;">
+      <h4 style="font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 0 0 8px 0;">
+        Taylor Series Linearization (CDC NHANES 95% Confidence Intervals)
+      </h4>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 12px 0; line-height: 1.5;">
+        Standard IID formulas underestimate variance in clustered populations. We implement Taylor Series Linearization across masked survey strata and primary sampling units (WTPH2YR weights, df = 15):
+      </p>
+      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: var(--radius-sm);">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.86rem; text-align: left;">
+          <thead>
+            <tr style="background: var(--bg); border-bottom: 1px solid var(--border);">
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Capacity</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Model Policy</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Weighted Sensitivity (95% CI)</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Weighted PPV (95% CI)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 14px; font-weight: 600;">10% Budget</td>
+              <td style="padding: 10px 14px; color: var(--text-muted);">Model A (Diagnosis Only)</td>
+              <td style="padding: 10px 14px;" class="num">25.25% [16.1%, 34.4%]</td>
+              <td style="padding: 10px 14px;" class="num">7.33% [4.0%, 10.7%]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border); background: var(--accent-tint);">
+              <td style="padding: 10px 14px; font-weight: 600;">10% Budget</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);">Model B (Biomarker Augmented)</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">28.77% [19.2%, 38.3%]</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">8.23% [4.8%, 11.7%]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 14px; font-weight: 600;">20% Budget</td>
+              <td style="padding: 10px 14px; color: var(--text-muted);">Model A (Diagnosis Only)</td>
+              <td style="padding: 10px 14px;" class="num">40.08% [28.9%, 51.2%]</td>
+              <td style="padding: 10px 14px;" class="num">5.79% [3.6%, 8.0%]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border); background: var(--accent-tint);">
+              <td style="padding: 10px 14px; font-weight: 600;">20% Budget</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);">Model B (Biomarker Augmented)</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">42.47% [28.4%, 56.5%]</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">6.02% [3.4%, 8.6%]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 14px; font-weight: 600;">30% Budget</td>
+              <td style="padding: 10px 14px; color: var(--text-muted);">Model A (Diagnosis Only)</td>
+              <td style="padding: 10px 14px;" class="num">53.14% [39.9%, 66.3%]</td>
+              <td style="padding: 10px 14px;" class="num">5.03% [3.2%, 6.8%]</td>
+            </tr>
+            <tr style="background: var(--accent-tint);">
+              <td style="padding: 10px 14px; font-weight: 600;">30% Budget</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);">Model B (Biomarker Augmented)</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">58.13% [41.8%, 74.5%]</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">5.38% [3.2%, 7.6%]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- bang kiem dinh do ben mo hinh phi tuyen -->
+    <div>
+      <h4 style="font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 0 0 8px 0;">
+        Nonlinear Model Robustness (Random Forest & Gradient Boosting)
+      </h4>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 12px 0; line-height: 1.5;">
+        To ensure the 61-patient proof is not an artifact of linear models, we retrained on ensemble decision trees. Across architectures, Model B consistently preserves higher sensitivity and boosts uninsured detection:
+      </p>
+      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: var(--radius-sm);">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.86rem; text-align: left;">
+          <thead>
+            <tr style="background: var(--bg); border-bottom: 1px solid var(--border);">
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Algorithm</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Model A Cases</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Model B Cases</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Margin Swaps</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Swap Precision Ratio</th>
+              <th style="padding: 10px 14px; font-weight: 700; color: var(--text);">Uninsured Sensitivity Boost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 14px; font-weight: 600;">Logistic Regression</td>
+              <td style="padding: 10px 14px;" class="num">53 / 116</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">55 / 116</td>
+              <td style="padding: 10px 14px;" class="num">61</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">3.0x</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">+7.7% (+1 case)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 14px; font-weight: 600;">Random Forest</td>
+              <td style="padding: 10px 14px;" class="num">60 / 116</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">61 / 116</td>
+              <td style="padding: 10px 14px;" class="num">77</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">1.25x</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">+15.38% (46.2% vs 30.8%)</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 14px; font-weight: 600;">Gradient Boosting</td>
+              <td style="padding: 10px 14px;" class="num">59 / 116</td>
+              <td style="padding: 10px 14px; font-weight: 600; color: var(--accent);" class="num">59 / 116</td>
+              <td style="padding: 10px 14px;" class="num">132</td>
+              <td style="padding: 10px 14px;" class="num">1.0x</td>
+              <td style="padding: 10px 14px;" class="num">30.8% vs 30.8%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+<!-- Author Profile -->
+  <section class="about-section" id="sec-about-author" data-toc="06 • Author Profile" aria-labelledby="about-author">
     <h3 class="t-h2" id="about-author" style="margin-bottom: 16px;">Author</h3>
     <div class="author-card" style="display: grid; grid-template-columns: 110px 1fr; gap: 28px; align-items: start; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
       {avatar_html}
       <div class="author-body" style="display: flex; flex-direction: column;">
         <h4 class="author-name" style="font-size: 1.4rem; font-weight: 700; color: var(--text); margin: 0 0 4px 0; letter-spacing: -0.01em;">Cao Thien An Nguyen</h4>
-        <p class="author-role" style="font-size: 0.95rem; font-weight: 600; color: var(--accent); margin: 0 0 12px 0;">Data Science & Economics, University of Wisconsin–Madison</p>
+        <p class="author-role" style="font-size: 0.95rem; font-weight: 600; color: var(--accent); margin: 0 0 12px 0;">Data Science & Economics, University of Wisconsin, Madison</p>
         <p class="author-bio" style="font-size: 0.92rem; line-height: 1.65; color: var(--text-muted); margin: 0 0 14px 0; max-width: 68ch;">
           From Ho Chi Minh City, Vietnam, now in Madison, where the winters are long enough to build a
           whole data pipeline indoors. I blend economics with data science to turn raw data into stories
@@ -559,7 +733,7 @@ def render_about_page_html() -> str:
   </section>
 
   <!-- Prominent Clinical & Methodological Disclaimer -->
-  <section class="disclaimer-callout" id="sec-about-disclaimer" data-toc="05 • Disclaimer" aria-labelledby="about-disclaimer">
+  <section class="disclaimer-callout" id="sec-about-disclaimer" data-toc="07 • Disclaimer" aria-labelledby="about-disclaimer">
     <div class="disclaimer-header">
       <span class="disclaimer-badge">Institutional & Research Notice</span>
       <h3 class="disclaimer-title" id="about-disclaimer">Clinical & Methodological Disclaimer</h3>
@@ -572,7 +746,7 @@ def render_about_page_html() -> str:
         <strong>Epidemiological Surveillance vs Clinical Diagnosis:</strong> In cross-sectional population surveys such as CDC NHANES, an elevated laboratory Glycohemoglobin (HbA1c &ge; 6.5%) measurement serves as a biological screening surrogate. Under clinical practice guidelines (such as the American Diabetes Association Standards of Care), an authoritative diagnosis of Type 2 Diabetes requires confirmatory repeat testing or clinical adjudication. Individual patient triage decisions should always be directed by licensed medical professionals.
       </p>
       <p>
-        <strong>Data Attribution:</strong> This research utilizes public microdata from the continuous National Health and Nutrition Examination Survey (NHANES 2017–2023) administered by the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC). This independent investigation is neither conducted, endorsed, nor certified by the CDC or NCHS.
+        <strong>Data Attribution:</strong> This research utilizes public microdata from the continuous National Health and Nutrition Examination Survey (NHANES 2017 to 2023) administered by the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC). This independent investigation is neither conducted, endorsed, nor certified by the CDC or NCHS.
       </p>
     </div>
   </section>
@@ -599,7 +773,7 @@ def render_footer_html() -> str:
       </p>
       <div class="footer-status">
         <span class="footer-status-dot" aria-hidden="true"></span>
-        <span>CDC NHANES Continuous Biomonitoring 2017–2023</span>
+        <span>CDC NHANES Continuous Biomonitoring 2017 to 2023</span>
       </div>
       <div class="footer-social">
         <a class="footer-social-btn" href="https://github.com/aansensei" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
@@ -641,7 +815,7 @@ def render_footer_html() -> str:
       <ul class="footer-list">
         <li class="footer-source">
           <a class="footer-link" href="https://wwwn.cdc.gov/nchs/nhanes/" target="_blank" rel="noopener noreferrer">CDC NCHS NHANES</a>
-          <span class="footer-role">Continuous Cycles 2017–2023</span>
+          <span class="footer-role">Continuous Cycles 2017 to 2023</span>
         </li>
         <li class="footer-source">
           <a class="footer-link" href="https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/GHB_J.htm" target="_blank" rel="noopener noreferrer">Glycohemoglobin (GHB)</a>

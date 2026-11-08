@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!-- poster nghien cuu hoc thuat mot trang hiddencare -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HiddenCare: Academic Research Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700&display=swap" rel="stylesheet">
+  <style>
+    /* bang mau lam sang va quy chuan ty le poster */
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: rgba(15, 23, 42, 0.12);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --accent: #0284c7;
+      --accent-tint: rgba(2, 132, 199, 0.08);
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #e2e8f0;
+      font-family: var(--font-sans);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+    .poster-canvas {
+      width: 1400px;
+      min-height: 940px;
+      background: #ffffff;
+      padding: 40px 48px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .poster-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-main {
+      max-width: 980px;
+    }
+    .header-kicker {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .header-title {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .header-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .header-meta {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .author-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .author-dept {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+    .poster-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .card-body {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+    .stat-callout {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-top: 4px;
+    }
+    .stat-num {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+    .poster-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .links-row {
+      display: flex;
+      gap: 24px;
+      font-weight: 600;
+    }
+    .links-row a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-canvas">
+    <!-- phan dau tieu de poster -->
+    <header class="poster-header">
+      <div class="header-main">
+        <div class="header-kicker">Population Health Data Science: Algorithmic Epidemiology</div>
+        <h1 class="header-title">Decoupling Disease Detection from Healthcare Access</h1>
+        <p class="header-subtitle">
+          Evaluating Proxy Label Bias and Algorithmic Triage Fairness in Population Screening Under Finite Testing Capacity
+        </p>
+      </div>
+      <div class="header-meta">
+        <div class="author-name">Cao Thien An Nguyen</div>
+        <div class="author-dept">Data Science & Economics</div>
+        <div>University of Wisconsin, Madison</div>
+        <div style="font-family: monospace; font-size: 12px;">cnguyen49@wisc.edu</div>
+      </div>
+    </header>
+
+    <!-- luoi 4 cot noi dung poster -->
+    <main class="poster-grid">
+      <!-- cot 1: van de va thiet ke khao sat -->
+      <section class="poster-col">
+        <article class="card">
+          <div class="card-kicker">01 / The Core Question</div>
+          <h2 class="card-title">The Proxy Label Trap</h2>
+          <p class="card-body">
+            Predictive screening algorithms frequently train on administrative billing codes or self-reported history. These endpoints implicitly measure healthcare utilization rather than pure pathology, penalizing undiagnosed, marginalized patients who rarely consult physicians.
+          </p>
+          <div class="stat-callout">
+            <div class="stat-num">N = 12,459</div>
+            <div class="stat-label">CDC NHANES participants curated across pre-pandemic and post-pandemic cycles.</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">02 / Study Design</div>
+          <h2 class="card-title">Temporal Validation Protocol</h2>
+          <p class="card-body">
+            Development cohort: 2017 to March 2020 (N = 7,761). Holdout evaluation cohort: August 2021 to August 2023 (N = 4,698 strictly undiagnosed adults with zero temporal overlap). Model A trains on Diagnosis Only; Model B trains on Biomarker Augmented labels (Diagnosis OR HbA1c &ge; 6.5%).
+          </p>
+        </article>
+      </section>
+
+      <!-- cot 2: ky nghe du lieu va phuong phap -->
+      <section class="poster-col">
+        <article class="card">
+          <div class="card-kicker">03 / Data Engineering</div>
+          <h2 class="card-title">Lakehouse & Data Contracts</h2>
+          <p class="card-body">
+            Built an embedded DuckDB OLAP engine with zero-copy Parquet storage. Enforced strict Pandera data quality contracts to trap schema anomalies:
+          </p>
+          <div class="stat-callout">
+            <div class="stat-num">0% Male Loss</div>
+            <div class="stat-label">Corrected the pregnancy test trap, avoiding silent exclusion of 85% of adult males.</div>
+          </div>
+          <p class="card-body" style="margin-top: 6px;">
+            Target leakage controlled: Predictors strictly restricted to non-invasive demographics (age, sex, BMI, waist circumference).
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">04 / Complex Survey Design</div>
+          <h2 class="card-title">Taylor Series Variance</h2>
+          <p class="card-body">
+            Implemented Taylor Series Linearization across strata and PSUs (WTPH2YR weights) to generate authentic 95% national confidence intervals.
+          </p>
+        </article>
+      </section>
+
+      <!-- cot 3: phat hien 61 ca hoan doi tai bien 20% -->
+      <section class="poster-col">
+        <article class="card">
+          <div class="card-kicker">05 / Empirical Findings</div>
+          <h2 class="card-title">The 61-Patient Proof</h2>
+          <p class="card-body">
+            At a realistic 20% screening capacity (N = 939 slots for 4,698 adults), Model B swaps 61 borderline patients into the screening queue:
+          </p>
+          <div class="stat-callout">
+            <div class="stat-num">3.0x Precision</div>
+            <div class="stat-label">Model B detected 3 hidden diabetes cases in swap group vs 1 for Model A ($0 added testing cost).</div>
+          </div>
+          <div class="stat-callout">
+            <div class="stat-num">+$25,500</div>
+            <div class="stat-label">Net monetary economic benefit per 10,000 screened via Decision Curve Analysis.</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">06 / Model Robustness</div>
+          <h2 class="card-title">Nonlinear Stability</h2>
+          <p class="card-body">
+            Validated across Random Forest and Gradient Boosting architectures: biomarker augmentation consistently yields higher sensitivity at identical test budgets.
+          </p>
+        </article>
+      </section>
+
+      <!-- cot 4: cong bang y te va ket luan -->
+      <section class="poster-col">
+        <article class="card">
+          <div class="card-kicker">07 / Health Equity Audit</div>
+          <h2 class="card-title">Closing the Access Divide</h2>
+          <p class="card-body">
+            Under traditional models, uninsured Americans suffer a significant sensitivity deficit. Biomarker augmentation eliminates this disparity:
+          </p>
+          <div class="stat-callout">
+            <div class="stat-num">+8.6% Sensitivity</div>
+            <div class="stat-label">Direct sensitivity dividend for uninsured Americans without collecting insurance status.</div>
+          </div>
+          <p class="card-body" style="margin-top: 6px;">
+            The model achieves algorithmic fairness not by enforcing demographic parity constraints, but by decoupling pathology labels from healthcare utilization history.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">08 / Target Fellowship</div>
+          <h2 class="card-title">Cornell Biostatistics</h2>
+          <p class="card-body">
+            Designed for the Division of Biostatistics at Weill Cornell Medicine: pre-registered protocol, transparent codebooks, reproducible Python pipelines, and interactive policy simulators.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <!-- phan chan trang poster -->
+    <footer class="poster-footer">
+      <div>
+        <strong>HiddenCare: Decoupling Disease Detection from Healthcare Access</strong> &bull; An Nguyen (AanSensei) &bull; University of Wisconsin, Madison
+      </div>
+      <div class="links-row">
+        <span>Interactive Web App: <a href="https://aansensei.dev/hiddencare/" target="_blank">aansensei.dev/hiddencare</a></span>
+        <span>Hugging Face: <a href="https://huggingface.co/spaces/aansensei/HiddenCare" target="_blank">hf.space/aansensei/HiddenCare</a></span>
+        <span>GitHub Source: <a href="https://github.com/aansensei/HiddenCare" target="_blank">github.com/aansensei/HiddenCare</a></span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

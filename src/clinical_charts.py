@@ -10,26 +10,26 @@ CLINICAL_PLOTLY_LAYOUT = dict(
     paper_bgcolor="#ffffff",
     plot_bgcolor="#ffffff",
     font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
-    title_font=dict(family="Newsreader, Georgia, serif", color="#0f172a", size=16),
-    margin=dict(l=46, r=16, t=54, b=46),
+    title_font=dict(family="Newsreader, Georgia, serif", color="#0f172a", size=15),
+    margin=dict(l=54, r=16, t=65, b=85),
     xaxis=dict(
         gridcolor="#f1f5f9",
         linecolor="#cbd5e1",
         zerolinecolor="#e2e8f0",
-        tickfont=dict(family="Inter, sans-serif", size=12, color="#475569"),
+        tickfont=dict(family="Inter, sans-serif", size=11, color="#475569"),
     ),
     yaxis=dict(
         gridcolor="#f1f5f9",
         linecolor="#cbd5e1",
         zerolinecolor="#e2e8f0",
-        tickfont=dict(family="Inter, sans-serif", size=12, color="#475569"),
+        tickfont=dict(family="Inter, sans-serif", size=11, color="#475569"),
     ),
     legend=dict(
         orientation="h",
-        yanchor="bottom",
-        y=1.02,
-        xanchor="left",
-        x=0,
+        yanchor="top",
+        y=-0.28,
+        xanchor="center",
+        x=0.5,
         bgcolor="rgba(255,255,255,0.95)",
         bordercolor="#e2e8f0",
         borderwidth=1,
@@ -90,10 +90,10 @@ def build_capacity_gain_chart(selected_capacity_pct: int = 20) -> go.Figure:
 
     fig.update_layout(**CLINICAL_PLOTLY_LAYOUT)
     fig.update_layout(
-        title="Screening Capacity vs Potential Cases Detected (Holdout N = 4,698)",
+        title=dict(text="Screening Capacity vs Potential Cases<br><sup>Holdout Cohort N = 4,698</sup>", x=0.02, y=0.96),
         xaxis_title="Screening Capacity (% of Undiagnosed Population)",
         yaxis_title="Potential Undiagnosed Cases Detected (HbA1c >= 6.5%)",
-        height=380,
+        height=400,
     )
     return fig
 
@@ -145,10 +145,10 @@ def build_nns_chart(selected_capacity_pct: int = 20) -> go.Figure:
 
     fig.update_layout(**CLINICAL_PLOTLY_LAYOUT)
     fig.update_layout(
-        title="Number Needed to Screen (NNS) per Case Detected",
+        title=dict(text="Number Needed to Screen (NNS)<br><sup>Per Potential Case Detected</sup>", x=0.02, y=0.96),
         xaxis_title="Screening Capacity (% of Population)",
         yaxis_title="Lab Tests Required per Case Found (Lower is Better)",
-        height=380,
+        height=400,
     )
     return fig
 
@@ -185,10 +185,10 @@ def build_margin_swap_comparison_chart() -> go.Figure:
 
     fig.update_layout(**CLINICAL_PLOTLY_LAYOUT)
     fig.update_layout(
-        title="The 61-Person Boundary Swap: Positive Predictive Value (PPV) by Queue Segment",
+        title=dict(text="The 61-Person Boundary Swap<br><sup>PPV Hit Rate by Queue Segment</sup>", x=0.02, y=0.96),
         yaxis_title="Positive Predictive Value / Hit Rate (%)",
         yaxis_range=[0, 7.5],
-        height=390,
+        height=400,
         dragmode=False,
     )
     fig.add_hline(
@@ -264,10 +264,10 @@ def build_joint_ranking_scatter() -> go.Figure:
 
     fig.update_layout(**CLINICAL_PLOTLY_LAYOUT)
     fig.update_layout(
-        title="Joint Priority Ranking (K = 939 Threshold)",
+        title=dict(text="Joint Priority Ranking<br><sup>K = 939 Threshold Comparison</sup>", x=0.02, y=0.96),
         xaxis_title="Model B Priority Rank (1 to 4,698)",
         yaxis_title="Model A Priority Rank (1 to 4,698)",
-        height=430,
+        height=440,
     )
     return fig
 
@@ -304,11 +304,11 @@ def build_equity_bar_chart() -> go.Figure:
 
     fig.update_layout(**CLINICAL_PLOTLY_LAYOUT)
     fig.update_layout(
-        title="Disparity Audit: Screening Sensitivity by Health Insurance Coverage",
+        title=dict(text="Disparity Audit by Health Insurance<br><sup>Screening Sensitivity Gap at 20% Budget</sup>", x=0.02, y=0.96),
         xaxis_title="Sensitivity (% of Latent Cases Detected at 20% Budget)",
         xaxis_range=[0, 70],
         barmode="group",
-        height=320,
+        height=340,
         dragmode=False,
     )
     return fig
@@ -358,10 +358,10 @@ def build_decision_curve_plot() -> go.Figure:
 
     fig.update_layout(**CLINICAL_PLOTLY_LAYOUT)
     fig.update_layout(
-        title="Decision Curve Analysis (Net Monetary Benefit vs Risk Threshold)",
+        title=dict(text="Decision Curve Analysis<br><sup>Net Monetary Benefit vs Risk Threshold</sup>", x=0.02, y=0.96),
         xaxis_title="Risk Threshold Probability pt (%)",
         yaxis_title="Net Benefit (Standardized Units)",
         yaxis_range=[-0.005, 0.025],
-        height=380,
+        height=400,
     )
     return fig

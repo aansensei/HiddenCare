@@ -15,3 +15,10 @@ data/raw/
 # Model artifacts
 outputs/models/*.joblib
 outputs/models/*.pkl
+# Internal research journal and planning
+journey.md
+PROJECT_PLAN.md
+PROMPT_GEMINI_HIDDENCARE.md
+RUN_STATUS.md
+*.duckdb
+data/processed/lakehouse_*.parquet

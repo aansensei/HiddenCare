@@ -1,0 +1,3 @@
+architecture,capacity,model_a_cases,model_b_cases,net_case_gain,margin_swaps,margin_cases_b,margin_cases_a,margin_precision_ratio,uninsured_sens_a,uninsured_sens_b,uninsured_sens_boost
+Random Forest,20%,60,61,1,77,5,4,1.25,30.77,46.15,15.38
+Gradient Boosting,20%,59,59,0,132,4,4,1.0,30.77,30.77,0.0

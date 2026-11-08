@@ -1,0 +1,53 @@
+{
+  "status": "PASSED",
+  "sample_sizes": {
+    "pre_pandemic_train": 7761,
+    "post_pandemic_eval": 4698
+  },
+  "missingness_drift": {
+    "bmi": {
+      "pre_pandemic_pct": 1.62,
+      "post_pandemic_pct": 1.21,
+      "delta_pct": 0.41,
+      "drift_warning": false
+    },
+    "waist": {
+      "pre_pandemic_pct": 4.75,
+      "post_pandemic_pct": 3.96,
+      "delta_pct": 0.79,
+      "drift_warning": false
+    },
+    "pir": {
+      "pre_pandemic_pct": 13.59,
+      "post_pandemic_pct": 12.79,
+      "delta_pct": 0.8,
+      "drift_warning": false
+    }
+  },
+  "distribution_drift": {
+    "age": {
+      "ks_statistic": 0.0555,
+      "p_value": 0.0,
+      "psi_score": 0.0309,
+      "stability_status": "STABLE"
+    },
+    "a1c": {
+      "ks_statistic": 0.1489,
+      "p_value": 0.0,
+      "psi_score": 0.275,
+      "stability_status": "SIGNIFICANT_SHIFT"
+    },
+    "bmi": {
+      "ks_statistic": 0.0635,
+      "p_value": 0.0,
+      "psi_score": 0.0195,
+      "stability_status": "STABLE"
+    },
+    "waist": {
+      "ks_statistic": 0.0494,
+      "p_value": 0.0,
+      "psi_score": 0.0175,
+      "stability_status": "STABLE"
+    }
+  }
+}
