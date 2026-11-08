@@ -435,15 +435,7 @@ function() {{
         }};
 
         window.copyBibtexCitation = function() {{
-            const bibtex = `@misc{nguyen2026hiddencare,
-  author = {Cao Thien An Nguyen},
-  title = {When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES},
-  year = {2026},
-  month = {November},
-  howpublished = {Research Poster & Interactive Lab},
-  institution = {University of Wisconsin-Madison},
-  url = {https://aansensei.dev/hiddencare/}
-}`;
+            const bibtex = `@misc{{nguyen2026hiddencare,\n  author = {{Cao Thien An Nguyen}},\n  title = {{When Training Labels Change Who Gets Screened: Temporal Evaluation of Diagnosis-Based Versus Biomarker-Augmented Labels in NHANES}},\n  year = {{2026}},\n  month = {{November}},\n  howpublished = {{Research Poster & Interactive Lab}},\n  institution = {{University of Wisconsin-Madison}},\n  url = {{https://aansensei.dev/hiddencare/}}\n}}`;
             if (navigator.clipboard && navigator.clipboard.writeText) {{
                 navigator.clipboard.writeText(bibtex).then(function() {{
                     const span = document.getElementById('txt-copy-bibtex');
