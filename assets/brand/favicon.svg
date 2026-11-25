@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>HiddenCare</title>
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <rdf:Description>
+        <dc:title>HiddenCare</dc:title>
+        <dc:creator>Cao Thien An Nguyen</dc:creator>
+        <dc:description>HiddenCare monogram mark for the Algorithmic Epidemiology Lab.</dc:description>
+      </rdf:Description>
+    </rdf:RDF>
+  </metadata>
+  <style>
+    .m { fill: #0f5d57; }
+    .a { fill: #059669; }
+    @media (prefers-color-scheme: dark) {
+      .m { fill: #d8ece9; }
+      .a { fill: #34d399; }
+    }
+  </style>
+  <path d="M7.00 8.00H25.50V12.00C22.90 12.00 21.50 13.12 21.50 15.20V48.80C21.50 50.88 22.90 52.00 25.50 52.00V56.00H7.00V52.00C9.93 52.00 11.50 50.88 11.50 48.80V15.20C11.50 13.12 9.93 12.00 7.00 12.00Z" class="m"/>
+  <path d="M38.50 8.00H57.00V12.00C54.08 12.00 52.50 13.12 52.50 15.20V48.80C52.50 50.88 54.08 52.00 57.00 52.00V56.00H38.50V52.00C41.10 52.00 42.50 50.88 42.50 48.80V15.20C42.50 13.12 41.10 12.00 38.50 12.00Z" class="m"/>
+  <rect x="21.00" y="29.50" width="4.00" height="4.20" class="m"/>
+  <rect x="39.00" y="29.50" width="4.00" height="4.20" class="m"/>
+  <circle cx="32" cy="31.60" r="4.60" class="a"/>
+</svg>
